@@ -1,3 +1,4 @@
 Members have reviewed the code.
 Code addresses the relevant issues.
 All testing for the code is completed
+Client accepts the code.
