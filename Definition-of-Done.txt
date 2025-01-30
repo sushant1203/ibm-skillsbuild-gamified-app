@@ -1,4 +1,4 @@
-Members have reviewed the code.
+Passed the code review successfully.
 Code addresses the relevant issues.
 All testing for the code is completed
 Client accepts the code.
