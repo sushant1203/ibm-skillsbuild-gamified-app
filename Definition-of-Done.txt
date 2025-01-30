@@ -1,4 +1,4 @@
 Passed the code review successfully.
-Code addresses the relevant issues.
+Code addresses the relevant user story.
 All testing for the code is completed
 Client accepts the code.
