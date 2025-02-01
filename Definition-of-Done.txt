@@ -2,4 +2,4 @@ Passed the code review successfully.
 Code addresses the relevant user story.
 All testing for the code is completed
 Client accepts the code.
-Code is to be successfully merged into the main branch with no conflicts.
+Documentation is updated (README, API docs).
