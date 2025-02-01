@@ -2,4 +2,4 @@ Passed the code review successfully.
 Code addresses the relevant user story.
 All testing for the code is completed
 Client accepts the code.
-Documentation is updated (README, API docs).
+For each user story, the acceptance criteria have been met.
