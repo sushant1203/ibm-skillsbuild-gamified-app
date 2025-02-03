@@ -1,5 +1,5 @@
 Passed the code review successfully.
 Code addresses the relevant user story.
 All testing for the code is completed
-Client accepts the code.
+Supervisor review the code after its in waiting for approval.
 For each user story, the acceptance criteria have been met.
