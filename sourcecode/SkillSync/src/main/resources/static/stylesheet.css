@@ -1,3 +1,14 @@
+/* Body CSS */
+body{
+    background: rgba(23, 10, 191, 1.0);
+    background: radial-gradient(at center top, rgba(23, 10, 191, 1.0), rgba(136, 170, 223, 1.0));
+    background-repeat: no-repeat;
+    height: 100vh;
+
+}
+/* Body CSS */
+
+
 /* Menu CSS */
 .landing_header {
     font-family: "Apple SD Gothic Neo";
@@ -15,20 +26,22 @@
 
 .menuItems li:first-child {
     margin-right: auto;
-    margin-left: 100px;
+    margin-left: 60px;
 
 }
 .menuItems li:last-child,.menuItems li:nth-last-child(2) {
     margin-left: 15px;
-    margin-right: 100px;
+    margin-right: 60px;
     padding: 3rem;
 }
+
 .button {
     text-decoration: none;
-    font-size: 30px;
-    font-family: 'Cairo', sans-serif;
-    color: black;
+    font-size: 28px;
+    color: #ffffff;
     font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+
 
 }
 /* Menu CSS */
