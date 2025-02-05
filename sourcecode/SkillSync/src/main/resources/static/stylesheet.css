@@ -10,10 +10,7 @@ body{
 
 
 /* Menu CSS */
-.landing_header {
-    font-family: "Apple SD Gothic Neo";
-    margin: 1rem;
-}
+
 
 .menuItems {
     display: flex;
@@ -41,7 +38,79 @@ body{
     color: #ffffff;
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
+}
+
+/* Menu CSS */
+
+
+/* Center Intro CSS */
+
+.landing_intro {
+    display: block;
+    width: 100%;
+    text-align: center;
+
+}
+.button_container{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+}
+.Center_Button {
+    text-decoration: none;
+    font-size: 28px;
+    color: #ffffff;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
 
 
 }
-/* Menu CSS */
+.intro{
+    text-decoration: none;
+    font-size: 50px;
+    color: #ffffff;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 150px;
+}
+.line_2{
+    text-decoration: none;
+    font-size: 40px;
+    color: #ffffff;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 150px;
+}
+.line_3{
+    text-decoration: none;
+    font-size: 30px;
+    color: #ffffff;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 150px;
+}
+
+/* Center Intro CSS */
+
+
+
+
+
+
+
+/* footer CSS */
+.footer{
+
+    background-color: #445ee3;
+    color: white;
+    text-align: center;
+    padding: 20px;
+
+
+}
+
+
+
+
+
