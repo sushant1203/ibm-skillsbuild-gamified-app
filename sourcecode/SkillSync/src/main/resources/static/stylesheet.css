@@ -1,0 +1,9 @@
+.landing_header {
+    font-family: "Apple SD Gothic Neo";
+    margin: 1rem;
+}
+
+.landing_header a {
+    float: right;
+    padding: 1rem;
+}
