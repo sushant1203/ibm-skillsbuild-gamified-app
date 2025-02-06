@@ -3,20 +3,20 @@ package com.example.skillsync.model;
 import jakarta.persistence.*;
 
 @Entity //create a table
-@Table //map it to a database table
+@Table //map it to a database(db) table
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //db automatically generates unique ids when a new entity is saved
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false) //the column "name" cannot be empty, same applies to the other fields
     private String name;
 
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false,unique = true) //two emails cannot be the same in the db
     private String email;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true) //two usernames cannot be the same in the db
     private String username;
 
     @Column(nullable = false)
@@ -25,6 +25,7 @@ public class User {
     @Column(nullable = false)
     private int score;
 
+    //getters and setters
     public Long getId() {
         return id;
     }
