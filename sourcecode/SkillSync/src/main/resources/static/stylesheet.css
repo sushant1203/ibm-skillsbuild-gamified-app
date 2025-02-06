@@ -123,8 +123,14 @@ html {
     gap: 20px;
     align-items: center;
     height: 30rem;
-    margin-top: 340px;
+    max-width: 75%;
+    margin: 340px auto 0 auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 50px;
+    box-shadow: 0 0 25px 4px rgba(0,0,0,0.51);
 }
+
 .Info {
     border: 2px solid #000;
 
