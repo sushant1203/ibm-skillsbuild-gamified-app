@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login") //access to specific login page
-                        .defaultSuccessUrl("dashboard") //redirects to landing page after successful login
+                        .defaultSuccessUrl("/dashboard") //redirects to landing page after successful login
                         .permitAll() //allow access to all for log in page
                 )
                 .logout(logout -> logout

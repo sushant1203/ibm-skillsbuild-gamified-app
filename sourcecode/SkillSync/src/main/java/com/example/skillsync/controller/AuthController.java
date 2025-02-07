@@ -43,7 +43,7 @@ public class AuthController {
         userService.registerUser( name, email, username, password);
 
         //redirects user to login page with success message
-        return "redirect:/login?success=true";
+        return "redirect:/login";
     }
 
     //displays the login page
@@ -57,4 +57,10 @@ public class AuthController {
     public String showDashboard() {
         return "dashboard";
     }
+
+    @GetMapping("/")
+    public String showHome() {
+        return "home";
+    }
+
 }
