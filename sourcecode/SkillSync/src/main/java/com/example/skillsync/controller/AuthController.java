@@ -39,15 +39,8 @@ public class AuthController {
             return "register";
         }
 
-        //create a user object and save it
-        User user = new User();
-        user.setName(name);
-        user.setEmail(email);
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setScore(0);//set a default score at registration(0)
-
-        userService.registerUser(user);
+        // UserService handles the registration of the user
+        userService.registerUser( name, email, username, password);
 
         //redirects user to login page with success message
         return "redirect:/login?success=true";
