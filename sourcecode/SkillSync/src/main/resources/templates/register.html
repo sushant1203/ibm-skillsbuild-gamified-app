@@ -1,0 +1,19 @@
+<form action="/register" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+    </div>
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        <div th:if="${error}" th:text="${error}"></div>
+
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+    </div>
+    <button type="submit">Register</button>
+</form>
+
+
