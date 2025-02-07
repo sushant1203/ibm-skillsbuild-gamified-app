@@ -1,4 +1,9 @@
 <form action="/register" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div th:if="${errors}">
+        <ul>
+            <li th:each="error : ${errors}" th:text="${error}"></li>
+        </ul>
+    </div>
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required />
@@ -6,7 +11,6 @@
     <div class="form-group">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required />
-        <div th:if="${error}" th:text="${error}"></div>
     </div>
     <div class="form-group">
         <label for="email">Email:</label>

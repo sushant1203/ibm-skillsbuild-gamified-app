@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class AuthController {
 
@@ -28,19 +30,15 @@ public class AuthController {
                                @RequestParam String username,
                                @RequestParam String password,
                                Model model) {
-
-        //check if username or email already exists
-        if (userService.findByUsername(username) != null) {
-            model.addAttribute("error","username already exists!choose another one.");
-            return "register";//reloads registration page with error message, applies same with email
-        }
-        if (userService.findByEmail(email) != null) {
-            model.addAttribute("error","email is already registered!use another email.");
-            return "register";
-        }
+        List<String> errors;
 
         // UserService handles the registration of the user
-        userService.registerUser( name, email, username, password);
+        errors = userService.registerUser( name, email, username, password);
+        System.out.println(errors);
+        if (errors != null) {
+            model.addAttribute("errors", errors);
+            return "register";
+        }
 
         //redirects user to login page with success message
         return "redirect:/login";

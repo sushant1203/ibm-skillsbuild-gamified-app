@@ -35,7 +35,7 @@ public class SecurityConfig {
                         .permitAll() //allow access to all for log in page
                 )
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/login") //redirects to log in page after logout
+                        .logoutSuccessUrl("/") //redirects to log in page after logout
                         .permitAll() //allow logout for all users
                 )
                 .userDetailsService(userDetailsService); //for authentication
