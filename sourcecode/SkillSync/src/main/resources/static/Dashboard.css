@@ -1,4 +1,4 @@
-/* Reset styling */
+
 body, html {
     margin: 0;
     padding: 0;
@@ -6,7 +6,7 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
-/* Main container */
+
 .container {
     display: flex;
     height: 100vh;
@@ -14,21 +14,21 @@ body, html {
 }
 
 
-/* Navigation Panel (Expandable) */
+
 .Navigation-Frame {
-    width: 200px; /* Default width */
-    min-width: 180px; /* Minimum width */
-    max-width: 250px; /* Maximum width */
+    width: 200px;
+    min-width: 180px;
+    max-width: 250px;
     background: #242424;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align content to left */
+    align-items: flex-start;
     padding-top: 20px;
     position: relative;
-    transition: width 0.2s ease-out; /* Smooth transition */
+    transition: width 0.2s ease-out;
 }
 
-/* Navigation Links */
+
 .nav-links {
     display: flex;
     flex-direction: column;
@@ -36,7 +36,7 @@ body, html {
     padding-left: 0px;
 }
 
-/* Individual Navigation Links */
+
 .nav-links a {
     display: flex;
     align-items: center;
@@ -47,50 +47,50 @@ body, html {
     transition: background 0.3s;
     white-space: nowrap;
     overflow: hidden;
-    width: 100%; /* Ensures full width inside nav */
+    width: 100%;
     border-radius: 5px;
-    box-sizing: border-box; /* Prevents extra width */
+    box-sizing: border-box;
 }
 
 
 
-/* Icons inside Navigation Links */
+
 .nav-links a img {
-    width: 24px; /* Keep icon size fixed */
+    width: 24px;
     height: 24px;
     margin-right: 10px;
-    flex-shrink: 0; /* Prevents icons from resizing */
+    flex-shrink: 0;
 }
 
-/* Adjust navigation text when expanding */
+
 .Navigation-Frame.expanded .nav-links a {
-    justify-content: flex-start; /* Align text properly */
+    justify-content: flex-start;
     width: 100%;
 }
 
-/* Hover Effect */
+
 .nav-links a:hover {
     background: #333;
-    width: 100%; /* Ensures hover stays inside navigation */
+    width: 100%;
     border-radius: 20px;
 }
 .logo {
     display: flex;
-    justify-content: flex-start; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    justify-content: flex-start;
+    align-items: center;
     width: 100%;
-    padding: 0 5px; /* Add some spacing above and below */
+    padding: 0 5px;
 }
-/* Fix logo */
+
 .logo img {
-    width: 120px; /* Keep logo size fixed */
+    width: 120px;
     max-width: 70%;
     margin-bottom: 30px;
     margin-left: 20px;
 
 }
 
-/* Fix resizing issue */
+
 .resizer {
     width: 5px;
     background: #555;
@@ -103,10 +103,10 @@ body, html {
 }
 
 
-/* Top Navigation Bar */
+
 .Bar-frame {
     display: flex;
-    width: calc(100% - 200px); /* Adjust based on Navigation-Frame */
+    width: calc(100% - 200px);
     height: 10%;
     background: #242424;
     justify-content: space-between;
@@ -114,13 +114,13 @@ body, html {
     padding: 0 20px;
     position: fixed;
     top: 0;
-    left: 200px; /* Matches Navigation-Frame width */
+    left: 200px;
     right: 0;
     z-index: 100;
     transition: left 0.2s ease-out, width 0.2s ease-out;
 }
 
-/* Main Content */
+
 .View-frame {
     flex-grow: 1;
     background: linear-gradient(180deg, #170ABF 0%, #ADADAD 100%);
@@ -128,7 +128,7 @@ body, html {
     flex-direction: column;
     justify-content: flex-start;
     font-size: 24px;
-    width: calc(100% - 200px); /* Adjust based on Navigation-Frame */
+    width: calc(100% - 200px);
     height: 100vh;
     color: white;
     overflow: hidden;
@@ -136,7 +136,7 @@ body, html {
     transition: width 0.2s ease-out;
 }
 
-/* Resizer (Draggable Bar) */
+
 .resizer {
     width: 5px;
     background: #555;
@@ -148,7 +148,7 @@ body, html {
     z-index: 10;
 }
 
-/* Search Box */
+
 #search {
     width: 300px;
     height: 40px;
@@ -157,22 +157,20 @@ body, html {
     padding: 5px 15px;
 }
 
-/* Right-side menu */
-/* Fix top-right alignment */
-/* Fix top-right alignment */
+
 .top-right {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 15px; /* Space between elements */
+    gap: 15px;
     position: absolute;
-    right: 50px; /* Adjust this value to bring elements slightly to the left */
+    right: 50px;
     top: 50%;
     transform: translateY(-50%);
     white-space: nowrap;
 }
 
-/* Notification Icon */
+
 .notification {
     position: relative;
     cursor: pointer;
@@ -185,7 +183,7 @@ body, html {
     height: 25px;
 }
 
-/* Notification Badge */
+
 .badge {
     position: absolute;
     top: -5px;
@@ -197,7 +195,7 @@ body, html {
     padding: 3px 6px;
 }
 
-/* User Profile */
+
 .user-profile {
     display: flex;
     align-items: center;

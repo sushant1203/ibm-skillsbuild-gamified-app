@@ -17,7 +17,7 @@ function resize(e) {
             leftPanel.style.width = `${newWidth}px`;
             viewFrame.style.width = `calc(100% - ${newWidth}px)`;
             barFrame.style.width = `calc(100% - ${newWidth}px)`;
-            barFrame.style.left = `${newWidth}px`; // Move top bar dynamically
+            barFrame.style.left = `${newWidth}px`;
         }
     }
 }
