@@ -58,7 +58,7 @@ public class AuthController {
 
     @GetMapping("/")
     public String showHome() {
-        return "home";
+        return "landing";
     }
 
 }
