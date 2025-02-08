@@ -13,10 +13,11 @@ resizer.addEventListener('mousedown', (e) => {
 function resize(e) {
     if (isResizing) {
         let newWidth = e.clientX - leftPanel.getBoundingClientRect().left;
-        if (newWidth >= 180 && newWidth <= 400) {
+        if (newWidth >= 180 && newWidth <= 250) {
             leftPanel.style.width = `${newWidth}px`;
             viewFrame.style.width = `calc(100% - ${newWidth}px)`;
-            barFrame.style.width = `calc(100% - ${newWidth}px)`; // Ensure bar adjusts too
+            barFrame.style.width = `calc(100% - ${newWidth}px)`;
+            barFrame.style.left = `${newWidth}px`; // Move top bar dynamically
         }
     }
 }
