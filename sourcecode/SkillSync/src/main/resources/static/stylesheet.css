@@ -148,7 +148,7 @@ html {
     min-height: 30rem;
     max-width: 75%;
     margin: 100px auto 0 auto;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.92);
     border-radius: 10px;
     padding: 50px;
     box-shadow: 0 0 25px 4px rgba(0,0,0,0.51);
@@ -207,16 +207,34 @@ html {
     margin: 0 auto ;
     box-shadow: 0 0 15px 3px rgba(0,0,0,0.31);
     border-radius: 5px;
-    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
     overflow: hidden;
 
 }
 
 .faq details summary {
     text-align: center;
+    display: block;
+    cursor: pointer;
     margin-left: 0.5rem;
     margin-top: 0.5rem;
 
+}
+
+.faq p{
+    text-align: center;
+    font-size: 20px;
+}
+
+.faq details[open] > summary:before {
+    transform: rotate(90deg);
+}
+
+.faq summary:before {
+    content: '>';
+    position: absolute;
+    margin-left: -25px;
+    border: 2px black;
+    transition: .4s transform ease;
 }
 
 /* Frequently asked questions CSS */
