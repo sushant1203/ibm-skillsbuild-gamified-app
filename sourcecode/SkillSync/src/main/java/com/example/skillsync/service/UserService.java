@@ -76,7 +76,7 @@ public class UserService {
         UserDetails updatedUserDetails = new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority("USER"))
+                Collections.singletonList(new SimpleGrantedAuthority("USER")) // Adding security auth status
         );
 
         // Create an Authentication object using the updated UserDetails
@@ -89,15 +89,56 @@ public class UserService {
 
     }
 
-    public String editUserName(String newUsername) {
-        User user = getLoggedInUser(); // Getting current user
+    public List<String> editUserName(String newUsername, String password) {
+        User user = getLoggedInUser();
+        List<String> errors = new ArrayList<>();// Getting current user
         if (user == null) {
-            return "User authentication error"; // Not logged in
+            errors.add("User authentication error"); // Not logged in
         }
         if (findByUsername(newUsername) != null) {
-            return "Username already exists! Choose another one.";
+            errors.add("Username already exists! Choose another one.");
+        }
+
+        if (!passwordEncoder.matches(password, user.getPassword())) { // Checking password
+            errors.add("Incorrect password!");
+
+        }
+
+        if (!errors.isEmpty()) {
+            return errors;
         }
         user.setUsername(newUsername);
+        userRepository.save(user);
+        reAuthenticate(user);
+        return null;
+    }
+
+
+    public List<String> editPassword(String newPassword, String password, String newPasswordConfirm) {
+        User user = getLoggedInUser();
+        List<String> errors = new ArrayList<>();// Getting current user
+        if (user == null) {
+            errors.add("User authentication error"); // Not logged in
+        }
+
+        if (!passwordEncoder.matches(password, user.getPassword())) { // Checking password
+            errors.add("Incorrect password!");
+
+        }
+
+        if (!newPassword.equals(newPasswordConfirm)) { // Match error
+            errors.add("Passwords do not match!");
+
+        }
+
+        if (!PasswordValidator.isValid(newPassword)) { // Checks against password validation
+            errors.add("Password must contain at least 8 characters, one uppercase letter, one digit, and one special character.");
+        }
+
+        if (!errors.isEmpty()) {
+            return errors;
+        }
+        user.setPassword(passwordEncoder.encode(newPassword)); // Encodes for security
         userRepository.save(user);
         reAuthenticate(user);
         return null;

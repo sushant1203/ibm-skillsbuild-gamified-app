@@ -46,14 +46,25 @@ public class AuthController {
         return "redirect:/login";
     }
 
-    @PostMapping("settings") // handles username editing
-    public String editUserName(@RequestParam String newUsername, Model model){
-        String error = userService.editUserName(newUsername); // UserService
-        if (error != null){
-            model.addAttribute("error", error); // error check
-            return "settings"; // return with error
+    @PostMapping("editUsername") // handles username editing
+    public String editUserName(@RequestParam String newUsername, @RequestParam String password, Model model){
+        List<String> errors = userService.editUserName(newUsername,password); // UserService
+        if (errors != null){
+            model.addAttribute("errors", errors); // error check
+            return "settings"; // Returns with error message
         }
         model.addAttribute("pass","Username updated successfully");
+        return "settings"; // return with success
+    }
+
+    @PostMapping("editPassword") // handles password editing
+    public String editPassword(@RequestParam String password, @RequestParam String newPassword, @RequestParam String newPasswordConfirm, Model model){
+        List<String> errors = userService.editPassword( newPassword,  password,  newPasswordConfirm); // UserService
+        if (errors != null){
+            model.addAttribute("errors", errors); // error check
+            return "settings"; // Returns with error message
+        }
+        model.addAttribute("pass","Password updated successfully");
         return "settings"; // return with success
     }
 

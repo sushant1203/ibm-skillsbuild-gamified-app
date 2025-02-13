@@ -36,7 +36,7 @@
             </a>
             <a href="settings">
                 <img src="Settings.png" alt="Settings icon" >
-                settings
+                Settings
             </a>
         </nav>
         <div class="resizer"></div>
@@ -58,12 +58,30 @@
             </div>
         </div>
         <div class = "Main-contact">
-            <form th:action="@{/settings}" method="post">
+            <h2>Edit Username</h2>
+            <form th:action="@{/editUsername}" method="post">
                 <label>New Username:</label>
-                <input type="text" name="newUsername" required>
-                <button type="submit">Update Username</button>
+                <input type="text" name="newUsername" required><br>
+                <label>Confirm Password:</label>
+                <input type="password" name="password" required>
+                <button type="submit">Submit</button><br>
             </form>
-            <p th:if="${error}">[[${error}]]</p>
+            <h2>Edit Password</h2>
+            <form th:action="@{/editPassword}" method="post">
+                <label>Confirm Password:</label>
+                <input type="password" name="password" required><br>
+                <label>New Password:</label>
+                <input type="password" name="newPassword" required><br>
+                <label>Confirm New Password:</label>
+                <input type="password" name="newPasswordConfirm" required>
+                <button type="submit">Submit</button>
+            </form>
+
+            <div th:if="${errors}">
+                <ul>
+                    <li th:each="error : ${errors}" th:text="${error}"></li>
+                </ul>
+            </div>
             <p th:if="${pass}">[[${pass}]]</p>
 
         </div>
