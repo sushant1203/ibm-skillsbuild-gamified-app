@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../../../login.css">
 </head>
 
 <body>
@@ -18,22 +18,19 @@
         <form action="/login" method="post">
             <h1>Login</h1>
             <div class="input-box">
-                <input type="text" placeholder="Username" required>
+                <input type="text" name="username" placeholder="Username" required>
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Password" required>
+                <input type="password" name="password" placeholder="Password" required>
                 <i class='bx bxs-lock-alt'></i>
             </div>
-            <div class = "remember-forgot">
-                <label><input type="checkbox">Remember me</label>
-                <a href="#">Forgot your password?</a>
-            </div>
+
             <button type="submit" class="btn">Sign in</button>
 
             <div class="signup-link">
                 <p> Don't have an account?
-                    <a href="#">Register</a> </p>
+                    <a href="/register">Register</a> </p>
             </div>
         </form>
     </div>
