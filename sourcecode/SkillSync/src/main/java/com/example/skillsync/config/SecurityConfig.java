@@ -25,7 +25,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(request ->
-                    request.requestMatchers("/register", "/login", "/", "stylesheet.css", "*.png").permitAll() //allows access to these three endpoints
+                    request.requestMatchers("/register", "/login", "/", "stylesheet.css", "*.png", "login.css").permitAll() //allows access to these three endpoints
                             .anyRequest().authenticated() //if any other endpoint(request), it requires authentication
                 )
                 .formLogin(form -> form

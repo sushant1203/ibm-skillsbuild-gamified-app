@@ -8,6 +8,7 @@
 /*body stylesheet css*/
 body {
     display: flex;
+    font-family: 'Montserrat', sans-serif;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -102,4 +103,8 @@ body {
 
 .signup-link p a:hover {
     text-decoration: underline;
+}
+
+.form-group {
+    font-family: 'Montserrat', sans-serif;
 }

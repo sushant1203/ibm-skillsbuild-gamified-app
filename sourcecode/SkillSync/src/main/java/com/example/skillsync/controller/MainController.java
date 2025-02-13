@@ -9,4 +9,10 @@ public class MainController {
     public String landing() {
         return "landing";
     }
+
+    @RequestMapping("/dashboard")
+    public String dashboard() {
+        return "dashboard";
+    }
 }
+
