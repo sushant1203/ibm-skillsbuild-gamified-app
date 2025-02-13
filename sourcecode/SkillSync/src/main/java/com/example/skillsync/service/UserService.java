@@ -4,13 +4,17 @@ import com.example.skillsync.model.User;
 import com.example.skillsync.repo.UserRepository;
 import com.example.skillsync.utils.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.net.Authenticator;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -68,6 +72,23 @@ public class UserService {
         return authentication == null ? null : userRepository.findByUsername(authentication.getName()); // Returns null if no user logged in else returns user
     }
 
+    public void reAuthenticate(User user) {
+        UserDetails updatedUserDetails = new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                Collections.singletonList(new SimpleGrantedAuthority("USER"))
+        );
+
+        // Create an Authentication object using the updated UserDetails
+        Authentication updatedAuthentication = new UsernamePasswordAuthenticationToken(
+                updatedUserDetails, user.getPassword(), updatedUserDetails.getAuthorities()
+        );
+
+        // Set the updated authentication in the SecurityContext
+        SecurityContextHolder.getContext().setAuthentication(updatedAuthentication);
+
+    }
+
     public String editUserName(String newUsername) {
         User user = getLoggedInUser(); // Getting current user
         if (user == null) {
@@ -78,6 +99,7 @@ public class UserService {
         }
         user.setUsername(newUsername);
         userRepository.save(user);
+        reAuthenticate(user);
         return null;
     }
 
