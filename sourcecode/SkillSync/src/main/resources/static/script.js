@@ -27,3 +27,25 @@ function stopResize() {
     document.removeEventListener('mousemove', resize);
     document.removeEventListener('mouseup', stopResize);
 }
+
+let slideNum = 1;
+showSlides(slideNum);
+
+function plusSlides(n) {
+    showSlides(slideNum += n);
+}
+function currentSlide(n) {
+    showSlides(slideNum  = n);
+}
+function showSlides(n) {
+    let j;
+    let slides = document.getElementsByClassName("slides");
+    if (n > slides.length) {slideNum = 1
+    }
+    if (n < 1) {slideNum = slides.length
+    }
+    for (j = 0; j < slides.length; j++) {
+        slides[j].style.display = "none";
+    }
+    slides[slideNum -1].style.display = "block";
+}

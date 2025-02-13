@@ -224,8 +224,8 @@ body, html {
 }
 .Title{
     color: black;
-    margin-left: 20px;
-
+    margin: 0;
+    padding: 10px 20px;
 }
 .Course-Grid{
     display: grid;
@@ -243,4 +243,21 @@ body, html {
     border-radius: 25px;
     padding: 10px;
 }
+.next {
+    float: right;
+    position: relative;
+    top: -1em;
+    right: 4%;
+}
+.prev {
+    float: right;
+    position: relative;
+    top: -1em;
+    right: 2%;
+}
+
+
+
+
+
 /* Courses CSS */
