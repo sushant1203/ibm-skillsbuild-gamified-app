@@ -222,11 +222,25 @@ body, html {
     margin-right: 25px;
 
 }
-
-
 .Title{
     color: black;
     margin-left: 20px;
 
+}
+.Course-Grid{
+    display: grid;
+    column-gap: 50px;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+    height: 38rem;
+
+}
+.Course-Grid div{
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 10px;
 }
 /* Courses CSS */
