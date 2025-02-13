@@ -29,7 +29,7 @@ html {
     margin-left: 60px;
 
 }
-.menuItems li:last-child,.menuItems li:nth-last-child(2) {
+.menuItems li:last-child,.menuItems li:nth-last-child(3) {
     margin-left: 15px;
     margin-right: 60px;
     padding: 3rem;

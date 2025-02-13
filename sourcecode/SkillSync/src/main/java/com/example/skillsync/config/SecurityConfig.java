@@ -40,6 +40,7 @@ public class SecurityConfig {
                 )
                 .userDetailsService(userDetailsService); //for authentication
 
+
         return http.build(); //builds and returns the security configuration
     }
 

@@ -3,6 +3,8 @@ package com.example.skillsync.controller;
 import com.example.skillsync.model.User;
 import com.example.skillsync.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,6 +46,18 @@ public class AuthController {
         return "redirect:/login";
     }
 
+    @PostMapping("settings") // handles username editing
+    public String editUserName(@RequestParam String newUsername, Model model){
+        String error = userService.editUserName(newUsername); // UserService
+        if (error != null){
+            model.addAttribute("error", error); // error check
+            return "settings"; // return with error
+        }
+        model.addAttribute("pass","Username updated successfully");
+        return "settings"; // return with success
+    }
+
+
     //displays the login page
     @GetMapping("/login")
     public String showLoginPage() {
@@ -59,6 +73,11 @@ public class AuthController {
     @GetMapping("/")
     public String showHome() {
         return "landing";
+    }
+
+    @GetMapping("/settings")
+    public String showSettings(Model model) {
+        return "settings";
     }
 
 }

@@ -4,9 +4,12 @@ import com.example.skillsync.model.User;
 import com.example.skillsync.repo.UserRepository;
 import com.example.skillsync.utils.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.net.Authenticator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,4 +62,23 @@ public class UserService {
 
         return null;
     }
+
+    public User getLoggedInUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); // Using security to find logged in user
+        return authentication == null ? null : userRepository.findByUsername(authentication.getName()); // Returns null if no user logged in else returns user
+    }
+
+    public String editUserName(String newUsername) {
+        User user = getLoggedInUser(); // Getting current user
+        if (user == null) {
+            return "User authentication error"; // Not logged in
+        }
+        if (findByUsername(newUsername) != null) {
+            return "Username already exists! Choose another one.";
+        }
+        user.setUsername(newUsername);
+        userRepository.save(user);
+        return null;
+    }
+
 }
