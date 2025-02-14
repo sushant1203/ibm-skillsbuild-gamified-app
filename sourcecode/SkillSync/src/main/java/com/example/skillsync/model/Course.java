@@ -11,6 +11,15 @@ public class Course {
     private String title;
     private String category;
     private String difficulty;
+    private int courseScore;
+
+    public Course(String title, String category, String difficulty, int courseScore) {
+        this.title = title;
+        this.category = category;
+        this.difficulty = difficulty;
+        this.courseScore = courseScore;
+
+    }
 
     public Long getId() {
         return id;
@@ -43,6 +52,13 @@ public class Course {
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+    public int getCourseScore() {
+        return courseScore;
+    }
+
+    public void setCourseScore(int courseScore) {
+        this.courseScore = courseScore;
     }
 
 
