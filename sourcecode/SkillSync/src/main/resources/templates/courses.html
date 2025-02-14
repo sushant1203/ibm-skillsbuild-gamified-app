@@ -58,56 +58,168 @@
                 </div>
             </div>
         </div>
-        <div class = "Main-contact">
+        <div class="Main-contact">
             <h1 class="Title">Courses</h1>
-                <a class="prev" onclick="plusSlides(1)">&#10095;</a>
-                <a class="next" onclick="plusSlides(-1)">&#10094;</a>
-                <div class="slides">
-                    <div class="Course-Grid">
-                        <div>
-                            <img src="Ai-fundamentals.png" width="100px" height="100px">
-                                <h1>Beginner</h1>
-                            <p>Artificial Intelligence Fundamentals</p>
-                            <button type="button" class="btn" onclick="window.location.href='https://students.yourlearning.ibm.com/credential/CREDLY-29bdaec3-af04-458e-a70e-2e6fa78c5dd5';">
-                                Start Course
-                            </button>
+            <a class="next" onclick="changePage(-1)">&#10094;</a>
+            <a class="prev" onclick="changePage(1)">&#10095;</a>
 
 
-                        </div>
-                        <div>2</div>
-                        <div>3</div>
-                        <div>4</div>
-                        <div>5</div>
-                        <div>6</div>
-                    </div>
-                </div>
-                <div class="slides">
-                <div class="Course-Grid">
-                        <div>CHESSE</div>
-                        <div>2</div>
-                        <div>3</div>
-                        <div>4</div>
-                        <div>5</div>
-                        <div>6</div>
-                    </div>
-                </div>
-                <div class="slides">
-                    <div class="Course-Grid">
-                        <div>testing this blw</div>
-                        <div>2</div>
-                        <div>3</div>
-                        <div>4</div>
-                        <div>5</div>
-                        <div>6</div>
-                        <div>7</div>
-                        <div>8</div>
-                        <div>9</div>
-                    </div>
-                </div>
-
+            <div class="Course-Grid" id="courseContainer"></div>
         </div>
     </div>
 </div>
+
+<script src="/script.js"></script>
+<script>
+
+    const courses = [
+        {
+            level: "Beginner",
+            title: "Artificial Intelligence Fundamentals",
+            image: "Ai-fundamentals.png",
+            quizLink: "#",
+            courseLink: "https://students.yourlearning.ibm.com/activity/PLAN-CC702B39D429"
+        },
+        {
+            level: "Intermediate",
+            title: "Web Development Fundamentals",
+            image: "Ai-fundamentals.png",
+            quizLink: "#",
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-8749C02A78EC?channelId=CNL_LCB_1616516409884"
+        },
+        {
+            level: "Advanced",
+            title: "Data Fundamentals",
+            image: "Ai-fundamentals.png",
+            quizLink: "#",
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-BC0FAEE8E439?channelId=CNL_LCB_1592251313526"
+        },
+        {
+            level: "Beginner",
+            title: "Cybersecurity Fundamentals",
+            image: "Ai-fundamentals.png",
+            quizLink: "#",
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-FA511CDFAF48?channelId=CNL_LCB_1580409324694"
+        },
+        {
+            level: "Intermediate",
+            title: "Learn Html",
+            image: "Ai-fundamentals.png",
+            quizLink: "#",
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-8749C02A78EC?channelId=CNL_LCB_1616526732054"
+        },
+        {
+            level: "Advanced",
+            title: "Cloud Computing Fundamentals",
+            image: "Ai-fundamentals.png",
+            quizLink: "#",
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-2EC3A305F2C3?ngo-id=0302"
+        },
+        {
+            level: "Advanced",
+            title: "Professional Skills",
+            image: "Ai-fundamentals.png",
+            quizLink: "#",
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-C4FCC67D3E76?channelId=CNL_LCB_1551390152858"
+        },
+        {
+            level: "Advanced",
+            title: "Getting Started with Cybersecurity",
+            image: "Ai-fundamentals.png",
+            quizLink: "#",
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-C7EE7CC95370?ngo-id=0302"
+        },
+        {
+            level: "Advanced",
+            title: "Machine Learning for Data Science Projects",
+            image: "Ai-fundamentals.png",
+            quizLink: "#",
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-D8E7C82C1D76?ngo-id=0302"
+        },
+        {
+            level: "Advanced",
+            title: "Getting Started with Threat Intelligence and Hunting",
+            image: "Ai-fundamentals.png",
+            quizLink: "#",
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-D5ED0773935F?ngo-id=0302"
+        },
+        {
+            level: "Advanced",
+            title: "Journey to Cloud: Orchestrating Your Solution",
+            image: "Ai-fundamentals.png",
+            quizLink: "#",
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-A44B849031F1?ngo-id=0302"
+        },
+        {
+            level: "Advanced",
+            title: "Getting Started with Data",
+            image: "Ai-fundamentals.png",
+            quizLink: "#",
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-14F2691E3A32?ngo-id=0302"
+        },
+        {
+            level: "Advanced",
+            title: "Fundamentals of Sustainability and Technology ",
+            image: "Ai-fundamentals.png",
+            quizLink: "#",
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-BE0E24A0BA5C?ngo-id=0302"
+        },
+        {
+            level: "Advanced",
+            title: "Enterprise Security in Practice",
+            image: "Ai-fundamentals.png",
+            quizLink: "#",
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-BBCABF0CF5B0?ngo-id=0302"
+        },
+
+    ];
+
+    let currentPage = 0;
+    const coursesPerPage = 8;
+    const totalPages = Math.ceil(courses.length / coursesPerPage);
+    const courseContainer = document.getElementById("courseContainer");
+
+    function renderCourses() {
+
+        courseContainer.innerHTML = '';
+
+        const startIndex = currentPage * coursesPerPage;
+        const endIndex = startIndex + coursesPerPage;
+        const currentCourses = courses.slice(startIndex, endIndex);
+
+        currentCourses.forEach(course => {
+            const courseCard = document.createElement("div");
+            courseCard.classList.add("course-card");
+
+            courseCard.innerHTML = `
+                <img src="${course.image}" alt="${course.title}">
+                <div class="content">
+                    <h1>${course.level}</h1>
+                    <p>${course.title}</p>
+                    <div class="button-group">
+                        <button type="button" class="btn">Start Quiz</button>
+                        <button type="button" class="btn" onclick="window.location.href='${course.courseLink}'">Start Course</button>
+                    </div>
+                </div>
+            `;
+
+            courseContainer.appendChild(courseCard);
+        });
+    }
+
+    function changePage(direction) {
+
+        currentPage += direction;
+
+        if (currentPage < 0) {
+            currentPage = totalPages - 1;
+        } else if (currentPage >= totalPages) {
+            currentPage = 0;
+        }
+        renderCourses();
+    }
+    renderCourses();
+</script>
 
 <script src="/script.js"></script>
 </body>
