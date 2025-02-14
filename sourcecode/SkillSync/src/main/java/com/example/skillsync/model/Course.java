@@ -9,7 +9,6 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //db automatically generates unique ids when a new entity is saved
     private Long id;
     private String title;
-    private String description;
     private String category;
     private String difficulty;
 
@@ -29,13 +28,6 @@ public class Course {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public String getCategory() {
         return category;

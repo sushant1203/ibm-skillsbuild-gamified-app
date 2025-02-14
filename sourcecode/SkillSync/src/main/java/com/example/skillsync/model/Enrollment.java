@@ -17,7 +17,6 @@ public class Enrollment {
     @JoinColumn(name ="course_id")
     private Course course;
 
-    private int rating;
 
     public Long getId() {
         return id;
@@ -43,13 +42,6 @@ public class Enrollment {
         this.course = course;
     }
 
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
 
 
 

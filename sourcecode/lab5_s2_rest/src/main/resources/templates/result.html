@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Dog Image</title>
+</head>
+<body>
+<h1>Random Dog Image</h1>
+
+<!-- Displaying the message passed from the controller -->
+<div>
+    <h3>Message:</h3>
+    <p th:text="${message}">Loading...</p>
+</div>
+
+<!-- Displaying the dog image -->
+<div>
+    <h3>Image:</h3>
+    <img th:src="${dogImageUrl}" alt="Random Dog Image" style="max-width: 500px;"/>
+</div>
+</body>
+</html>
