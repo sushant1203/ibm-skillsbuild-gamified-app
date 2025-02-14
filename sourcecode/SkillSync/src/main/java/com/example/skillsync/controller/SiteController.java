@@ -13,7 +13,7 @@ public class SiteController {
     @Autowired
     private UserService userService;
 
-    @ModelAttribute("user")
+    @ModelAttribute("user") // This function allows the current logged in user info to be accessed across the whole site (when logged in)
     public User addUserToModel(Model model) { // Needed to add user to all pages for profile pictures
         User user = userService.getLoggedInUser();
         if (user == null) {

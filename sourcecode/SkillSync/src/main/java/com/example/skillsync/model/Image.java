@@ -13,7 +13,7 @@ public class Image {
     Long id;
 
     @Lob
-    byte[] content;
+    byte[] content; // Actual image content
 
     public String getName() {
         return name;

@@ -32,12 +32,12 @@ public class ImageController {
         User user = userService.getLoggedInUser(); // Getting user that's uploading image
         Image image_db = new Image();
         String imageName = String.valueOf(user.getId());
-        if (imageRepository.findByName(imageName) != null) { // Delete old profile pictures if they exist
+        if (imageRepository.findByName(imageName) != null) { // Delete old profile pictures if they exist - each user can only have one profile picture
             imageRepository.deleteAllByName(imageName);
         }
         image_db.setName(imageName);
         image_db.setContent(image.getBytes()); // Actual image file content
-        imageRepository.save(image_db);
+        imageRepository.save(image_db); // User images are saved at /images/x where x is the user's ID
         return ResponseEntity.status(HttpStatus.FOUND).header("Location","/settings").build(); // Response entity so I can redirect from a rest controller
     }
 
@@ -45,10 +45,10 @@ public class ImageController {
     public ResponseEntity<ByteArrayResource> getImage(@PathVariable String image) {
         Image image_db = imageRepository.findByName(image);
         if (image_db == null) {
-            System.out.println("Image not found");
+            System.out.println("Image not found"); // Debug info
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok() // PNG only
+        return ResponseEntity.ok() // Converts to PNG for display. Tested to work with JPEG
                 .contentType(MediaType.parseMediaType(MediaType.IMAGE_PNG_VALUE)).body(new ByteArrayResource(image_db.getContent()));
     }
 }
