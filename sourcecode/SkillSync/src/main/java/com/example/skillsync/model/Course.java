@@ -13,6 +13,10 @@ public class Course {
     private String difficulty;
     private int courseScore;
 
+
+
+
+
     public Course() {}
 
     public Course(String title, String category, String difficulty, int courseScore) {
