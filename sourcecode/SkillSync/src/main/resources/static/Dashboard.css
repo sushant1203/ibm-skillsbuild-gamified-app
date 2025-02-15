@@ -286,12 +286,13 @@ body, html {
 .button-group button {
     padding: 8px 12px;
     font-size: 1rem;
+    font-style: oblique;
     cursor: pointer;
-    border: none;
     background-color: #ffffff;
     color: #000000;
     border-radius: 15px;
     transition: background 0.3s ease;
+
 }
 
 .button-group button:hover {
