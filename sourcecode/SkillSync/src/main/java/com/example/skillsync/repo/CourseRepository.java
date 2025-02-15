@@ -10,5 +10,6 @@ public interface CourseRepository  extends JpaRepository<Course, Long> {
     List<Course> findByCategory(String category);
     List<Course> findByDifficulty(String difficulty);
     List<Course> findByCategoryAndDifficulty(String category,String difficulty);
+    boolean existsByTitle(String title);
 
 }
