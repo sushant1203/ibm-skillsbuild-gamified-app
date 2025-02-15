@@ -72,107 +72,22 @@
 <script src="/script.js"></script>
 <script>
 
-    const courses = [
-        {
-            level: "Beginner",
-            title: "Artificial Intelligence Fundamentals",
-            image: "Ai-fundamentals.png",
-            quizLink: "#",
-            courseLink: "https://students.yourlearning.ibm.com/activity/PLAN-CC702B39D429"
-        },
-        {
-            level: "Intermediate",
-            title: "Web Development Fundamentals",
-            image: "Ai-fundamentals.png",
-            quizLink: "#",
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-8749C02A78EC?channelId=CNL_LCB_1616516409884"
-        },
-        {
-            level: "Advanced",
-            title: "Data Fundamentals",
-            image: "Ai-fundamentals.png",
-            quizLink: "#",
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-BC0FAEE8E439?channelId=CNL_LCB_1592251313526"
-        },
-        {
-            level: "Intermediate",
-            title: "Cybersecurity Fundamentals",
-            image: "Ai-fundamentals.png",
-            quizLink: "#",
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-FA511CDFAF48?channelId=CNL_LCB_1580409324694"
-        },
-        {
-            level: "Beginner",
-            title: "Learn Html",
-            image: "Ai-fundamentals.png",
-            quizLink: "#",
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-8749C02A78EC?channelId=CNL_LCB_1616526732054"
-        },
-        {
-            level: "Advanced",
-            title: "Cloud Computing Fundamentals",
-            image: "Ai-fundamentals.png",
-            quizLink: "#",
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-2EC3A305F2C3?ngo-id=0302"
-        },
-        {
-            level: "Beginner",
-            title: "Professional Skills",
-            image: "Ai-fundamentals.png",
-            quizLink: "#",
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-C4FCC67D3E76?channelId=CNL_LCB_1551390152858"
-        },
-        {
-            level: "Intermediate",
-            title: "Getting Started with Cybersecurity",
-            image: "Ai-fundamentals.png",
-            quizLink: "#",
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-C7EE7CC95370?ngo-id=0302"
-        },
-        {
-            level: "Advanced",
-            title: "Machine Learning for Data Science Projects",
-            image: "Ai-fundamentals.png",
-            quizLink: "#",
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-D8E7C82C1D76?ngo-id=0302"
-        },
-        {
-            level: "Advanced",
-            title: "Getting Started with Threat Intelligence and Hunting",
-            image: "Ai-fundamentals.png",
-            quizLink: "#",
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-D5ED0773935F?ngo-id=0302"
-        },
-        {
-            level: "Advanced",
-            title: "Journey to Cloud: Orchestrating Your Solution",
-            image: "Ai-fundamentals.png",
-            quizLink: "#",
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-A44B849031F1?ngo-id=0302"
-        },
-        {
-            level: "Intermediate",
-            title: "Getting Started with Data",
-            image: "Ai-fundamentals.png",
-            quizLink: "#",
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-14F2691E3A32?ngo-id=0302"
-        },
-        {
-            level: "Beginner",
-            title: "Fundamentals of Sustainability and Technology ",
-            image: "Ai-fundamentals.png",
-            quizLink: "#",
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-BE0E24A0BA5C?ngo-id=0302"
-        },
-        {
-            level: "Advanced",
-            title: "Enterprise Security in Practice",
-            image: "Ai-fundamentals.png",
-            quizLink: "#",
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-BBCABF0CF5B0?ngo-id=0302"
-        },
 
-    ];
+            courseLink: "https://students.yourlearning.ibm.com/activity/PLAN-CC702B39D429"
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-8749C02A78EC?channelId=CNL_LCB_1616516409884"
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-BC0FAEE8E439?channelId=CNL_LCB_1592251313526"
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-FA511CDFAF48?channelId=CNL_LCB_1580409324694"
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-8749C02A78EC?channelId=CNL_LCB_1616526732054"
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-2EC3A305F2C3?ngo-id=0302"
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-C4FCC67D3E76?channelId=CNL_LCB_1551390152858"
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-C7EE7CC95370?ngo-id=0302"
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-D8E7C82C1D76?ngo-id=0302"
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-D5ED0773935F?ngo-id=0302"
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-A44B849031F1?ngo-id=0302"
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-14F2691E3A32?ngo-id=0302"
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-BE0E24A0BA5C?ngo-id=0302"
+            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-BBCABF0CF5B0?ngo-id=0302"
+
 
     let currentPage = 0;
     const coursesPerPage = 8;
