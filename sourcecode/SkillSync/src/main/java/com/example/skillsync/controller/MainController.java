@@ -14,5 +14,6 @@ public class MainController {
     public String dashboard() {
         return "dashboard";
     }
+
 }
 

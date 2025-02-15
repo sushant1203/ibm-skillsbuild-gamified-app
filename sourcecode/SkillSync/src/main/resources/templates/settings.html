@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,7 +57,40 @@
                 </div>
             </div>
         </div>
-        <div class = "Main-contact"></div>
+        <div class = "Main-contact">
+            <h2>Edit Username</h2>
+            <form th:action="@{/editUsername}" method="post">
+                <label>New Username:</label>
+                <input type="text" name="newUsername" required><br>
+                <label>Confirm Password:</label>
+                <input type="password" name="password" required>
+                <button type="submit">Submit</button><br>
+            </form>
+            <h2>Edit Password</h2>
+            <form th:action="@{/editPassword}" method="post">
+                <label>Confirm Password:</label>
+                <input type="password" name="password" required><br>
+                <label>New Password:</label>
+                <input type="password" name="newPassword" required><br>
+                <label>Confirm New Password:</label>
+                <input type="password" name="newPasswordConfirm" required>
+                <button type="submit">Submit</button>
+            </form>
+            <h2>Profile Picture</h2>
+            <img th:if="${user}" th:src="@{'/images/' + ${user.id}}" height="100" width="100" alt="Profile Picture">
+            <form method="post" enctype="multipart/form-data" action="/upload">
+                <input type="file" name="image" required>
+                <button type="submit">Upload</button>
+            </form>
+            <div th:if="${errors}">
+                <ul>
+                    <li th:each="error : ${errors}" th:text="${error}"></li>
+                </ul>
+            </div>
+            <p th:if="${pass}">[[${pass}]]</p>
+
+        </div>
+
     </div>
 </div>
 
