@@ -17,9 +17,7 @@ public class CourseController {
 
     @GetMapping("/courses")
     public String getCourses(Model model) { // adding courses to page
-        List<Course> courses = new ArrayList<>();
-        courses.add(new Course()); // Dummy course so ID (in db) matches index in array
-        courses.addAll(courseRepository.findAll());
+        List<Course> courses = courseRepository.findAll();
         model.addAttribute("courses", courses);
         return "courses";
     }
