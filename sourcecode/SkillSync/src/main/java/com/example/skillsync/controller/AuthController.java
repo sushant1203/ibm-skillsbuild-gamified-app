@@ -60,9 +60,5 @@ public class AuthController {
     public String showHome() {
         return "landing";
     }
-    @GetMapping("/courses")
-    public String showCourses() {
-        return "courses";
-    }
 
 }
