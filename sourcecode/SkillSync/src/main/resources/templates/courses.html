@@ -69,26 +69,11 @@
     </div>
 </div>
 
-<script src="/script.js"></script>
+
+<script th:inline="javascript">
+    const courses = /*[[${courses}]]*/ [];
+</script>
 <script>
-
-
-            courseLink: "https://students.yourlearning.ibm.com/activity/PLAN-CC702B39D429"
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-8749C02A78EC?channelId=CNL_LCB_1616516409884"
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-BC0FAEE8E439?channelId=CNL_LCB_1592251313526"
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-FA511CDFAF48?channelId=CNL_LCB_1580409324694"
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-8749C02A78EC?channelId=CNL_LCB_1616526732054"
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-2EC3A305F2C3?ngo-id=0302"
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-C4FCC67D3E76?channelId=CNL_LCB_1551390152858"
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-C7EE7CC95370?ngo-id=0302"
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-D8E7C82C1D76?ngo-id=0302"
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-D5ED0773935F?ngo-id=0302"
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-A44B849031F1?ngo-id=0302"
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-14F2691E3A32?ngo-id=0302"
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-BE0E24A0BA5C?ngo-id=0302"
-            courseLink: "https://skills.yourlearning.ibm.com/activity/PLAN-BBCABF0CF5B0?ngo-id=0302"
-
-
     let currentPage = 0;
     const coursesPerPage = 8;
     const totalPages = Math.ceil(courses.length / coursesPerPage);
@@ -109,11 +94,11 @@
             courseCard.innerHTML = `
                 <img src="${course.image}" alt="${course.title}">
                 <div class="content">
-                    <h1>${course.level}</h1>
+                    <h1>${course.difficulty}</h1>
                     <p>${course.title}</p>
                     <div class="button-group">
                         <button type="button" class="btn">Start Quiz</button>
-                        <button type="button" class="btn" onclick="window.location.href='${course.courseLink}'">Start Course</button>
+                        <button type="button" class="btn" onclick="window.location.href='${course.links}'">Start Course</button>
                     </div>
                 </div>
             `;
@@ -136,7 +121,7 @@
     renderCourses();
 </script>
 
-<script src="/script.js"></script>
+
 </body>
 </html>
 
