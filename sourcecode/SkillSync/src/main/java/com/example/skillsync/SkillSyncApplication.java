@@ -35,11 +35,27 @@ public class SkillSyncApplication {
 					new Course("Fundamentals of Sustainability and Technology","Cyber Security","Beginner",5,"https://skills.yourlearning.ibm.com/activity/PLAN-BBCABF0CF5B0?ngo-id=0302"),
 					new Course("Enterprise Security in Practice","Cyber Security","Advanced",15, "https://skills.yourlearning.ibm.com/activity/PLAN-BBCABF0CF5B0?ngo-id=0302")			);
 
+
 			for (Course course : courses) {
+				Course oldCourse = courseRepository.findByTitle(course.getTitle());
+
 				if (!courseRepository.existsByTitle(course.getTitle())) {  // Check if course exists
 					courseRepository.save(course);
 				}
+				else if(!course.equals(oldCourse)){ // Check if course was edited
+					oldCourse.setCategory(course.getCategory());
+					oldCourse.setTitle(course.getTitle());
+					oldCourse.setCourseScore(course.getCourseScore());
+					oldCourse.setDifficulty(course.getDifficulty());
+					oldCourse.setLinks(course.getLinks());
+
+					courseRepository.save(oldCourse);
+				}
+
+
 			}
+
+
 		};
 	}
 

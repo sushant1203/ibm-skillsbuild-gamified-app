@@ -9,6 +9,7 @@ import java.util.List;
 public interface CourseRepository  extends JpaRepository<Course, Long> {
     List<Course> findByCategory(String category);
     List<Course> findByDifficulty(String difficulty);
+    Course findByTitle(String title);
     List<Course> findByCategoryAndDifficulty(String category,String difficulty);
     boolean existsByTitle(String title);
 
