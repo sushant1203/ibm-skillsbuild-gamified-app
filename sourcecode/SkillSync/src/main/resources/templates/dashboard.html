@@ -69,9 +69,10 @@
                 <div class="course-recommendation">
                     <h2>Recommended courses for you</h2>
                     <ul>
-                        <li th:each="course : ${recommendedCourses}">
+                        <li th:each="course, iterStat : ${recommendedCourses}">
+                            <span th:text="${iterStat.index + 1} + '. '"></span>
                             <a th:href="${course.links}" th:text="${course.title}"></a>
-                            <span th:text ="'(' + ${course.category} + ' - ' + ${course.difficulty} + ')'"></span>
+                            <span th:text="'(' + ${course.category} + ' - ' + ${course.difficulty} + ')'"></span>
                         </li>
                     </ul>
                 </div>
