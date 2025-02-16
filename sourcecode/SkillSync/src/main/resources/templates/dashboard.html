@@ -34,8 +34,8 @@
                     <span class="badge">3</span>
                 </div>
                 <div class="user-profile">
-                    <img src="user-icon.png" alt="User">
-                    <span>User</span>
+                    <img th:if="${user}" th:src="@{'/images/' + ${user.id}}" onerror="this.onerror=null; this.src='user-icon.png';"  alt="Profile Picture">
+                    <span th:text="${user.Name}">User</span>
                 </div>
             </div>
         </div>
