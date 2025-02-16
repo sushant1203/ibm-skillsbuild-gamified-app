@@ -53,4 +53,8 @@ public class Question {
     public void setQuestionText(String questionText) {
         this.questionText = questionText;
     }
+    @Override
+    public String toString() {
+        return "Question{id=" + id + ", text='" + questionText + "'}";
+    }
 }

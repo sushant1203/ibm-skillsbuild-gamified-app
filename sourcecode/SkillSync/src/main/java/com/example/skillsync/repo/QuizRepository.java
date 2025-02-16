@@ -7,5 +7,4 @@ import java.util.Optional;
 
 @Repository
 public interface QuizRepository extends JpaRepository<Quiz, Long> {
-    Optional<Quiz> findByCourseId(Long courseId);
 }

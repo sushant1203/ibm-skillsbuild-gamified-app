@@ -2,6 +2,7 @@ package com.example.skillsync.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "options")
 public class Option {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +15,17 @@ public class Option {
     private String optionText;
 
     private boolean isCorrect;
+
+    public Option(Long id, String text, boolean isCorrect, Question question) {
+        this.id = id;
+        this.optionText = text;
+        this.isCorrect = isCorrect;
+        this.question = question;
+    }
+
+    public Option() {
+
+    }
 
     // Getters and Setters
 
