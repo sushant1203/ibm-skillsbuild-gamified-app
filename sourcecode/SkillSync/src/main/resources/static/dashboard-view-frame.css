@@ -1,92 +1,328 @@
 
-.View-contact {
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+
+}
+
+
+.container {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start; /* Align items to the left */
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+
+.Navigation-Frame {
+    width: 200px;
+    min-width: 180px;
+    max-width: 250px;
+    background: #242424;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 20px;
+    position: relative;
+    transition: width 0.2s ease-out;
+}
+
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    padding-top: 150px;
+    padding-left: 0px;
 }
 
 
-.dashboard-left {
-    width: 50%; /* Ensures both sections are aligned on the left */
-}
-
-
-.dashboard-text {
-
+.nav-links a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
     color: white;
-    padding: 20px;
-    border-radius: 12px;
-    text-align: left;
-
-    width: 100%;
-    min-height: 100px; /* Ensures it remains visible */
-}
-.dashboard-text span {
-    color: #FFD700; /* Gold color for username */
-    font-weight: bold;
-}
-
-.course-recommendation h2 {
-    font-size: 22px; /* Increased font size */
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-align: left;
-}
-
-/* Recommended Courses Box (Below Dashboard Overview, Left Aligned) */
-.course-recommendation {
-    margin-top: 20px; /* Space between dashboard and courses */
-    margin-left: 20px;
-    width: 100%; /* Aligns with the dashboard text */
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    color: white;
-    text-align: left;
-    max-height: 400px; /* Prevents it from being too long */
-    overflow-y: auto; /* Adds scroll if too many courses */
-    direction: rtl;
-}
-
-/* Recommended Courses Title */
-.course-recommendation h2 {
-    font-size: 30px;
-    margin-bottom: 10px;
-    text-align: left;
-}
-
-/* Course List */
-.course-recommendation ul {
-    direction: ltr;
-    padding-left: 15px; /* Add some padding for spacing */
-}
-
-.course-recommendation li {
     font-size: 16px;
-    margin-bottom: 13px;
+    padding: 12px 15px;
+    transition: background 0.3s;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+
+
+.nav-links a img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+
+.Navigation-Frame.expanded .nav-links a {
+    justify-content: flex-start;
+    width: 100%;
+}
+
+
+.nav-links a:hover {
+    background: #333;
+    width: 100%;
+    border-radius: 20px;
+}
+.logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 0 5px;
+}
+
+.logo img {
+    width: 120px;
+    max-width: 70%;
+    margin-bottom: 30px;
+    margin-left: 20px;
+
+}
+
+
+.resizer {
+    width: 5px;
+    background: #555;
+    cursor: ew-resize;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    z-index: 10;
+}
+
+
+
+.Bar-frame {
+    display: flex;
+    width: calc(100% - 200px);
+    height: 10%;
+    background: #242424;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 200px;
+    right: 0;
+    z-index: 100;
+    transition: left 0.2s ease-out, width 0.2s ease-out;
+}
+
+
+.View-frame {
+    flex-grow: 1;
+    background: rgba(23, 10, 191, 1.0);
+    background: radial-gradient(at center top, rgba(23, 10, 191, 1.0), rgba(136, 170, 223, 1.0));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 24px;
+    width: calc(100% - 200px);
+    height: 100vh;
+    color: white;
+    overflow: hidden;
+    transition: width 0.2s ease-out;
+}
+
+
+.resizer {
+    width: 5px;
+    background: #555;
+    cursor: ew-resize;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    z-index: 10;
+}
+
+
+#search {
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    padding: 5px 15px;
+}
+
+
+.top-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+}
+
+
+.notification {
+    position: relative;
+    cursor: pointer;
     display: flex;
     align-items: center;
 }
 
-/* Course Numbering */
-.course-recommendation li span {
-    font-weight: bold;
-    color: #FFD700; /* Gold color */
-    margin-right: 5px;
+.notification img {
+    width: 25px;
+    height: 25px;
 }
 
-/* Course Links */
-.course-recommendation a {
-    text-decoration: none;
-    font-weight: bold;
-    color: #FFD700; /* Gold color */
-    display: block;
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 3px 6px;
 }
 
-.course-recommendation span {
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    color: white;
     font-size: 16px;
-    color: #ccc;
 }
+
+.user-profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.View-contact {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Adjust based on the parent container */
+    width: 100%;
+}
+
+.dashboard-overview{
+    height: 30%;
+    width: 30%;
+    padding-top: 110px;
+    padding-left: 10px;
+    color: white; /* Default text color */
+
+
+
+}
+
+
+.dashboard-text h2 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.dashboard-text p {
+    font-size: 24px;
+}
+
+.username {
+    color: yellow; /* Highlight username in yellow */
+    font-weight: bold;
+}
+.course-recommendation-container {
+    height: 85%;
+    width: 50%;
+    padding-left: 10px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); /* White glow effect */
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start; /* Aligns content to the top */
+
+
+
+}
+
+.Course-Grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-rows: repeat(2, 1fr); /* 2 rows */
+    gap: 15px; /* Space between items */
+    padding: 10px;
+    flex-grow: 1; /* Ensures it expands within the container */
+    overflow-y: auto; /* Enables scrolling if needed */
+
+}
+
+.course-card {
+    height: auto; /* Adjust to fit content */
+    border-radius: 8px;
+    background: #2184bd;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); /* White glow effect */
+    padding-bottom: 40px;
+    text-align: center;
+
+
+}
+
+.course-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.button-group {
+    margin-top: 10px;
+}
+
+.btn {
+    padding: 5px 10px;
+    border: none;
+    background-color: yellow;
+    color: black;
+
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #ffd700;
+}
+.nav-buttons {
+    display: flex;
+    justify-content: flex-end; /* Aligns buttons to the right */
+    align-items: center;
+    margin-bottom: 10px; /* Adds spacing from the title */
+}
+
+.nav-buttons a {
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    background-color: #1e90ff; /* Blue button */
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: 5px; /* Adds spacing between buttons */
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.nav-buttons a:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+
