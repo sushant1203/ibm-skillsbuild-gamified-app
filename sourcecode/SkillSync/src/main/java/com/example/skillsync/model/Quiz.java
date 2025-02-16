@@ -12,7 +12,9 @@ public class Quiz {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Need to implement the relationship between Course and Quiz
+    @OneToOne
+    @JoinColumn(name = "course_id", referencedColumnName = "id", unique = true, nullable = false)
+    private Course course;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions = new ArrayList<>();
@@ -35,6 +37,7 @@ public class Quiz {
         this.questions = questions;
     }
 
-
-
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 }
