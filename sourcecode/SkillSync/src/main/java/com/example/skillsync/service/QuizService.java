@@ -28,9 +28,9 @@ public class QuizService {
     private OptionRepository optionRepository;
 
     // Fetch the quiz data from the database
-    public Quiz getQuizData(Long quizId) {
-        Quiz quiz = quizRepository.findById(quizId)
-                .orElseThrow(() -> new RuntimeException("Quiz not found with id: " + quizId));
+    public Quiz getQuizData(Long courseId) {
+        Quiz quiz = quizRepository.findByCourseId(courseId)
+                .orElseThrow(() -> new RuntimeException("Quiz not found with id: " + courseId));
         return quiz;
     }
 
@@ -42,8 +42,8 @@ public class QuizService {
     }
 
     // Calculate the score based on the answers submitted
-    public int calculateScore(Long quizId, Map<String, String> answers) {
-        Quiz quiz = getQuizData(quizId);
+    public int calculateScore(Long courseId, Map<String, String> answers) {
+        Quiz quiz = getQuizData(courseId);
         int totalQuestions = quiz.getQuestions().size();
         int correctCount = 0;
 

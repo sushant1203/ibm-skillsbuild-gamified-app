@@ -11,14 +11,22 @@ public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @OneToOne
     @JoinColumn(name = "course_id", referencedColumnName = "id", unique = true, nullable = false)
     private Course course;
-
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions = new ArrayList<>();
 
+
+    // Constructors
+    public Quiz(Course course, List<Question> questions) {
+        this.course = course;
+        this.questions = questions;
+    }
+
+    public Quiz() {
+
+    }
 
     // Getters and Setters
     public Long getId() {

@@ -24,22 +24,22 @@ public class QuizController {
     private QuizService quizService;
 
     // Display the quiz
-    @GetMapping("quiz/{quizId}")
-    public String showQuiz(@PathVariable Long quizId, Model model) {
+    @GetMapping("quiz/{courseId}")
+    public String showQuiz(@PathVariable Long courseId, Model model) {
         // Fetch the quiz data from the database
-        Quiz quiz = quizService.getQuizData(quizId);
+        Quiz quiz = quizService.getQuizData(courseId);
         model.addAttribute("quiz", quiz);
         return "quiz";
     }
 
     // Handle the quiz submission
-    @PostMapping("/quiz/{quizId}")
-    public String submitQuiz(@PathVariable Long quizId,
+    @PostMapping("/quiz/{courseId}")
+    public String submitQuiz(@PathVariable Long courseId,
                              @RequestParam Map<String, String> answers,
                              Principal principal,
                              Model model) {
         // Calculate the score based on the answers submitted
-        int scorePercentage = quizService.calculateScore(quizId, answers);
+        int scorePercentage = quizService.calculateScore(courseId, answers);
         model.addAttribute("score", scorePercentage);
 
         // Redirect to the success or failure page based on the score

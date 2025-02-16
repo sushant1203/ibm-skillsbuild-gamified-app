@@ -1,5 +1,12 @@
 package com.example.skillsync;
 
+import com.example.skillsync.model.Option;
+import com.example.skillsync.model.Question;
+import com.example.skillsync.model.Quiz;
+import com.example.skillsync.repo.OptionRepository;
+import com.example.skillsync.repo.QuestionRepository;
+import com.example.skillsync.repo.QuizRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.example.skillsync.model.Course;
@@ -13,7 +20,17 @@ import java.util.List;
 
 @SpringBootApplication
 public class SkillSyncApplication {
+	@Autowired
+	private CourseRepository courseRepository;
 
+	@Autowired
+	private QuizRepository quizRepository;
+
+	@Autowired
+	private QuestionRepository questionRepository;
+
+	@Autowired
+	private OptionRepository optionRepository;
 	public static void main(String[] args) {SpringApplication.run(SkillSyncApplication.class, args);}
 
 	@Bean
@@ -37,23 +54,62 @@ public class SkillSyncApplication {
 
 
 			for (Course course : courses) {
-				Course oldCourse = courseRepository.findByTitle(course.getTitle());
+				List<Course> existingCourses = courseRepository.findByTitle(course.getTitle());
 
-				if (!courseRepository.existsByTitle(course.getTitle())) {  // Check if course exists
+				if (existingCourses.isEmpty()) {
 					courseRepository.save(course);
+				} else {
+					Course oldCourse = existingCourses.get(0);
+					if (!course.equals(oldCourse)) {
+						oldCourse.setCategory(course.getCategory());
+						oldCourse.setTitle(course.getTitle());
+						oldCourse.setCourseScore(course.getCourseScore());
+						oldCourse.setDifficulty(course.getDifficulty());
+						oldCourse.setLinks(course.getLinks());
+
+						courseRepository.save(oldCourse);
+					}
 				}
-				else if(!course.equals(oldCourse)){ // Check if course was edited
-					oldCourse.setCategory(course.getCategory());
-					oldCourse.setTitle(course.getTitle());
-					oldCourse.setCourseScore(course.getCourseScore());
-					oldCourse.setDifficulty(course.getDifficulty());
-					oldCourse.setLinks(course.getLinks());
-
-					courseRepository.save(oldCourse);
-				}
-
-
 			}
+
+
+
+
+			// Step 1: Ensure AI Course Exists
+			Course aiCourse = courseRepository.findByTitle("Artificial Intelligence Fundamentals").get(0);
+
+			// Step 2: Check if Quiz Exists
+			if (!quizRepository.findByCourse(aiCourse).isEmpty()) return; // Exit if quiz exists
+
+			// Step 3: Create Quiz
+			Quiz quiz = new Quiz(aiCourse, null);
+			quiz = quizRepository.save(quiz);
+
+			// Step 4: Create Questions and Options
+			Question q1 = new Question("What is Artificial Intelligence?", quiz, null);
+			Question q2 = new Question("Which of the following is a type of AI?", quiz, null);
+			q1 = questionRepository.save(q1);
+			q2 = questionRepository.save(q2);
+
+			List<Option> optionsQ1 = Arrays.asList(
+					new Option("A field of study focused on creating intelligent machines", true, q1),
+					new Option("A type of hardware", false, q1),
+					new Option("A programming language", false, q1)
+			);
+
+			List<Option> optionsQ2 = Arrays.asList(
+					new Option("Supervised Learning", true, q2),
+					new Option("Unstructured Learning", false, q2),
+					new Option("Data Engineering", false, q2)
+			);
+
+			q1.setOptions(optionsQ1);
+			q2.setOptions(optionsQ2);
+			quiz.setQuestions(Arrays.asList(q1, q2));
+
+			questionRepository.saveAll(Arrays.asList(q1, q2));
+			optionRepository.saveAll(optionsQ1);
+			optionRepository.saveAll(optionsQ2);
 
 
 		};

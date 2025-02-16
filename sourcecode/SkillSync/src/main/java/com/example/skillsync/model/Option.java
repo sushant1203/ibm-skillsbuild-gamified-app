@@ -7,17 +7,14 @@ public class Option {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
-
     private String optionText;
-
     private boolean isCorrect;
 
-    public Option(Long id, String text, boolean isCorrect, Question question) {
-        this.id = id;
+    // Constructors
+    public Option(String text, boolean isCorrect, Question question) {
         this.optionText = text;
         this.isCorrect = isCorrect;
         this.question = question;
@@ -28,7 +25,6 @@ public class Option {
     }
 
     // Getters and Setters
-
     public Long getId() {
         return id;
     }

@@ -10,16 +10,21 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @ManyToOne
     @JoinColumn(name = "quiz_id", nullable = false)
     private Quiz quiz;
-
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Option> options = new ArrayList<>();
-
     private String questionText;
 
+    // Constructors
+    public Question(String questionText, Quiz quiz, List<Option> options) {
+        this.questionText = questionText;
+        this.quiz = quiz;
+        this.options = options;
+    }
+    public Question() {
+    }
 
     // Getters and Setters
     public Long getId() {
