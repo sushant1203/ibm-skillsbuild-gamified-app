@@ -68,7 +68,7 @@ public class QuizController {
                 // If the player did not complete the course then, the user's score is updated and a new enrollment entry is created
                 user.setScore(user.getScore() + course.getCourseScore());
                 userRepository.save(user);
-
+                System.out.println("User score updated: " + user.getScore());
                 Enrollment enrollment = new Enrollment();
                 enrollment.setUser(user);
                 enrollment.setCourse(courseRepository.findById(courseId).orElseThrow(() -> new RuntimeException("Course not found")));
