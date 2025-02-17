@@ -16,7 +16,6 @@
         <nav class="nav-links">
             <a href="/dashboard"><img src="Dashboard-icon.png" alt="Dashboard icon"> Dashboard</a>
             <a href="courses"><img src="Courses.png" alt="Course icon"> Courses</a>
-            <a href="quizzes"><img src="Quizzes.png" alt="Quizzes icon"> Quizzes</a>
             <a href="leaderboards"><img src="Leaderboard.png" alt="Leaderboard icon"> Leaderboards</a>
             <a href="certificates"><img src="Certificates.png" alt="Certificates icon"> Certificates</a>
             <a href="settings"><img src="Settings.png" alt="Settings icon"> Settings</a>
@@ -48,10 +47,32 @@
                 </div>
             </div>
 
-            <div class="course-recommendation-container">
-                <div class="course-recommendation">
-                    <h1 class="Title">Recommended Courses</h1>
-                    <div class="Course-Grid" id="recommendationContainer"></div>
+            <div class="content-row">
+                <div class="course-recommendation-container">
+                    <div class="course-recommendation">
+                        <h1 class="Title">Recommended Courses</h1>
+                        <div class="Course-Grid" id="recommendationContainer"></div>
+                    </div>
+                </div>
+
+                <div class="right-side-box">
+                    <h1>Learning History</h1>
+                    <div class="history-content">
+                        <h1>Courses You've Enrolled In</h1>
+
+                        <div th:if="${ids.isEmpty()}">
+                            <p>You haven't enrolled in any courses yet.</p>
+                        </div>
+
+                        <div th:each="course : ${id}">
+                            <div class="course">
+                                <h2 th:text="${#ids.name}"></h2>
+                                <p th:text="${.description}"></p>
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

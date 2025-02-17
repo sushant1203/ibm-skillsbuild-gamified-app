@@ -22,4 +22,12 @@ public class CourseController {
         return "courses";
     }
 
+    @GetMapping("/")
+    public String getC(Model model) { // adding courses to page
+        List<Course> courses = courseRepository.findAll();
+        model.addAttribute("courses", courses);
+        return "courses";
+    }
+
+
 }
