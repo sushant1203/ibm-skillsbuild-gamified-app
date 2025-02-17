@@ -6,11 +6,11 @@
 </head>
 <body>
 
-<form th:action="@{/quiz/{quizId}(quizId=${quiz.id})}" method="post" class="quiz-form">
+<form th:action="@{/quiz/{courseId}(courseId=${courseId})}" method="post" class="quiz-form">
 
     <input type="hidden" name="quizId" th:value="${quiz.id}" />
 
-    <!-- Loop through each option for the current question -->
+    <!-- Loop through each question -->
     <div th:each="question : ${quiz.questions}" class="question">
         <h4 th:text="${question.questionText}">Question</h4>
         <div th:each="option : ${question.options}" class="option">
