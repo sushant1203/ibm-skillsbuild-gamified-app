@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Certificates</title>
+    <link rel="stylesheet" href="/stylesheet.css">
+</head>
+<body>
+<h1>Your Certificates</h1>
+
+<p>Number of certificates: <span th:text="${certificates.size()}">0</span></p>
+
+<form method="get" action="/certificates">
+    <label for="sortBy">Sort by:</label>
+    <select name="sortBy" id="sortBy">
+        <option value="createdAt">Issue Date</option>
+        <option value="courseTitle">Course Title</option>
+    </select>
+    <label for="filterBy">Filter by course title:</label>
+    <input type="text" name="filterBy" id="filterBy" placeholder="Enter course title">
+    <button type="submit">Apply</button>
+</form>
+
+<div th:if="${#lists.isEmpty(certificates)}">
+    <p>No certificates found.</p>
+</div>
+<div th:each="cert : ${certificates}">
+    <h3 th:text="${cert.course.title}">Course Title</h3>
+    <p>Is<p>Issued on: <span th:text="${#temporals.format(cert.createdAt, 'dd-MM-yyyy')}">Date</span></p>
+    <p>Quiz Score: <span th:text="${cert.quizScore}">Score</span>%</p>
+    <hr/>
+</div>
+</body>
+</html>
