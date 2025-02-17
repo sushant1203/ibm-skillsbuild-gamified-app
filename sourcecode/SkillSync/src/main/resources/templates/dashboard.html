@@ -56,9 +56,9 @@
                 </div>
 
                 <div class="right-side-box">
-                    <h1>Learning History</h1>
+                    <h1>Courses Completed</h1>
                     <div class="history-content">
-                        <h1>Courses You've Enrolled In</h1>
+
 
                         <div th:if="${enrollments.isEmpty()}">
                             <p>You haven't enrolled in any courses yet.</p>
@@ -66,8 +66,9 @@
 
                         <div th:each="enrollment : ${enrollments}">
                             <div class="course">
-                                <h2 th:text="${enrollment.Id}"></h2>
-                                <p th:text="${enrollment.course}"></p>
+                                <p th:text="${enrollment.course.Title}" class="completed-title"></p>
+                                <img th:src="${enrollment.course.imagePath != null ? enrollment.course.imagePath : 'default-image.jpg'}"
+                                     alt="Course Image" class="img"/>
 
                             </div>
                         </div>
