@@ -233,6 +233,689 @@ public class SkillSyncApplication {
 				}
 			}
 
+			// -----------------------
+// Cybersecurity Fundamentals Quiz Block
+// -----------------------
+			{
+				Course cyberCourse = courseRepository.findByTitle("Cybersecurity Fundamentals").get(0);
+				if (quizRepository.findByCourse(cyberCourse).isEmpty()) {
+					Quiz quiz = new Quiz(cyberCourse, null);
+					quiz = quizRepository.save(quiz);
+
+					Question q1 = new Question("What is Cybersecurity?", quiz, null);
+					Question q2 = new Question("Which of the following is a common cybersecurity threat?", quiz, null);
+					Question q3 = new Question("What is the purpose of a firewall?", quiz, null);
+					Question q4 = new Question("What does encryption do in cybersecurity?", quiz, null);
+					Question q5 = new Question("Which practice is essential for maintaining cybersecurity?", quiz, null);
+					q1 = questionRepository.save(q1);
+					q2 = questionRepository.save(q2);
+					q3 = questionRepository.save(q3);
+					q4 = questionRepository.save(q4);
+					q5 = questionRepository.save(q5);
+
+					List<Option> optionsQ1 = Arrays.asList(
+							new Option("The practice of protecting systems, networks, and programs from digital attacks", true, q1),
+							new Option("An outdated technology", false, q1),
+							new Option("A type of hardware", false, q1)
+					);
+
+					List<Option> optionsQ2 = Arrays.asList(
+							new Option("Phishing", true, q2),
+							new Option("Cloud computing", false, q2),
+							new Option("Social media scams", false, q2)
+					);
+
+					List<Option> optionsQ3 = Arrays.asList(
+							new Option("To block unauthorized access", true, q3),
+							new Option("To speed up network traffic", false, q3),
+							new Option("To encrypt data", false, q3)
+					);
+
+					List<Option> optionsQ4 = Arrays.asList(
+							new Option("It converts data into a secure format", true, q4),
+							new Option("It compresses data", false, q4),
+							new Option("It deletes data", false, q4)
+					);
+
+					List<Option> optionsQ5 = Arrays.asList(
+							new Option("Regular software updates and strong password practices", true, q5),
+							new Option("Using the same password across all platforms", false, q5),
+							new Option("Disabling antivirus software for performance", false, q5)
+					);
+
+					q1.setOptions(optionsQ1);
+					q2.setOptions(optionsQ2);
+					q3.setOptions(optionsQ3);
+					q4.setOptions(optionsQ4);
+					q5.setOptions(optionsQ5);
+					quiz.setQuestions(Arrays.asList(q1, q2, q3, q4, q5));
+
+					questionRepository.saveAll(Arrays.asList(q1, q2, q3, q4, q5));
+				}
+			}
+
+
+
+			// -----------------------
+// Building Trustworthy AI Enterprise Solutions Quiz Block
+// -----------------------
+			{
+				Course trustCourse = courseRepository.findByTitle("Building Trustworthy AI Enterprise Solutions").get(0);
+				if (quizRepository.findByCourse(trustCourse).isEmpty()) {
+					Quiz quiz = new Quiz(trustCourse, null);
+					quiz = quizRepository.save(quiz);
+
+					Question q1 = new Question("What is the focus of Building Trustworthy AI Enterprise Solutions?", quiz, null);
+					Question q2 = new Question("Why is transparency important in AI systems?", quiz, null);
+					Question q3 = new Question("What role does data quality play in trustworthy AI?", quiz, null);
+					Question q4 = new Question("Which factor is crucial for ethical AI?", quiz, null);
+					Question q5 = new Question("What is a key benefit of implementing trustworthy AI solutions?", quiz, null);
+					q1 = questionRepository.save(q1);
+					q2 = questionRepository.save(q2);
+					q3 = questionRepository.save(q3);
+					q4 = questionRepository.save(q4);
+					q5 = questionRepository.save(q5);
+
+					List<Option> optionsQ1 = Arrays.asList(
+							new Option("Developing reliable, ethical, and transparent AI systems", true, q1),
+							new Option("Maximizing profits without regulation", false, q1),
+							new Option("Focusing solely on technology performance", false, q1)
+					);
+
+					List<Option> optionsQ2 = Arrays.asList(
+							new Option("It builds trust and accountability", true, q2),
+							new Option("It makes the system slower", false, q2),
+							new Option("It reduces security", false, q2)
+					);
+
+					List<Option> optionsQ3 = Arrays.asList(
+							new Option("High-quality data ensures accurate and unbiased results", true, q3),
+							new Option("Data quality is irrelevant", false, q3),
+							new Option("It only affects storage costs", false, q3)
+					);
+
+					List<Option> optionsQ4 = Arrays.asList(
+							new Option("Fairness in decision-making", true, q4),
+							new Option("Increasing automation at all costs", false, q4),
+							new Option("Ignoring potential biases", false, q4)
+					);
+
+					List<Option> optionsQ5 = Arrays.asList(
+							new Option("Enhanced user trust and regulatory compliance", true, q5),
+							new Option("Increased system vulnerabilities", false, q5),
+							new Option("Reduced system performance", false, q5)
+					);
+
+					q1.setOptions(optionsQ1);
+					q2.setOptions(optionsQ2);
+					q3.setOptions(optionsQ3);
+					q4.setOptions(optionsQ4);
+					q5.setOptions(optionsQ5);
+					quiz.setQuestions(Arrays.asList(q1, q2, q3, q4, q5));
+
+					questionRepository.saveAll(Arrays.asList(q1, q2, q3, q4, q5));
+				}
+			}
+
+
+			// -----------------------
+			// Cloud Computing Fundamentals Quiz Block
+			// -----------------------
+			{
+				Course cloudCourse = courseRepository.findByTitle("Cloud Computing Fundamentals").get(0);
+				if (quizRepository.findByCourse(cloudCourse).isEmpty()) {
+					Quiz quiz = new Quiz(cloudCourse, null);
+					quiz = quizRepository.save(quiz);
+
+					Question q1 = new Question("What is Cloud Computing?", quiz, null);
+					Question q2 = new Question("What is one common benefit of cloud computing?", quiz, null);
+					Question q3 = new Question("Which cloud service model provides virtualized computing resources?", quiz, null);
+					Question q4 = new Question("What does scalability in cloud computing refer to?", quiz, null);
+					Question q5 = new Question("Which deployment model combines on-premises and cloud-based resources?", quiz, null);
+					q1 = questionRepository.save(q1);
+					q2 = questionRepository.save(q2);
+					q3 = questionRepository.save(q3);
+					q4 = questionRepository.save(q4);
+					q5 = questionRepository.save(q5);
+
+					List<Option> optionsQ1 = Arrays.asList(
+							new Option("Delivery of computing services over the internet", true, q1),
+							new Option("Local storage on personal devices", false, q1),
+							new Option("Traditional on-premises computing", false, q1)
+					);
+
+					List<Option> optionsQ2 = Arrays.asList(
+							new Option("On-demand resource scalability", true, q2),
+							new Option("Increased hardware maintenance", false, q2),
+							new Option("Limited accessibility", false, q2)
+					);
+
+					List<Option> optionsQ3 = Arrays.asList(
+							new Option("Infrastructure as a Service (IaaS)", true, q3),
+							new Option("Platform as a Service (PaaS)", false, q3),
+							new Option("Software as a Service (SaaS)", false, q3)
+					);
+
+					List<Option> optionsQ4 = Arrays.asList(
+							new Option("The ability to increase or decrease resources as needed", true, q4),
+							new Option("A fixed amount of resources", false, q4),
+							new Option("A measure of data encryption strength", false, q4)
+					);
+
+					List<Option> optionsQ5 = Arrays.asList(
+							new Option("Hybrid Cloud", true, q5),
+							new Option("Public Cloud", false, q5),
+							new Option("Private Cloud", false, q5)
+					);
+
+					q1.setOptions(optionsQ1);
+					q2.setOptions(optionsQ2);
+					q3.setOptions(optionsQ3);
+					q4.setOptions(optionsQ4);
+					q5.setOptions(optionsQ5);
+					quiz.setQuestions(Arrays.asList(q1, q2, q3, q4, q5));
+
+					questionRepository.saveAll(Arrays.asList(q1, q2, q3, q4, q5));
+				}
+			}
+
+
+
+			// -----------------------
+			// Professional Skills Quiz Block
+			// -----------------------
+			{
+				Course profCourse = courseRepository.findByTitle("Professional Skills").get(0);
+				if (quizRepository.findByCourse(profCourse).isEmpty()) {
+					Quiz quiz = new Quiz(profCourse, null);
+					quiz = quizRepository.save(quiz);
+
+					Question q1 = new Question("What are Professional Skills?", quiz, null);
+					Question q2 = new Question("Why are communication skills important in a professional setting?", quiz, null);
+					Question q3 = new Question("Which skill is crucial for effective teamwork?", quiz, null);
+					Question q4 = new Question("How can problem-solving skills benefit your career?", quiz, null);
+					Question q5 = new Question("What is an example of a professional skill?", quiz, null);
+					q1 = questionRepository.save(q1);
+					q2 = questionRepository.save(q2);
+					q3 = questionRepository.save(q3);
+					q4 = questionRepository.save(q4);
+					q5 = questionRepository.save(q5);
+
+					List<Option> optionsQ1 = Arrays.asList(
+							new Option("A set of interpersonal and technical abilities for workplace success", true, q1),
+							new Option("Only technical expertise", false, q1),
+							new Option("Only theoretical knowledge", false, q1)
+					);
+
+					List<Option> optionsQ2 = Arrays.asList(
+							new Option("They facilitate clear understanding and collaboration", true, q2),
+							new Option("They hinder workflow", false, q2),
+							new Option("They are irrelevant in a professional setting", false, q2)
+					);
+
+					List<Option> optionsQ3 = Arrays.asList(
+							new Option("Active listening", true, q3),
+							new Option("Ignoring feedback", false, q3),
+							new Option("Overcomplicating tasks", false, q3)
+					);
+
+					List<Option> optionsQ4 = Arrays.asList(
+							new Option("It leads to efficient and innovative solutions", true, q4),
+							new Option("It only increases stress", false, q4),
+							new Option("It slows down progress", false, q4)
+					);
+
+					List<Option> optionsQ5 = Arrays.asList(
+							new Option("Time management", true, q5),
+							new Option("Procrastination", false, q5),
+							new Option("Disorganization", false, q5)
+					);
+
+					q1.setOptions(optionsQ1);
+					q2.setOptions(optionsQ2);
+					q3.setOptions(optionsQ3);
+					q4.setOptions(optionsQ4);
+					q5.setOptions(optionsQ5);
+					quiz.setQuestions(Arrays.asList(q1, q2, q3, q4, q5));
+
+					questionRepository.saveAll(Arrays.asList(q1, q2, q3, q4, q5));
+				}
+			}
+
+			// -----------------------
+// Getting Started with Cybersecurity Quiz Block
+// -----------------------
+			{
+				Course startCyberCourse = courseRepository.findByTitle("Getting Started with Cybersecurity").get(0);
+				if (quizRepository.findByCourse(startCyberCourse).isEmpty()) {
+					Quiz quiz = new Quiz(startCyberCourse, null);
+					quiz = quizRepository.save(quiz);
+
+					Question q1 = new Question("What is the primary goal of cybersecurity?", quiz, null);
+					Question q2 = new Question("Which of the following is a common method used in cybersecurity attacks?", quiz, null);
+					Question q3 = new Question("What is the purpose of antivirus software?", quiz, null);
+					Question q4 = new Question("Why is it important to update software regularly in cybersecurity?", quiz, null);
+					Question q5 = new Question("Which of these is a good practice for online security?", quiz, null);
+					q1 = questionRepository.save(q1);
+					q2 = questionRepository.save(q2);
+					q3 = questionRepository.save(q3);
+					q4 = questionRepository.save(q4);
+					q5 = questionRepository.save(q5);
+
+					List<Option> optionsQ1 = Arrays.asList(
+							new Option("To protect computers, networks, and data from attacks", true, q1),
+							new Option("To promote unrestricted access to all information", false, q1),
+							new Option("To create more viruses", false, q1)
+					);
+
+					List<Option> optionsQ2 = Arrays.asList(
+							new Option("Phishing", true, q2),
+							new Option("Legitimate email communication", false, q2),
+							new Option("Regular maintenance", false, q2)
+					);
+
+					List<Option> optionsQ3 = Arrays.asList(
+							new Option("To detect and remove malicious software", true, q3),
+							new Option("To slow down the computer", false, q3),
+							new Option("To store backup data", false, q3)
+					);
+
+					List<Option> optionsQ4 = Arrays.asList(
+							new Option("It fixes vulnerabilities and prevents attacks", true, q4),
+							new Option("It is only for cosmetic updates", false, q4),
+							new Option("It increases system risk", false, q4)
+					);
+
+					List<Option> optionsQ5 = Arrays.asList(
+							new Option("Using strong, unique passwords", true, q5),
+							new Option("Sharing passwords openly", false, q5),
+							new Option("Ignoring security updates", false, q5)
+					);
+
+					q1.setOptions(optionsQ1);
+					q2.setOptions(optionsQ2);
+					q3.setOptions(optionsQ3);
+					q4.setOptions(optionsQ4);
+					q5.setOptions(optionsQ5);
+					quiz.setQuestions(Arrays.asList(q1, q2, q3, q4, q5));
+
+					questionRepository.saveAll(Arrays.asList(q1, q2, q3, q4, q5));
+				}
+			}
+
+			// -----------------------
+// Machine Learning for Data Science Projects Quiz Block
+// -----------------------
+			{
+				Course mlCourse = courseRepository.findByTitle("Machine Learning for Data Science Projects").get(0);
+				if (quizRepository.findByCourse(mlCourse).isEmpty()) {
+					Quiz quiz = new Quiz(mlCourse, null);
+					quiz = quizRepository.save(quiz);
+
+					Question q1 = new Question("What is Machine Learning?", quiz, null);
+					Question q2 = new Question("Which technique is commonly used in machine learning?", quiz, null);
+					Question q3 = new Question("What is a key benefit of using machine learning in data science?", quiz, null);
+					Question q4 = new Question("Which of the following is a machine learning algorithm?", quiz, null);
+					Question q5 = new Question("What role does data play in machine learning?", quiz, null);
+					q1 = questionRepository.save(q1);
+					q2 = questionRepository.save(q2);
+					q3 = questionRepository.save(q3);
+					q4 = questionRepository.save(q4);
+					q5 = questionRepository.save(q5);
+
+					List<Option> optionsQ1 = Arrays.asList(
+							new Option("A subset of AI that enables systems to learn from data", true, q1),
+							new Option("A method for manual data entry", false, q1),
+							new Option("A type of hardware component", false, q1)
+					);
+
+					List<Option> optionsQ2 = Arrays.asList(
+							new Option("Supervised learning", true, q2),
+							new Option("Unstructured data storage", false, q2),
+							new Option("Simple arithmetic operations", false, q2)
+					);
+
+					List<Option> optionsQ3 = Arrays.asList(
+							new Option("It helps uncover patterns and insights from large datasets", true, q3),
+							new Option("It eliminates the need for data", false, q3),
+							new Option("It makes data irrelevant", false, q3)
+					);
+
+					List<Option> optionsQ4 = Arrays.asList(
+							new Option("Decision Trees", true, q4),
+							new Option("Web Browsers", false, q4),
+							new Option("Operating Systems", false, q4)
+					);
+
+					List<Option> optionsQ5 = Arrays.asList(
+							new Option("Data is essential for training and validating models", true, q5),
+							new Option("Data is not needed in machine learning", false, q5),
+							new Option("Data slows down the process", false, q5)
+					);
+
+					q1.setOptions(optionsQ1);
+					q2.setOptions(optionsQ2);
+					q3.setOptions(optionsQ3);
+					q4.setOptions(optionsQ4);
+					q5.setOptions(optionsQ5);
+					quiz.setQuestions(Arrays.asList(q1, q2, q3, q4, q5));
+
+					questionRepository.saveAll(Arrays.asList(q1, q2, q3, q4, q5));
+				}
+			}
+
+			// -----------------------
+// Getting Started with Threat Intelligence and Hunting Quiz Block
+// -----------------------
+			{
+				Course threatCourse = courseRepository.findByTitle("Getting Started with Threat Intelligence and Hunting").get(0);
+				if (quizRepository.findByCourse(threatCourse).isEmpty()) {
+					Quiz quiz = new Quiz(threatCourse, null);
+					quiz = quizRepository.save(quiz);
+
+					Question q1 = new Question("What is Threat Intelligence in cybersecurity?", quiz, null);
+					Question q2 = new Question("How does threat hunting improve security?", quiz, null);
+					Question q3 = new Question("Which tool is often used for threat analysis?", quiz, null);
+					Question q4 = new Question("What is a key benefit of threat intelligence?", quiz, null);
+					Question q5 = new Question("Why is proactive threat hunting important?", quiz, null);
+					q1 = questionRepository.save(q1);
+					q2 = questionRepository.save(q2);
+					q3 = questionRepository.save(q3);
+					q4 = questionRepository.save(q4);
+					q5 = questionRepository.save(q5);
+
+					List<Option> optionsQ1 = Arrays.asList(
+							new Option("It involves gathering information to identify potential threats", true, q1),
+							new Option("It is a method for encrypting data", false, q1),
+							new Option("It is used to speed up network connections", false, q1)
+					);
+
+					List<Option> optionsQ2 = Arrays.asList(
+							new Option("By identifying and mitigating threats before they cause harm", true, q2),
+							new Option("By allowing all threats to pass through", false, q2),
+							new Option("By slowing down response times", false, q2)
+					);
+
+					List<Option> optionsQ3 = Arrays.asList(
+							new Option("SIEM (Security Information and Event Management)", true, q3),
+							new Option("Word Processor", false, q3),
+							new Option("Spreadsheet Software", false, q3)
+					);
+
+					List<Option> optionsQ4 = Arrays.asList(
+							new Option("It enhances the ability to predict and mitigate cyber attacks", true, q4),
+							new Option("It reduces the need for cybersecurity measures", false, q4),
+							new Option("It makes data encryption unnecessary", false, q4)
+					);
+
+					List<Option> optionsQ5 = Arrays.asList(
+							new Option("It allows organizations to respond to emerging threats faster", true, q5),
+							new Option("It increases system downtime", false, q5),
+							new Option("It is only useful after an attack", false, q5)
+					);
+
+					q1.setOptions(optionsQ1);
+					q2.setOptions(optionsQ2);
+					q3.setOptions(optionsQ3);
+					q4.setOptions(optionsQ4);
+					q5.setOptions(optionsQ5);
+					quiz.setQuestions(Arrays.asList(q1, q2, q3, q4, q5));
+
+					questionRepository.saveAll(Arrays.asList(q1, q2, q3, q4, q5));
+				}
+			}
+
+
+			// -----------------------
+// Journey to Cloud: Orchestrating Your Solution Quiz Block
+// -----------------------
+			{
+				Course journeyCourse = courseRepository.findByTitle("Journey to Cloud: Orchestrating Your Solution").get(0);
+				if (quizRepository.findByCourse(journeyCourse).isEmpty()) {
+					Quiz quiz = new Quiz(journeyCourse, null);
+					quiz = quizRepository.save(quiz);
+
+					Question q1 = new Question("What is the main goal of Journey to Cloud?", quiz, null);
+					Question q2 = new Question("What does 'orchestrating your solution' imply in cloud computing?", quiz, null);
+					Question q3 = new Question("Which cloud deployment model supports hybrid solutions?", quiz, null);
+					Question q4 = new Question("What is a key benefit of cloud orchestration?", quiz, null);
+					Question q5 = new Question("How does cloud orchestration improve IT operations?", quiz, null);
+					q1 = questionRepository.save(q1);
+					q2 = questionRepository.save(q2);
+					q3 = questionRepository.save(q3);
+					q4 = questionRepository.save(q4);
+					q5 = questionRepository.save(q5);
+
+					List<Option> optionsQ1 = Arrays.asList(
+							new Option("It focuses on migrating and managing resources in the cloud", true, q1),
+							new Option("It solely deals with on-premise solutions", false, q1),
+							new Option("It is about building physical servers", false, q1)
+					);
+
+					List<Option> optionsQ2 = Arrays.asList(
+							new Option("It involves coordinating various cloud services into a cohesive system", true, q2),
+							new Option("It refers to manual configuration of servers", false, q2),
+							new Option("It is about data encryption", false, q2)
+					);
+
+					List<Option> optionsQ3 = Arrays.asList(
+							new Option("Hybrid Cloud", true, q3),
+							new Option("Private Cloud", false, q3),
+							new Option("Community Cloud", false, q3)
+					);
+
+					List<Option> optionsQ4 = Arrays.asList(
+							new Option("It streamlines resource management and increases efficiency", true, q4),
+							new Option("It complicates IT operations", false, q4),
+							new Option("It reduces security measures", false, q4)
+					);
+
+					List<Option> optionsQ5 = Arrays.asList(
+							new Option("By automating and simplifying resource allocation", true, q5),
+							new Option("By increasing manual configurations", false, q5),
+							new Option("By isolating all systems", false, q5)
+					);
+
+					q1.setOptions(optionsQ1);
+					q2.setOptions(optionsQ2);
+					q3.setOptions(optionsQ3);
+					q4.setOptions(optionsQ4);
+					q5.setOptions(optionsQ5);
+					quiz.setQuestions(Arrays.asList(q1, q2, q3, q4, q5));
+
+					questionRepository.saveAll(Arrays.asList(q1, q2, q3, q4, q5));
+				}
+			}
+
+
+			// -----------------------
+// Getting Started with Data Quiz Block
+// -----------------------
+			{
+				Course dataCourse = courseRepository.findByTitle("Getting Started with Data").get(0);
+				if (quizRepository.findByCourse(dataCourse).isEmpty()) {
+					Quiz quiz = new Quiz(dataCourse, null);
+					quiz = quizRepository.save(quiz);
+
+					Question q1 = new Question("What does 'Getting Started with Data' primarily cover?", quiz, null);
+					Question q2 = new Question("Why is data important in modern businesses?", quiz, null);
+					Question q3 = new Question("What is data collection?", quiz, null);
+					Question q4 = new Question("Which tool is commonly used for basic data analysis?", quiz, null);
+					Question q5 = new Question("What is one benefit of data-driven decision making?", quiz, null);
+					q1 = questionRepository.save(q1);
+					q2 = questionRepository.save(q2);
+					q3 = questionRepository.save(q3);
+					q4 = questionRepository.save(q4);
+					q5 = questionRepository.save(q5);
+
+					List<Option> optionsQ1 = Arrays.asList(
+							new Option("An introduction to handling and interpreting data", true, q1),
+							new Option("A course on advanced networking", false, q1),
+							new Option("A guide on software development", false, q1)
+					);
+
+					List<Option> optionsQ2 = Arrays.asList(
+							new Option("It drives informed decision-making and strategy", true, q2),
+							new Option("It is only useful for IT professionals", false, q2),
+							new Option("It is irrelevant in modern businesses", false, q2)
+					);
+
+					List<Option> optionsQ3 = Arrays.asList(
+							new Option("The process of gathering raw data for analysis", true, q3),
+							new Option("A method for encrypting data", false, q3),
+							new Option("A technique for designing user interfaces", false, q3)
+					);
+
+					List<Option> optionsQ4 = Arrays.asList(
+							new Option("Excel", true, q4),
+							new Option("Adobe Photoshop", false, q4),
+							new Option("Microsoft Word", false, q4)
+					);
+
+					List<Option> optionsQ5 = Arrays.asList(
+							new Option("More accurate and timely business insights", true, q5),
+							new Option("Increased guesswork", false, q5),
+							new Option("Delayed decision-making", false, q5)
+					);
+
+					q1.setOptions(optionsQ1);
+					q2.setOptions(optionsQ2);
+					q3.setOptions(optionsQ3);
+					q4.setOptions(optionsQ4);
+					q5.setOptions(optionsQ5);
+					quiz.setQuestions(Arrays.asList(q1, q2, q3, q4, q5));
+
+					questionRepository.saveAll(Arrays.asList(q1, q2, q3, q4, q5));
+				}
+			}
+
+
+
+
+			// -----------------------
+// Fundamentals of Sustainability and Technology Quiz Block
+// -----------------------
+			{
+				Course sustainCourse = courseRepository.findByTitle("Fundamentals of Sustainability and Technology").get(0);
+				if (quizRepository.findByCourse(sustainCourse).isEmpty()) {
+					Quiz quiz = new Quiz(sustainCourse, null);
+					quiz = quizRepository.save(quiz);
+
+					Question q1 = new Question("What is the focus of Fundamentals of Sustainability and Technology?", quiz, null);
+					Question q2 = new Question("How does sustainability impact technology development?", quiz, null);
+					Question q3 = new Question("What is one example of sustainable technology?", quiz, null);
+					Question q4 = new Question("Why is sustainable technology important for the future?", quiz, null);
+					Question q5 = new Question("How can technology promote sustainability?", quiz, null);
+					q1 = questionRepository.save(q1);
+					q2 = questionRepository.save(q2);
+					q3 = questionRepository.save(q3);
+					q4 = questionRepository.save(q4);
+					q5 = questionRepository.save(q5);
+
+					List<Option> optionsQ1 = Arrays.asList(
+							new Option("It integrates sustainable practices into tech solutions", true, q1),
+							new Option("It focuses solely on profit maximization", false, q1),
+							new Option("It disregards environmental concerns", false, q1)
+					);
+
+					List<Option> optionsQ2 = Arrays.asList(
+							new Option("It encourages the development of eco-friendly innovations", true, q2),
+							new Option("It slows down technological advancement", false, q2),
+							new Option("It only applies to renewable energy", false, q2)
+					);
+
+					List<Option> optionsQ3 = Arrays.asList(
+							new Option("Solar panels", true, q3),
+							new Option("High-consumption data centers", false, q3),
+							new Option("Fossil fuel-based generators", false, q3)
+					);
+
+					List<Option> optionsQ4 = Arrays.asList(
+							new Option("It ensures long-term viability and environmental health", true, q4),
+							new Option("It limits innovation", false, q4),
+							new Option("It has no impact on future technology", false, q4)
+					);
+
+					List<Option> optionsQ5 = Arrays.asList(
+							new Option("By integrating renewable energy solutions", true, q5),
+							new Option("By increasing resource consumption", false, q5),
+							new Option("By ignoring environmental data", false, q5)
+					);
+
+					q1.setOptions(optionsQ1);
+					q2.setOptions(optionsQ2);
+					q3.setOptions(optionsQ3);
+					q4.setOptions(optionsQ4);
+					q5.setOptions(optionsQ5);
+					quiz.setQuestions(Arrays.asList(q1, q2, q3, q4, q5));
+
+					questionRepository.saveAll(Arrays.asList(q1, q2, q3, q4, q5));
+				}
+			}
+
+
+			// -----------------------
+// Enterprise Security in Practice Quiz Block
+// -----------------------
+			{
+				Course entSecurityCourse = courseRepository.findByTitle("Enterprise Security in Practice").get(0);
+				if (quizRepository.findByCourse(entSecurityCourse).isEmpty()) {
+					Quiz quiz = new Quiz(entSecurityCourse, null);
+					quiz = quizRepository.save(quiz);
+
+					Question q1 = new Question("What does Enterprise Security in Practice focus on?", quiz, null);
+					Question q2 = new Question("Which is a common challenge in enterprise security?", quiz, null);
+					Question q3 = new Question("What role does risk management play in enterprise security?", quiz, null);
+					Question q4 = new Question("Which of the following is a best practice in enterprise security?", quiz, null);
+					Question q5 = new Question("How can organizations improve their enterprise security?", quiz, null);
+					q1 = questionRepository.save(q1);
+					q2 = questionRepository.save(q2);
+					q3 = questionRepository.save(q3);
+					q4 = questionRepository.save(q4);
+					q5 = questionRepository.save(q5);
+
+					List<Option> optionsQ1 = Arrays.asList(
+							new Option("It emphasizes practical approaches to protecting organizational assets", true, q1),
+							new Option("It is only theoretical", false, q1),
+							new Option("It ignores regulatory requirements", false, q1)
+					);
+
+					List<Option> optionsQ2 = Arrays.asList(
+							new Option("Integration of legacy systems", true, q2),
+							new Option("Unlimited budget", false, q2),
+							new Option("Overabundance of resources", false, q2)
+					);
+
+					List<Option> optionsQ3 = Arrays.asList(
+							new Option("It identifies and mitigates potential security risks", true, q3),
+							new Option("It eliminates all threats", false, q3),
+							new Option("It focuses only on hardware", false, q3)
+					);
+
+					List<Option> optionsQ4 = Arrays.asList(
+							new Option("Implementing multi-factor authentication", true, q4),
+							new Option("Using default passwords", false, q4),
+							new Option("Neglecting software updates", false, q4)
+					);
+
+					List<Option> optionsQ5 = Arrays.asList(
+							new Option("By continuously updating security protocols and training staff", true, q5),
+							new Option("By ignoring emerging threats", false, q5),
+							new Option("By reducing security measures", false, q5)
+					);
+
+					q1.setOptions(optionsQ1);
+					q2.setOptions(optionsQ2);
+					q3.setOptions(optionsQ3);
+					q4.setOptions(optionsQ4);
+					q5.setOptions(optionsQ5);
+					quiz.setQuestions(Arrays.asList(q1, q2, q3, q4, q5));
+
+					questionRepository.saveAll(Arrays.asList(q1, q2, q3, q4, q5));
+				}
+			}
+
+
 
 		};
 		}
