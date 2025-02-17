@@ -216,6 +216,7 @@ body, html {
     flex-direction: column;
     height: 100%; /* Adjust based on the parent container */
     width: 100%;
+
 }
 
 .dashboard-overview{
@@ -224,21 +225,16 @@ body, html {
     padding-top: 110px;
     padding-left: 10px;
     color: white; /* Default text color */
-
-
-
 }
-
-
 .dashboard-text h2 {
-    margin: 0;
     font-size: 30px;
+    margin-left: 40px;
 }
 
 .dashboard-text p {
     font-size: 24px;
+    margin-left: 40px;
 }
-
 .username {
     color: yellow; /* Highlight username in yellow */
     font-weight: bold;
@@ -247,6 +243,7 @@ body, html {
 
     width: 60%;
     padding-left: 10px;
+    margin-left: 50px;
     padding-top: 20px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Softer glow */
     border-radius: 10px;
@@ -340,4 +337,3 @@ body, html {
     background-color: #ffd700;
     transform: scale(1.05);
 }
-
