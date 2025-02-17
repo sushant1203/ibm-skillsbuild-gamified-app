@@ -43,6 +43,7 @@ public class QuizService {
 
     // Calculate the score based on the answers submitted
     public int calculateScore(Long courseId, Map<String, String> answers) {
+        System.out.println("Answers: " + answers);
         Quiz quiz = getQuizData(courseId);
         int totalQuestions = quiz.getQuestions().size();
         int correctCount = 0;
@@ -51,6 +52,7 @@ public class QuizService {
         for (Question question : quiz.getQuestions()) {
             String paramKey = "answer_" + question.getId(); // Construct the parameter key
             String answer = answers.get(paramKey); // Get the selected option
+            System.out.println("Answer: " + answer);
             if (answer != null) {
                 try {
                     Long selectedOptionId = Long.parseLong(answer);

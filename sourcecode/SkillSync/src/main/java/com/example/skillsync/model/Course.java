@@ -14,13 +14,10 @@ public class Course {
     private int courseScore;
     private String links;
 
-
-    @OneToOne(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Quiz quiz;
-
+    
     public Course() {}
 
-    public Course(String title, String category, String difficulty, int courseScore, String links) {
+    public Course(String title, String category, String difficulty, int courseScore, String links, Quiz quiz) {
         this.title = title;
         this.category = category;
         this.difficulty = difficulty;
@@ -76,12 +73,5 @@ public class Course {
         this.links = links;
     }
 
-    public void setQuiz(Quiz quiz) {
-        this.quiz = quiz;
-        quiz.setCourse(this); // Ensures bidirectional relationship consistency
-    }
 
-    public Quiz getQuiz() {
-        return quiz;
-    }
 }

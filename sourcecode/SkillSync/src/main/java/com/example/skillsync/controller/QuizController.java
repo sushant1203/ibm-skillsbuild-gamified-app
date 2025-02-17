@@ -29,6 +29,8 @@ public class QuizController {
         // Fetch the quiz data from the database
         Quiz quiz = quizService.getQuizData(courseId);
         model.addAttribute("quiz", quiz);
+        model.addAttribute("courseId", courseId);
+
         return "quiz";
     }
 
