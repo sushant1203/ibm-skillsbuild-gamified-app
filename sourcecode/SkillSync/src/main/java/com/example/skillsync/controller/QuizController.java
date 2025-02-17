@@ -1,7 +1,10 @@
 package com.example.skillsync.controller;
 
+import com.example.skillsync.model.Course;
+import com.example.skillsync.model.Enrollment;
 import com.example.skillsync.model.Quiz;
-import com.example.skillsync.repo.QuizRepository;
+import com.example.skillsync.model.User;
+import com.example.skillsync.repo.*;
 import com.example.skillsync.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +25,15 @@ public class QuizController {
 
     @Autowired
     private QuizService quizService;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private EnrollmentRepository enrollmentRepository;
+
+    @Autowired
+    private CourseRepository courseRepository;
 
     // Display the quiz
     @GetMapping("quiz/{courseId}")
@@ -46,7 +58,22 @@ public class QuizController {
 
         // Redirect to the success or failure page based on the score
         if (scorePercentage >= 80) {
-            // Need to save the score in the database
+            // Fetch the current user
+            User user = userRepository.findByUsername(principal.getName());
+            Course course = courseRepository.findById(courseId).orElseThrow(() -> new RuntimeException("Course not found"));
+            // Check if the user has already completed the course
+            boolean isEnrolled = enrollmentRepository.existsByUserIdAndCourseId(user.getId(), courseId);
+
+            if (!isEnrolled) {
+                // If the player did not complete the course then, the user's score is updated and a new enrollment entry is created
+                user.setScore(user.getScore() + course.getCourseScore());
+                userRepository.save(user);
+
+                Enrollment enrollment = new Enrollment();
+                enrollment.setUser(user);
+                enrollment.setCourse(courseRepository.findById(courseId).orElseThrow(() -> new RuntimeException("Course not found")));
+                enrollmentRepository.save(enrollment);
+            }
             return "redirect:/quiz/success";
         } else {
             return "redirect:/quiz/failed";
