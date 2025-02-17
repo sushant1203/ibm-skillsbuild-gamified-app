@@ -238,6 +238,12 @@ body, html {
 .username {
     color: yellow; /* Highlight username in yellow */
     font-weight: bold;
+
+}
+.user-score{
+    color: yellow; /* Highlight username in yellow */
+    font-weight: bold;
+
 }
 .course-recommendation-container {
 

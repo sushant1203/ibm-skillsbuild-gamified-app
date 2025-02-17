@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class RecommendationService { // this allows this class to interact with the database
@@ -29,44 +30,68 @@ public class RecommendationService { // this allows this class to interact with 
 
 
     }
-    public List<Course> recommendCourse(Long userId){ // this method takes a userId as input and returns a list of recommended courses
-        User user = userRepository.findById(userId) // finds the User in the database
-                .orElseThrow(() -> new RuntimeException("User not found")); // put exception if the user is not found put an error
+    public List<Course> recommendCourse(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-        List<Enrollment> enrollments = enrollmentRepository.findByUser(user); // this retrieves all courses that the has been enrolled in
+        List<Enrollment> enrollments = enrollmentRepository.findByUser(user);
 
-        if(enrollments.isEmpty()){ // it just  makes sure when the user has not taken recommendation course it still shows something
-            return  courseRepository.findAll();
-        }
+        // Step 1: Get IDs of courses the user has already taken
+        Set<Long> enrolledCourseIds = enrollments.stream()
+                .map(enrollment -> enrollment.getCourse().getId())
+                .collect(Collectors.toSet());
 
-        // two HashMaps are created
-        // these maps store string keys mapped to integer values
-        // the keys in these maps represent category and difficulty leve;
-        Map<String,Integer> categoryCount = new HashMap<>();
+        Map<String, Integer> categoryCount = new HashMap<>();
         Map<String, Integer> difficultyCount = new HashMap<>();
 
-        for (Enrollment enrollment: enrollments){ // it goes through all enrollment of user
-            String category = enrollment.getCourse().getCategory(); // it extracts the course category
-            String difficulty = enrollment.getCourse().getDifficulty(); //it extracts the course difficulty
+        for (Enrollment enrollment : enrollments) {
+            String category = enrollment.getCourse().getCategory();
+            String difficulty = enrollment.getCourse().getDifficulty();
             categoryCount.put(category, categoryCount.getOrDefault(category, 0) + 1);
             difficultyCount.put(difficulty, difficultyCount.getOrDefault(difficulty, 0) + 1);
         }
-        String preferredCategory = categoryCount.isEmpty() ? null :  // if category count is empty, it sets preferredCategory to null otherwise it proceeds the mos frequent
+
+        String preferredCategory = categoryCount.isEmpty() ? null :
                 Collections.max(categoryCount.entrySet(), Map.Entry.comparingByValue()).getKey();
 
-        String preferredDifficulty = difficultyCount.isEmpty() ? null :// if category count is empty, it sets preferredCategory to null otherwise it proceeds the most frequent
+        String preferredDifficulty = difficultyCount.isEmpty() ? null :
                 Collections.max(difficultyCount.entrySet(), Map.Entry.comparingByValue()).getKey();
 
-        List<Course> recommendedCourses;
+        Set<Course> recommendedCourses = new LinkedHashSet<>(); // Keeps order, removes duplicates
 
+        // Step 2: Fetch courses based on user preferences (category & difficulty)
         if (preferredCategory != null && preferredDifficulty != null) {
-            recommendedCourses = courseRepository.findByCategoryAndDifficulty(preferredCategory, preferredDifficulty);
-        } else {
-            recommendedCourses = courseRepository.findAll(); // Fallback
+            recommendedCourses.addAll(courseRepository.findByCategoryAndDifficulty(preferredCategory, preferredDifficulty));
+        }
+        if (recommendedCourses.size() < 4 && preferredCategory != null) {
+            recommendedCourses.addAll(courseRepository.findByCategory(preferredCategory));
+        }
+        if (recommendedCourses.size() < 4 && preferredDifficulty != null) {
+            recommendedCourses.addAll(courseRepository.findByDifficulty(preferredDifficulty));
         }
 
-        recommendedCourses.sort(Comparator.comparing(Course::getTitle));
-        return recommendedCourses;
+        // Step 3: Remove already enrolled courses
+        recommendedCourses.removeIf(course -> enrolledCourseIds.contains(course.getId()));
+
+        // Step 4: If we still have fewer than 4 courses, fetch random courses
+        if (recommendedCourses.size() < 4) {
+            List<Course> additionalCourses = courseRepository.findAll(); // Fetch all available courses
+            additionalCourses.removeIf(course -> enrolledCourseIds.contains(course.getId())); // Remove already taken
+            Collections.shuffle(additionalCourses); // Randomize order
+            for (Course course : additionalCourses) {
+                if (recommendedCourses.size() >= 4) break;
+                recommendedCourses.add(course);
+            }
+        }
+
+        // Convert to sorted list and return exactly 4 courses
+        return recommendedCourses.stream()
+                .sorted(Comparator.comparing(Course::getTitle)) // Sort alphabetically
+                .limit(4) // Ensure exactly 4 recommendations
+                .collect(Collectors.toList());
     }
+
+
+
 
 }
