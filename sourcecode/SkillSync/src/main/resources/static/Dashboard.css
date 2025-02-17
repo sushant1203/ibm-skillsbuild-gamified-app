@@ -245,6 +245,8 @@ body, html {
     border-radius: 15px;
     padding: 20px;
     transition: transform 0.3s ease-in-out;
+    background: rgba(25, 25, 112, 0.9); /* Deep blue with slight transparency */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Softer glow effect */
 }
 
 .Course-Grid .course-card:hover {
@@ -269,12 +271,14 @@ body, html {
     font-size: 1.5rem;
     margin: 5px 0;
     text-align: left;
+    color: #FFD700;
 }
 
 .content p {
     font-size: 1rem;
     margin: 5px 0;
     text-align: left;
+    color: white;
 }
 
 .button-group {
@@ -287,8 +291,8 @@ body, html {
     font-size: 1rem;
     font-style: oblique;
     cursor: pointer;
-    background-color: #e3e36f;
-    color: #000000;
+    background-color: #FFD700; /* Gold buttons */
+    color: #000;
     border-radius: 15px;
     transition: background 0.3s ease;
 

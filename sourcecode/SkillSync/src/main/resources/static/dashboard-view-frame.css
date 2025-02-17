@@ -244,85 +244,100 @@ body, html {
     font-weight: bold;
 }
 .course-recommendation-container {
-    height: 85%;
-    width: 50%;
+
+    width: 60%;
     padding-left: 10px;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); /* White glow effect */
+    padding-top: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Softer glow */
     border-radius: 10px;
     display: flex;
-    justify-content: flex-start; /* Aligns content to the top */
-
-
-
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Subtle border */
 }
-
 .Course-Grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    grid-template-rows: repeat(2, 1fr); /* 2 rows */
-    gap: 15px; /* Space between items */
-    padding: 10px;
-    flex-grow: 1; /* Ensures it expands within the container */
-    overflow-y: auto; /* Enables scrolling if needed */
-
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-template-rows: repeat(2, 1fr); /* Two rows */
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
 }
 
+
+/* Course Grid (4 courses max, 2x2 layout) */
 .course-card {
-    height: auto; /* Adjust to fit content */
-    border-radius: 8px;
-    background: #2184bd;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); /* White glow effect */
-    padding-bottom: 40px;
-    text-align: center;
-
-
+    background: rgba(23, 10, 191, 1.0);
+    background: radial-gradient(at center top, rgba(23, 10, 191, 1.0), rgba(136, 170, 223, 1.0));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(25, 25, 112, 0.9); /* Deep blue with slight transparency */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Softer glow effect */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 2px solid rgba(255, 255, 255, 0.1); /* Clean border effect */
 }
 
+/* Course Cards */
+
+
+.course-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+/* Course Images */
 .course-card img {
+    background-color: rgba(255, 255, 255, 0.1);
     width: 100%;
-    height: 100px;
-    object-fit: cover;
+    height: 120px;
+    object-fit: contain;
     border-radius: 5px;
 }
 
+/* Course Content */
+.content {
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 1.2rem;
+    margin: 5px 0;
+    color: #FFD700;
+}
+
+.content p {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: white;
+}
+
+/* Button Group */
 .button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
     margin-top: 10px;
 }
 
-.btn {
-    padding: 5px 10px;
+.button-group .btn {
+    padding: 8px 12px;
+    font-size: 1rem;
+    font-style: oblique;
+    cursor: pointer;
+    background-color: #FFD700; /* Gold buttons */
+    color: #000;
+    border-radius: 10px;
+    transition: background 0.3s ease, transform 0.2s ease-in-out;
     border: none;
-    background-color: yellow;
-    color: black;
-
-    border-radius: 5px;
-    cursor: pointer;
+    font-weight: bold;
 }
 
-.btn:hover {
+.button-group .btn:hover {
     background-color: #ffd700;
+    transform: scale(1.05);
 }
-.nav-buttons {
-    display: flex;
-    justify-content: flex-end; /* Aligns buttons to the right */
-    align-items: center;
-    margin-bottom: 10px; /* Adds spacing from the title */
-}
-
-.nav-buttons a {
-    font-size: 24px;
-    color: white;
-    text-decoration: none;
-    background-color: #1e90ff; /* Blue button */
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-left: 5px; /* Adds spacing between buttons */
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.nav-buttons a:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
 
