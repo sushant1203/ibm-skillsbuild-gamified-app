@@ -14,12 +14,10 @@ public class Course {
     private int courseScore;
     private String links;
 
-
-
-
+    
     public Course() {}
 
-    public Course(String title, String category, String difficulty, int courseScore, String links) {
+    public Course(String title, String category, String difficulty, int courseScore, String links, Quiz quiz) {
         this.title = title;
         this.category = category;
         this.difficulty = difficulty;
@@ -74,4 +72,6 @@ public class Course {
     public void setLinks(String links) {
         this.links = links;
     }
+
+
 }
