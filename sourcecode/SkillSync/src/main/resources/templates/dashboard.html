@@ -60,14 +60,14 @@
                     <div class="history-content">
                         <h1>Courses You've Enrolled In</h1>
 
-                        <div th:if="${ids.isEmpty()}">
+                        <div th:if="${enrollments.isEmpty()}">
                             <p>You haven't enrolled in any courses yet.</p>
                         </div>
 
-                        <div th:each="course : ${id}">
+                        <div th:each="enrollment : ${enrollments}">
                             <div class="course">
-                                <h2 th:text="${#ids.name}"></h2>
-                                <p th:text="${.description}"></p>
+                                <h2 th:text="${enrollment.Id}"></h2>
+                                <p th:text="${enrollment.course}"></p>
 
                             </div>
                         </div>
