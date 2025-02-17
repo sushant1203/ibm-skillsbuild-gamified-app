@@ -13,16 +13,19 @@ public class Course {
     private String difficulty;
     private int courseScore;
     private String links;
+    private String imagePath;
 
     
     public Course() {}
 
-    public Course(String title, String category, String difficulty, int courseScore, String links, Quiz quiz) {
+    public Course(String title, String category, String difficulty, int courseScore, String links,String imagePath ) {
         this.title = title;
         this.category = category;
         this.difficulty = difficulty;
         this.courseScore = courseScore;
         this.links = links;
+        this.imagePath = imagePath;
+
     }
 
     public Long getId() {
@@ -72,6 +75,7 @@ public class Course {
     public void setLinks(String links) {
         this.links = links;
     }
-
+    public String getImagePath() { return imagePath; }
+    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
 
 }
