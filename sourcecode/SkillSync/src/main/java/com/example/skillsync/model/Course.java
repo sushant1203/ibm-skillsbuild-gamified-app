@@ -15,9 +15,7 @@ public class Course {
     private String links;
     private String imagePath;
 
-
-
-
+    
     public Course() {}
 
     public Course(String title, String category, String difficulty, int courseScore, String links,String imagePath ) {
