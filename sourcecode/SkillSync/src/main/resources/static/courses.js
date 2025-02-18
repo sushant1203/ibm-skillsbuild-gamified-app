@@ -93,3 +93,64 @@ function updateNavigationButtons() {
     nextButton.style.display = totalPages > 1 ? "block" : "none";
     prevButton.style.display = totalPages > 1 ? "block" : "none";
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("search");
+    const courseContainer = document.getElementById("courseContainer");
+
+    // Listen for search input
+    searchInput.addEventListener("input", searchCourses);
+
+    // Function to search courses
+    function searchCourses() {
+        const searchTerm = searchInput.value.toLowerCase();
+
+        // Filter the fetched courses based on search term
+        const searchedCourses = filteredCourses.filter(course =>
+            course.title.toLowerCase().includes(searchTerm) ||
+            course.category.toLowerCase().includes(searchTerm)
+        );
+
+        // Display filtered courses with pagination
+        renderSearchCourses(searchedCourses);
+    }
+
+    // Function to render searched courses with pagination
+    function renderSearchCourses(searchedCourses) {
+        courseContainer.innerHTML = ""; // Clear previous results
+
+        const startIndex = currentPage * coursesPerPage;
+        const endIndex = startIndex + coursesPerPage;
+        const currentSearchedCourses = searchedCourses.slice(startIndex, endIndex);
+
+        if (currentSearchedCourses.length === 0) {
+            courseContainer.innerHTML = `<p style="color: white; font-size: 18px;">No matching courses found.</p>`;
+            return;
+        }
+
+        currentSearchedCourses.forEach(course => {
+            const courseElement = document.createElement("div");
+            courseElement.classList.add("course-card");
+            courseElement.innerHTML = `
+                <img src="${course.imagePath ? course.imagePath : '/images/default-course.jpg'}" alt="${course.title}">
+                <div class="content">
+                    <h1>${course.title}</h1>
+                    <p>Category: ${course.category}</p>
+                    <div class="button-group">
+                        <button class="btn" onclick="window.location.href='/quiz/${course.id}'">Start Quiz</button>
+                        <button class="btn" onclick="window.location.href='${course.links}'">Start Course</button>
+                    </div>
+                </div>
+            `;
+            courseContainer.appendChild(courseElement);
+        });
+
+        // Update navigation buttons visibility after search
+        updateNavigationButtons();
+    }
+
+    // Display courses initially when page loads
+    renderCourses();
+});
+
+
