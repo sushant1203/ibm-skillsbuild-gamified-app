@@ -107,3 +107,11 @@ body {
 .form-group {
     font-family: 'Montserrat', sans-serif;
 }
+
+.logo-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px; /* 40px top margin, 20px bottom margin, auto for left/right centering */
+    max-width: 400px; /* Increase to make the logo bigger */
+}

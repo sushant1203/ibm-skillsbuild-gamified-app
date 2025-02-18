@@ -1,11 +1,13 @@
 package com.example.skillsync.service;
 
 import com.example.skillsync.model.Certificate;
+import com.example.skillsync.model.Course;
 import com.example.skillsync.model.User;
 import com.example.skillsync.repo.CertificateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,5 +51,26 @@ public class CertificateService {
         }
 
         return certificates;
+    }
+
+    // Method to automatically award a certificate when a quiz is passed
+    public void awardCertificate(User user, Course course, int quizScore) {
+        // Check if a certificate for this course already exists for the user
+        List<Certificate> existingCertificates = certificateRepository.findByUser(user);
+        boolean alreadyAwarded = existingCertificates.stream()
+                .anyMatch(cert -> cert.getCourse().getId().equals(course.getId()));
+        if (alreadyAwarded) {
+            System.out.println("Certificate already awarded for this course.");
+            return;
+        }
+
+        Certificate certificate = new Certificate();
+        certificate.setUser(user);
+        certificate.setCourse(course);
+        certificate.setQuizScore(quizScore);
+        certificate.setCreatedAt(LocalDateTime.now());
+
+        certificateRepository.save(certificate);
+        System.out.println("Certificate awarded for course: " + course.getTitle());
     }
 }

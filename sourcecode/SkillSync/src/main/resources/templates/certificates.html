@@ -6,13 +6,16 @@
     <title>Certificates - SkillSync</title>
     <link rel="stylesheet" href="/dashboard-view-frame.css">
     <link rel="stylesheet" href="/certificates.css">
+    <link rel="icon" type="image/x-icon" href="/Logo.ico" />
 </head>
 <body>
 <div class="container">
     <!-- Navigation Frame -->
     <div class="Navigation-Frame">
         <div class="logo">
-            <img src="Logo.png" alt="SkillSync Logo">
+            <a href="/dashboard">
+                <img src="Logo.png" alt="SkillSync Logo">
+            </a>
         </div>
         <nav class="nav-links">
             <a href="/dashboard">
@@ -77,9 +80,12 @@
                     <img src="notification.png" alt="Notifications">
                     <span class="badge">3</span>
                 </div>
-                <div class="user-profile">
+                <div class="user-profile" onclick="toggleUserDropdown()">
                     <img th:if="${user}" th:src="@{'/images/' + ${user.id}}" onerror="this.onerror=null; this.src='user-icon.png';" alt="Profile Picture">
                     <span th:text="${user.username}">User</span>
+                    <div id="userDropdown" class="dropdown-content">
+                        <a href="/login" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -103,6 +109,25 @@
         </div>
     </div>
 </div>
+<script>
+    function toggleUserDropdown() {
+        var dropdown = document.getElementById("userDropdown");
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+
+    // Optionally, hide the dropdown if user clicks outside:
+    document.addEventListener("click", function(event) {
+        var dropdown = document.getElementById("userDropdown");
+        var profile = document.querySelector(".user-profile");
+        if (!profile.contains(event.target)) {
+            dropdown.style.display = "none";
+        }
+    });
+</script>
 <script src="/script.js"></script>
 </body>
 </html>
