@@ -93,3 +93,68 @@ function updateNavigationButtons() {
     nextButton.style.display = totalPages > 1 ? "block" : "none";
     prevButton.style.display = totalPages > 1 ? "block" : "none";
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("search");
+    const courseContainer = document.getElementById("courseContainer");
+
+    // Sample course data
+    const courses = [
+        { name: "Artificial Intelligence Fundamentals", category: "AI", image: "ai.jpg" },
+        { name: "Web Development Fundamentals", category: "Web Development", image: "webdev.jpg" },
+        { name: "Data Fundamentals", category: "Data Analyst", image: "data.jpg" },
+        { name: "Cybersecurity Fundamentals", category: "Cyber Security", image: "cyber.jpg" },
+        { name: "Building Trustworthy AI Enterprise Solutions", category: "AI", image: "ai2.jpg" },
+        { name: "Cloud Computing Fundamentals", category: "Web Development", image: "cloud.jpg" },
+        { name: "Professional Skills", category: "Computing Education", image: "skills.jpg" },
+        { name: "Getting Started with Cybersecurity", category: "Cyber Security", image: "cyber2.jpg" },
+        { name: "Machine Learning for Data Science Projects", category: "AI", image: "ml.jpg" },
+        { name: "Getting Started with Threat Intelligence and Hunting", category: "Cyber Security", image: "threat.jpg" },
+        { name: "Journey to Cloud: Orchestrating Your Solution", category: "Web Development", image: "cloud2.jpg" },
+        { name: "Getting Started with Data", category: "Data Analyst", image: "data2.jpg" },
+        { name: "Fundamentals of Sustainability and Technology", category: "Computing Education", image: "sustainability.jpg" },
+        { name: "Enterprise Security in Practice", category: "Cyber Security", image: "security.jpg" }
+    ];
+
+    function displayCourses(filteredCourses) {
+        courseContainer.innerHTML = ""; // Clear previous results
+
+        if (filteredCourses.length === 0) {
+            courseContainer.innerHTML = `<p style="color: white; font-size: 18px;">No matching courses found.</p>`;
+            return;
+        }
+
+        filteredCourses.forEach(course => {
+            const courseElement = document.createElement("div");
+            courseElement.classList.add("course-card");
+            courseElement.innerHTML = `
+                <img src="${course.image}" alt="Course Image">
+                <div class="content">
+                    <h1>${course.name}</h1>
+                    <p>Category: ${course.category}</p>
+                    <div class="button-group">
+                        <button>View Course</button>
+                    </div>
+                </div>
+            `;
+            courseContainer.appendChild(courseElement);
+        });
+    }
+
+    function searchCourses() {
+        const searchTerm = searchInput.value.toLowerCase();
+
+        const filteredCourses = courses.filter(course =>
+            course.name.toLowerCase().includes(searchTerm) ||
+            course.category.toLowerCase().includes(searchTerm)
+        );
+
+        displayCourses(filteredCourses);
+    }
+
+    searchInput.addEventListener("input", searchCourses);
+
+    // Display all courses initially
+    displayCourses(courses);
+});
+
