@@ -98,63 +98,59 @@ document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("search");
     const courseContainer = document.getElementById("courseContainer");
 
-    // Sample course data
-    const courses = [
-        { name: "Artificial Intelligence Fundamentals", category: "AI", image: "ai.jpg" },
-        { name: "Web Development Fundamentals", category: "Web Development", image: "webdev.jpg" },
-        { name: "Data Fundamentals", category: "Data Analyst", image: "data.jpg" },
-        { name: "Cybersecurity Fundamentals", category: "Cyber Security", image: "cyber.jpg" },
-        { name: "Building Trustworthy AI Enterprise Solutions", category: "AI", image: "ai2.jpg" },
-        { name: "Cloud Computing Fundamentals", category: "Web Development", image: "cloud.jpg" },
-        { name: "Professional Skills", category: "Computing Education", image: "skills.jpg" },
-        { name: "Getting Started with Cybersecurity", category: "Cyber Security", image: "cyber2.jpg" },
-        { name: "Machine Learning for Data Science Projects", category: "AI", image: "ml.jpg" },
-        { name: "Getting Started with Threat Intelligence and Hunting", category: "Cyber Security", image: "threat.jpg" },
-        { name: "Journey to Cloud: Orchestrating Your Solution", category: "Web Development", image: "cloud2.jpg" },
-        { name: "Getting Started with Data", category: "Data Analyst", image: "data2.jpg" },
-        { name: "Fundamentals of Sustainability and Technology", category: "Computing Education", image: "sustainability.jpg" },
-        { name: "Enterprise Security in Practice", category: "Cyber Security", image: "security.jpg" }
-    ];
+    // Listen for search input
+    searchInput.addEventListener("input", searchCourses);
 
-    function displayCourses(filteredCourses) {
+    // Function to search courses
+    function searchCourses() {
+        const searchTerm = searchInput.value.toLowerCase();
+
+        // Filter the fetched courses based on search term
+        const searchedCourses = filteredCourses.filter(course =>
+            course.title.toLowerCase().includes(searchTerm) ||
+            course.category.toLowerCase().includes(searchTerm)
+        );
+
+        // Display filtered courses with pagination
+        renderSearchCourses(searchedCourses);
+    }
+
+    // Function to render searched courses with pagination
+    function renderSearchCourses(searchedCourses) {
         courseContainer.innerHTML = ""; // Clear previous results
 
-        if (filteredCourses.length === 0) {
+        const startIndex = currentPage * coursesPerPage;
+        const endIndex = startIndex + coursesPerPage;
+        const currentSearchedCourses = searchedCourses.slice(startIndex, endIndex);
+
+        if (currentSearchedCourses.length === 0) {
             courseContainer.innerHTML = `<p style="color: white; font-size: 18px;">No matching courses found.</p>`;
             return;
         }
 
-        filteredCourses.forEach(course => {
+        currentSearchedCourses.forEach(course => {
             const courseElement = document.createElement("div");
             courseElement.classList.add("course-card");
             courseElement.innerHTML = `
-                <img src="${course.image}" alt="Course Image">
+                <img src="${course.imagePath ? course.imagePath : '/images/default-course.jpg'}" alt="${course.title}">
                 <div class="content">
-                    <h1>${course.name}</h1>
+                    <h1>${course.title}</h1>
                     <p>Category: ${course.category}</p>
                     <div class="button-group">
-                        <button>View Course</button>
+                        <button class="btn" onclick="window.location.href='/quiz/${course.id}'">Start Quiz</button>
+                        <button class="btn" onclick="window.location.href='${course.links}'">Start Course</button>
                     </div>
                 </div>
             `;
             courseContainer.appendChild(courseElement);
         });
+
+        // Update navigation buttons visibility after search
+        updateNavigationButtons();
     }
 
-    function searchCourses() {
-        const searchTerm = searchInput.value.toLowerCase();
-
-        const filteredCourses = courses.filter(course =>
-            course.name.toLowerCase().includes(searchTerm) ||
-            course.category.toLowerCase().includes(searchTerm)
-        );
-
-        displayCourses(filteredCourses);
-    }
-
-    searchInput.addEventListener("input", searchCourses);
-
-    // Display all courses initially
-    displayCourses(courses);
+    // Display courses initially when page loads
+    renderCourses();
 });
+
 
