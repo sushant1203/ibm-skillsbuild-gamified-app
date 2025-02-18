@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboards - SkillSync</title>
+    <link rel="icon" type="image/x-icon" href="/Logo.ico" />
+    <link rel="stylesheet" href="/dashboard-view-frame.css">
+    <link rel="stylesheet" href="/leaderboards.css">
+    <!-- Boxicons (optional if you want to use icons in content) -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <!-- Navigation Frame -->
+    <div class="Navigation-Frame">
+        <div class="logo">
+            <a href="/dashboard">
+                <img src="/Logo.png" alt="SkillSync Logo">
+            </a>
+        </div>
+        <nav class="nav-links">
+            <a href="/dashboard">
+                <img src="/Dashboard-icon.png" alt="Dashboard icon"> Dashboard
+            </a>
+            <a href="/courses">
+                <img src="/Courses.png" alt="Course icon"> Courses
+            </a>
+            <a href="/leaderboards">
+                <img src="/Leaderboard.png" alt="Leaderboard icon"> Leaderboards
+            </a>
+            <a href="/certificates">
+                <img src="/Certificates.png" alt="Certificates icon"> Certificates
+            </a>
+            <a href="/settings">
+                <img src="/Settings.png" alt="Settings icon"> Settings
+            </a>
+        </nav>
+        <div class="resizer"></div>
+    </div>
+
+    <!-- Main View Frame -->
+    <div class="View-frame">
+        <!-- Top Bar -->
+        <div class="Bar-frame">
+            <form>
+                <input type="search" id="search" name="search" placeholder="Search for courses and Quizzes..." class="search-box">
+            </form>
+            <div class="top-right">
+                <div class="notification">
+                    <img src="/notification.png" alt="Notifications">
+                    <span class="badge">3</span>
+                </div>
+                <div class="user-profile">
+                    <img th:if="${user}" th:src="@{'/images/' + ${user.id}}"
+                         onerror="this.onerror=null; this.src='user-icon.png';" alt="Profile Picture">
+                    <span th:text="${user.username}">User</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboards Content -->
+        <div class="View-contact">
+            <h1>Leaderboards</h1>
+            <div class="under-development">
+                <i class="bx bxs-edit-alt"></i>
+                <p>This section is under development. <br>Check back soon! &#x1FAE1; </p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/script.js"></script>
+</body>
+</html>

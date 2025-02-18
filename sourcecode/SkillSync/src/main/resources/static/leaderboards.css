@@ -1,0 +1,29 @@
+/* Leaderboards-specific Styles */
+
+/* Adds spacing to the main content area */
+.View-contact {
+    padding: 50px;
+}
+
+/* Adds extra margin above the Leaderboards title */
+.View-contact h1 {
+    margin-top: 50px; /* Adjust as needed */
+}
+
+/* Centers and styles the under-development message */
+.under-development {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.under-development i {
+    font-size: 96px; /* Increase or adjust as needed */
+    color: #FFD700;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+.under-development p {
+    font-size: 2rem;
+    color: #fff;
+}

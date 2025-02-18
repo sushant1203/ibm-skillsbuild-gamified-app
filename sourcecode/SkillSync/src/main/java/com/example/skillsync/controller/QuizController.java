@@ -5,6 +5,7 @@ import com.example.skillsync.model.Enrollment;
 import com.example.skillsync.model.Quiz;
 import com.example.skillsync.model.User;
 import com.example.skillsync.repo.*;
+import com.example.skillsync.service.CertificateService;
 import com.example.skillsync.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,10 @@ public class QuizController {
 
     @Autowired
     private CourseRepository courseRepository;
+
+    @Autowired
+    private CertificateService certificateService;
+
 
     // Display the quiz
     @GetMapping("quiz/{courseId}")
@@ -74,6 +79,7 @@ public class QuizController {
                 enrollment.setCourse(courseRepository.findById(courseId).orElseThrow(() -> new RuntimeException("Course not found")));
                 enrollmentRepository.save(enrollment);
             }
+            certificateService.awardCertificate(user, course, scorePercentage);
             return "redirect:/quiz/success";
         } else {
             return "redirect:/quiz/failed";
