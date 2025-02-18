@@ -46,7 +46,7 @@ public class SkillSyncApplication {
 					new Course("Cybersecurity Fundamentals", "Cyber Security", "Intermediate", 10, "https://skills.yourlearning.ibm.com/activity/PLAN-FA511CDFAF48?channelId=CNL_LCB_1580409324694","cybersecruity-fundementals.png"),
 					new Course("Building Trustworthy AI Enterprise Solutions","AI","Advanced",15, "https://skills.yourlearning.ibm.com/activity/PLAN-A2AAD89B7676?ngo-id=0302","learning-plan-building-trustworthy-ai.png"),
 					new Course("Cloud Computing Fundamentals","Web Development","Beginner",5,"https://skills.yourlearning.ibm.com/activity/PLAN-2EC3A305F2C3?ngo-id=0302","cloud-computing.png"),
-					new Course("Professional Skills"," Computing Education","Beginner",5, "https://skills.yourlearning.ibm.com/credential/CREDLY-dafd91d2-b4fa-46e2-a1fe-c9b0428d6ea7","professional-skills.png"),
+					new Course("Professional Skills","Computing Education","Beginner",5, "https://skills.yourlearning.ibm.com/credential/CREDLY-dafd91d2-b4fa-46e2-a1fe-c9b0428d6ea7","professional-skills.png"),
 					new Course("Getting Started with Cybersecurity","Cyber Security","Intermediate",10, "https://skills.yourlearning.ibm.com/activity/PLAN-C7EE7CC95370?ngo-id=0302","getting-started-cybersecruity.png"),
 					new Course("Machine Learning for Data Science Projects","AI","Advanced",15, "https://skills.yourlearning.ibm.com/activity/PLAN-D8E7C82C1D76?ngo-id=0302","machine-learning.png"),
 					new Course("Getting Started with Threat Intelligence and Hunting","Cyber Security","Advanced",15, "https://skills.yourlearning.ibm.com/activity/URL-A3CBFC2EAA5F","getting-started-with-threat.png"),

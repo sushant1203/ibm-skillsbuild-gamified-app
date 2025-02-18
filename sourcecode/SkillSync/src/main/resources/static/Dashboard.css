@@ -315,3 +315,44 @@ body, html {
     top: -1em;
     right: 2%;
 }
+
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    background: rgba(25, 25, 112, 0.9); /* Matching deep blue background */
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    margin: 20px;
+}
+
+.filter-container label {
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.filter-container select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    background-color: #FFD700; /* Gold color */
+    color: black;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    outline: none;
+}
+
+.filter-container select:hover {
+    background-color: #ffcc00;
+}
+
+.filter-container select:focus {
+    border: 2px solid #FFD700;
+    outline: none;
+}
+

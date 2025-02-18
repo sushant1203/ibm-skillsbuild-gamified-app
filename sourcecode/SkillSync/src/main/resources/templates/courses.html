@@ -41,7 +41,7 @@
     <div class="View-frame">
         <div class="Bar-frame">
             <form>
-                <input type="search" id="search" name="search" placeholder="Search for courses and Quizzes..." class="search-box">
+                <input type="search" id="search" name="search" placeholder="Search for courses..." class="search-box">
             </form>
             <div class="top-right">
                 <div class="notification">
@@ -49,13 +49,32 @@
                     <span class="badge">3</span>
                 </div>
                 <div class="user-profile">
-                    <img src="user-icon.png" alt="User">
-                    <span>User</span>
+                    <img th:if="${user}" th:src="@{'/images/' + ${user.id}}" onerror="this.onerror=null; this.src='user-icon.png';"  alt="Profile Picture">
+                    <span th:text="${user.Name}">User</span>
                 </div>
             </div>
         </div>
         <div class="Main-contact">
             <h1 class="Title">Courses</h1>
+            <div class="filter-container">
+                <label for="category">Category:</label>
+                <select id="category" onchange="filterCourses()">
+                    <option value="">All</option>
+                    <option value="Cyber Security">Cyber Security</option>
+                    <option value="Data Analyst">Data Analyst</option>
+                    <option value="Computing Education">Computing Education</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="AI">AI</option>
+                </select>
+
+                <label for="difficulty">Difficulty:</label>
+                <select id="difficulty" onchange="filterCourses()">
+                    <option value="">All</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+            </div>
             <a class="next" onclick="changePage(-1)">&#10094;</a>
             <a class="prev" onclick="changePage(1)">&#10095;</a>
 
@@ -66,56 +85,8 @@
 </div>
 
 
-<script th:inline="javascript">
-    const courses = /*[[${courses}]]*/ [];
-</script>
-<script>
-    let currentPage = 0;
-    const coursesPerPage = 8;
-    const totalPages = Math.ceil(courses.length / coursesPerPage);
-    const courseContainer = document.getElementById("courseContainer");
 
-    function renderCourses() {
-
-        courseContainer.innerHTML = '';
-
-        const startIndex = currentPage * coursesPerPage;
-        const endIndex = startIndex + coursesPerPage;
-        const currentCourses = courses.slice(startIndex, endIndex);
-
-        currentCourses.forEach(course => {
-            const courseCard = document.createElement("div");
-            courseCard.classList.add("course-card");
-
-            courseCard.innerHTML = `
-                <img src="${course. imagePath}" alt="${course.title}">
-                <div class="content">
-                    <h1>${course.difficulty}</h1>
-                    <p>${course.title}</p>
-                    <div class="button-group">
-                        <button type="button" class="btn" onclick="window.location.href='/quiz/${course.id}'">Start Quiz</button>
-                        <button type="button" class="btn" onclick="window.location.href='${course.links}'">Start Course</button>
-                    </div>
-                </div>
-            `;
-
-            courseContainer.appendChild(courseCard);
-        });
-    }
-
-    function changePage(direction) {
-
-        currentPage += direction;
-
-        if (currentPage < 0) {
-            currentPage = totalPages - 1;
-        } else if (currentPage >= totalPages) {
-            currentPage = 0;
-        }
-        renderCourses();
-    }
-    renderCourses();
-</script>
+<script src="courses.js"></script>
 
 
 </body>
