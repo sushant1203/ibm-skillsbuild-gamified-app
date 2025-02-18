@@ -25,11 +25,12 @@ public class CertificateController {
 
     @GetMapping("/certificates")
     public String showCertificates(@RequestParam Optional<String> sortBy,
-                                   @RequestParam Optional<String> filterBy,
+                                   @RequestParam Optional<String> search,
+                                   @RequestParam Optional<String> category,
+                                   @RequestParam Optional<String> difficulty,
                                    Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
-
-        List <Certificate> certificates = certificateService.getCertificatesForUser(user, sortBy, filterBy);
+        List<Certificate> certificates = certificateService.getCertificatesForUser(user, sortBy, search, category, difficulty);
         model.addAttribute("certificates", certificates);
         return "certificates";
     }

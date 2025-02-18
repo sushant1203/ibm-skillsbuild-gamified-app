@@ -15,29 +15,39 @@ public class CertificateService {
     @Autowired
     private CertificateRepository certificateRepository;
 
-    public List<Certificate> getCertificatesForUser(User user, Optional<String> sortBy, Optional<String> filterBy) {
+    public List<Certificate> getCertificatesForUser(User user,
+                                                    Optional<String> sortBy,
+                                                    Optional<String> search,
+                                                    Optional<String> category,
+                                                    Optional<String> difficulty) {
         List<Certificate> certificates = certificateRepository.findByUser(user);
 
         System.out.println("Fetching certificates for user with ID: " + user.getId());
         System.out.println("Number of certificates found: " + certificates.size());
 
-//Filtering example: by course title
-        if (filterBy.isPresent() && !filterBy.get().isEmpty()) {
-            String filter = filterBy.get().toLowerCase();
-            certificates.removeIf(cert -> !cert.getCourse().getTitle().toLowerCase().contains(filter));
+        // Filtering by search term on course title
+        if (search.isPresent() && !search.get().isEmpty()) {
+            String searchTerm = search.get().toLowerCase();
+            certificates.removeIf(cert -> !cert.getCourse().getTitle().toLowerCase().contains(searchTerm));
         }
 
-        //Sorting example: by issue date or course title
-        if (sortBy.isPresent()) {
-            switch (sortBy.get()) {
-                case "createdAt":
-                    certificates.sort((a, b) -> b.getCreatedAt().compareTo(a.getCreatedAt()));
-                    break;
-                case "courseTitle":
-                    certificates.sort((a, b) -> a.getCourse().getTitle().compareToIgnoreCase(b.getCourse().getTitle()));
-                    break;
-            }
+        // Filtering by course category
+        if (category.isPresent() && !category.get().isEmpty()) {
+            String catFilter = category.get().toLowerCase();
+            certificates.removeIf(cert -> !cert.getCourse().getCategory().toLowerCase().equals(catFilter));
         }
+
+        // Filtering by course difficulty
+        if (difficulty.isPresent() && !difficulty.get().isEmpty()) {
+            String diffFilter = difficulty.get().toLowerCase();
+            certificates.removeIf(cert -> !cert.getCourse().getDifficulty().toLowerCase().equals(diffFilter));
+        }
+
+        // Sorting by most recent (createdAt)
+        if (sortBy.isPresent() && sortBy.get().equals("mostRecent")) {
+            certificates.sort((a, b) -> b.getCreatedAt().compareTo(a.getCreatedAt()));
+        }
+
         return certificates;
     }
 }
