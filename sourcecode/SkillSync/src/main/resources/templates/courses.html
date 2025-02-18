@@ -43,7 +43,7 @@
     <div class="View-frame">
         <div class="Bar-frame">
             <form>
-                <input type="search" id="search" name="search" placeholder="Search for courses and Quizzes..." class="search-box">
+                <input type="search" id="search" name="search" placeholder="Search for courses..." class="search-box">
             </form>
             <div class="top-right">
                 <div class="notification">
@@ -61,6 +61,25 @@
         </div>
         <div class="Main-contact">
             <h1 class="Title">Courses</h1>
+            <div class="filter-container">
+                <label for="category">Category:</label>
+                <select id="category" onchange="filterCourses()">
+                    <option value="">All</option>
+                    <option value="Cyber Security">Cyber Security</option>
+                    <option value="Data Analyst">Data Analyst</option>
+                    <option value="Computing Education">Computing Education</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="AI">AI</option>
+                </select>
+
+                <label for="difficulty">Difficulty:</label>
+                <select id="difficulty" onchange="filterCourses()">
+                    <option value="">All</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+            </div>
             <a class="next" onclick="changePage(-1)">&#10094;</a>
             <a class="prev" onclick="changePage(1)">&#10095;</a>
 
@@ -71,14 +90,6 @@
 </div>
 
 
-<script th:inline="javascript">
-    const courses = /*[[${courses}]]*/ [];
-</script>
-<script>
-    let currentPage = 0;
-    const coursesPerPage = 8;
-    const totalPages = Math.ceil(courses.length / coursesPerPage);
-    const courseContainer = document.getElementById("courseContainer");
 
     function renderCourses() {
 

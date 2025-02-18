@@ -94,6 +94,7 @@ public class AuthController {
         String loggedUserName = principal.getName();
         User user = userService.findByUsername(loggedUserName);
         model.addAttribute("username",user.getUsername());
+        model.addAttribute("score", user.getScore());
         List<Course> recommendedCourses = recommendationService.recommendCourse(user.getId());
         model.addAttribute("recommendedCourses", recommendedCourses);
         List<Enrollment> enrollments = enrollmentRepository.findByUser(user);

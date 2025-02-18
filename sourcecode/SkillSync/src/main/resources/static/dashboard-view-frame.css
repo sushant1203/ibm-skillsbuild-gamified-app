@@ -9,7 +9,7 @@ body, html {
 /* Main Container */
 .container {
     display: flex;
-    height: 121vh;
+    min-height: 121vh;
     overflow: auto;
 }
 
@@ -216,6 +216,12 @@ body, html {
 .username {
     color: yellow;
     font-weight: bold;
+
+}
+.user-score{
+    color: yellow; /* Highlight username in yellow */
+    font-weight: bold;
+
 }
 
 /* Course Recommendation Section */
@@ -316,13 +322,15 @@ body, html {
 
 /* Learning History Box */
 .right-side-box {
-    flex: 1; /* Adjust width */
-    max-width: 550px; /* Adjust as needed */
-    height: 400px;
+    flex: 1;
+    max-width: 550px;
+    min-height: 400px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     border: 2px solid rgba(255, 255, 255, 0.2);
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .right-side-box h1 {

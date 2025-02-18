@@ -50,6 +50,7 @@
                 <div class="dashboard-text">
                     <h2>Dashboard Overview</h2>
                     <p>Welcome back <span th:text="${username}" class="username">User</span></p>
+                    <p>Your Score: <span th:text="${score}" class="user-score">0</span></p>
                 </div>
             </div>
 
@@ -128,8 +129,8 @@
                         <h1>${course.difficulty}</h1>
                         <p>${course.title}</p>
                         <div class="button-group">
-                            <button type="button" class="btn">Start Quiz</button>
-                            <button type="button" class="btn" onclick="window.location.href='${course.links}'">Start Course</button>
+                           <button type="button" class="btn" onclick="window.location.href='/quiz/${course.id}'">Start Quiz</button>
+                           <button type="button" class="btn" onclick="window.location.href='${course.links}'">Start Course</button>
                         </div>
                     </div>
                 `;
