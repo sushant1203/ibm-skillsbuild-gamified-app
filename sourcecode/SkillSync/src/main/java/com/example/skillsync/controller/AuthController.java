@@ -1,7 +1,9 @@
 package com.example.skillsync.controller;
 
 import com.example.skillsync.model.Course;
+import com.example.skillsync.model.Enrollment;
 import com.example.skillsync.model.User;
+import com.example.skillsync.repo.EnrollmentRepository;
 import com.example.skillsync.service.RecommendationService;
 import com.example.skillsync.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class AuthController {
 
     @Autowired
     private RecommendationService recommendationService;
+
+    @Autowired
+    EnrollmentRepository enrollmentRepository;
 
     //shows the registration page
     @GetMapping("/register")
