@@ -97,8 +97,8 @@ public class AuthController {
         model.addAttribute("score", user.getScore());
         List<Course> recommendedCourses = recommendationService.recommendCourse(user.getId());
         model.addAttribute("recommendedCourses", recommendedCourses);
-
-
+        List<Enrollment> enrollments = enrollmentRepository.findByUser(user);
+        model.addAttribute("enrollments", enrollments);
         return "dashboard";
     }
 
