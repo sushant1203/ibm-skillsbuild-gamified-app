@@ -316,32 +316,43 @@ body, html {
     right: 2%;
 }
 
-.user-profile {
-    position: relative;
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    background: rgba(25, 25, 112, 0.9); /* Matching deep blue background */
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    margin: 20px;
+}
+
+.filter-container label {
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.filter-container select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    background-color: #FFD700; /* Gold color */
+    color: black;
     cursor: pointer;
+    transition: background 0.3s ease;
+    outline: none;
 }
 
-/* Dropdown container hidden by default */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    background-color: #fff;
-    min-width: 100px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+.filter-container select:hover {
+    background-color: #ffcc00;
 }
 
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: #000;
-    padding: 10px 12px;
-    text-decoration: none;
-    display: block;
+.filter-container select:focus {
+    border: 2px solid #FFD700;
+    outline: none;
 }
 
-/* Hover effect for dropdown links */
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
