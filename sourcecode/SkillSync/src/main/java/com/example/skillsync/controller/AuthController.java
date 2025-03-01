@@ -93,6 +93,7 @@ public class AuthController {
     public String showDashboard(Model model, Principal principal) {
         String loggedUserName = principal.getName();
         User user = userService.findByUsername(loggedUserName);
+        userService.setStreak();
         model.addAttribute("username",user.getUsername());
         model.addAttribute("score", user.getScore());
         List<Course> recommendedCourses = recommendationService.recommendCourse(user.getId());

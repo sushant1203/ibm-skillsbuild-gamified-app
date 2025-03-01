@@ -2,6 +2,8 @@ package com.example.skillsync.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity //create a table
 @Table //map it to a database(db) table
 public class User {
@@ -24,6 +26,10 @@ public class User {
 
     @Column(nullable = false)
     private int score;
+
+    private LocalDate lastLogin;
+
+    private int streak;
 
     //getters and setters
     public Long getId() {
@@ -72,5 +78,21 @@ public class User {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public LocalDate getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(LocalDate lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public int getStreak() {
+        return streak;
+    }
+
+    public void setStreak(int streak) {
+        this.streak = streak;
     }
 }

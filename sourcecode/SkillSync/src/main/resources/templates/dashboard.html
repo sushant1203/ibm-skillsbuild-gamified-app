@@ -51,6 +51,7 @@
                     <h2>Dashboard Overview</h2>
                     <p>Welcome back <span th:text="${username}" class="username">User</span></p>
                     <p>Your Score: <span th:text="${score}" class="user-score">0</span></p>
+                    <p>Current Streak: <span th:text="${user.streak}">0</span></p>
                 </div>
             </div>
 
@@ -76,10 +77,8 @@
                                 <p th:text="${enrollment.course.Title}" class="completed-title"></p>
                                 <img th:src="${enrollment.course.imagePath != null ? enrollment.course.imagePath : 'default-image.jpg'}"
                                      alt="Course Image" class="img"/>
-
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
