@@ -154,6 +154,7 @@ public class UserService {
         if (lastLogin.isBefore(LocalDate.now().minusDays(1))) { // If streak is abandoned
             user.setStreak(0);
         }
+        user.setLastLogin(LocalDate.now());
         userRepository.save(user);
     }
 
