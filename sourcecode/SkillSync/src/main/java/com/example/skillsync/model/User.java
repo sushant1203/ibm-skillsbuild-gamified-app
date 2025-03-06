@@ -2,6 +2,8 @@ package com.example.skillsync.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity //create a table
 @Table //map it to a database(db) table
 public class User {
@@ -24,6 +26,20 @@ public class User {
 
     @Column(nullable = false)
     private int score;
+    // Friend Requests Sent
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    private List<FriendRequest> sentRequests;
+
+    // Friend Requests Received
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
+    private List<FriendRequest> receivedRequests;
+    @ManyToMany
+    @JoinTable(
+            name = "friendships",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "friend_id")
+    )
+    private List<User> friends;
 
     //getters and setters
     public Long getId() {
@@ -70,7 +86,28 @@ public class User {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setScore(int score) {this.score = score;}
+    public List<FriendRequest> getSentRequests() {
+        return sentRequests;
+    }
+
+    public void setSentRequests(List<FriendRequest> sentRequests) {
+        this.sentRequests = sentRequests;
+    }
+
+    public List<FriendRequest> getReceivedRequests() {
+        return receivedRequests;
+    }
+
+    public void setReceivedRequests(List<FriendRequest> receivedRequests) {
+        this.receivedRequests = receivedRequests;
+    }
+
+    public List<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<User> friends) {
+        this.friends = friends;
     }
 }
