@@ -305,7 +305,7 @@ body, html {
 .button-group .btn {
     padding: 8px 12px;
     font-size: 1rem;
-    font-style: oblique;
+    font-family: Arial, sans-serif;
     cursor: pointer;
     background-color: #FFD700;
     color: #000;

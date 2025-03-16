@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
@@ -43,6 +44,7 @@ public class AuthController {
                                @RequestParam String email,
                                @RequestParam String username,
                                @RequestParam String password,
+                               RedirectAttributes redirectAttributes,
                                Model model) {
         List<String> errors;
 
@@ -53,10 +55,12 @@ public class AuthController {
             model.addAttribute("errors", errors);
             return "register";
         }
-
         //redirects user to login page with success message
+        redirectAttributes.addFlashAttribute("successMessage", "Registration successful! Please log in.");
+
         return "redirect:/login";
     }
+
 
     @PostMapping("editUsername") // handles username editing
     public String editUserName(@RequestParam String newUsername, @RequestParam String password, Model model){

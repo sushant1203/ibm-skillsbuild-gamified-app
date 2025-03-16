@@ -17,7 +17,7 @@
 <body>
     <div class="login-container">
         <form action="/login" method="post">
-            <img src="/Logo.png" alt="SkillSync Logo" class="logo-img">
+            <a href="/"><img src="/Logo.png" alt="SkillSync Logo" class="logo-img"></a>
             <h1>Login</h1>
             <div class="input-box">
                 <input type="text" name="username" placeholder="Username" required>
@@ -32,10 +32,14 @@
 
             <div class="signup-link">
                 <p> Don't have an account?
-                    <a href="/register">Register</a> </p>
+                    <a href="/register">Register </a> </p>
             </div>
         </form>
+        <div th:if="${successMessage}" class="success-popup">
+            <p th:text="${successMessage}"></p>
+        </div>
     </div>
+
 </body>
 
 </html>

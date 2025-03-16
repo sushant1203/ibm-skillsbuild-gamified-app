@@ -40,7 +40,7 @@ html {
     font-size: 28px;
     color: #ffffff;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 /* Menu CSS */
@@ -65,7 +65,7 @@ html {
     font-size: 28px;
     color: #ffffff;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
 
 
 }
@@ -74,7 +74,7 @@ html {
     font-size: 50px;
     color: #ffffff;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     margin-top: 150px;
 }
 .line_2{
@@ -82,7 +82,7 @@ html {
     font-size: 40px;
     color: #ffffff;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     margin-top: 150px;
 }
 .line_3{
@@ -90,7 +90,7 @@ html {
     font-size: 30px;
     color: #ffffff;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     margin-top: 150px;
 }
 
@@ -157,7 +157,7 @@ html {
 .Info {
     border: 2px solid #000;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     color: black;
     text-align: center;
     display: flex;
@@ -189,7 +189,7 @@ html {
 .faq {
     display: inline-grid;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 30px;
     color: black;
     gap: 20px;
@@ -242,7 +242,7 @@ html {
 /* footer CSS */
 .footer{
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     color: white;
     text-align: center;
     padding: 20px;
