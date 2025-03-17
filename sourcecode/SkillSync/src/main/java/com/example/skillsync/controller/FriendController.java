@@ -43,8 +43,9 @@ public class FriendController {
 
     // ✅ Get Pending Friend Requests (For Logged-in User)
     @GetMapping("/api/pending")
-    public ResponseEntity<List<FriendRequest>> getPendingRequests() {
-        return ResponseEntity.ok(friendRequestService.getPendingRequests());
+    public ResponseEntity<List<Map<String, String>>> getPendingRequests() {
+        List<Map<String, String>> pendingRequests = friendRequestService.getPendingRequests();
+        return ResponseEntity.ok(pendingRequests);
     }
 
     // ✅ Get Friends List (For Logged-in User)

@@ -7,9 +7,13 @@ import com.example.skillsync.model.User;
 import com.example.skillsync.repo.FriendRequestRepository;
 import com.example.skillsync.repo.FriendshipRepository;
 import com.example.skillsync.repo.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -27,22 +31,34 @@ public class FriendRequestService {
         this.friendshipRepository = friendshipRepository;
     }
 
-    // ✅ Send Friend Request
-    public String sendFriendRequest(String senderUsername, String receiverUsername) {
-        User sender = userRepository.findByUsername(senderUsername);
-        if (sender == null) {
-            return "Sender not found";
+    // ✅ Get the currently logged-in user
+    private User getLoggedInUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails) principal).getUsername();
+            return userRepository.findByUsername(username);
         }
+        throw new RuntimeException("User not authenticated");
+    }
 
+    // ✅ Send Friend Request (Logged-in User -> Receiver)
+    public String sendFriendRequest(String receiverUsername) {
+        User sender = getLoggedInUser();
         User receiver = userRepository.findByUsername(receiverUsername);
+
         if (receiver == null) {
             return "Receiver not found";
+        }
+
+        if (sender.equals(receiver)) {
+            return "You cannot send a friend request to yourself!";
         }
 
         if (friendRequestRepository.findBySenderAndReceiver(sender, receiver).isPresent()) {
             return "Friend request already sent!";
         }
 
+        // ✅ Ensure the request is saved correctly
         FriendRequest request = new FriendRequest();
         request.setSender(sender);
         request.setReceiver(receiver);
@@ -52,14 +68,11 @@ public class FriendRequestService {
         return "Friend request sent!";
     }
 
-    // ✅ Accept or Reject Friend Request
-    public String respondToRequest(String receiverUsername, String senderUsername, boolean accept) {
-        User receiver = userRepository.findByUsername(receiverUsername);
-        if (receiver == null) {
-            return "Receiver not found";
-        }
-
+    // ✅ Accept or Reject Friend Request (For Logged-in User)
+    public String respondToRequest(String senderUsername, boolean accept) {
+        User receiver = getLoggedInUser();
         User sender = userRepository.findByUsername(senderUsername);
+
         if (sender == null) {
             return "Sender not found";
         }
@@ -89,26 +102,36 @@ public class FriendRequestService {
         }
     }
 
-    // ✅ Get Friends' Usernames Only (Fixes API Overload Issue)
-    public List<String> getFriendsUsernames(String username) {
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new RuntimeException("User not found");
-        }
+    // ✅ Get List of Friends (For Logged-in User)
+    public List<Map<String, String>> getFriendsDetails() {
+        User user = getLoggedInUser();
 
         return friendshipRepository.findByUser1OrUser2(user, user).stream()
-                .map(friendship -> friendship.getUser1().equals(user) ? friendship.getUser2().getUsername() : friendship.getUser1().getUsername())
-                .distinct() // ✅ Prevent duplicates
+                .map(friendship -> {
+                    User friend = friendship.getUser1().equals(user) ? friendship.getUser2() : friendship.getUser1();
+
+                    // ✅ Return username, score, and profile picture
+                    Map<String, String> friendDetails = new HashMap<>();
+                    friendDetails.put("username", friend.getUsername());
+                    friendDetails.put("score", String.valueOf(friend.getScore()));
+                    friendDetails.put("profilePicture", "/images/" + friend.getId()); // Assuming images are stored in /images/{userId}
+
+                    return friendDetails;
+                })
                 .collect(Collectors.toList());
     }
 
-    // ✅ Get Pending Friend Requests
-    public List<FriendRequest> getPendingRequests(String username) {
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new RuntimeException("User not found");
-        }
+    // ✅ Get Pending Friend Requests (For Logged-in User)
+    public List<Map<String, String>> getPendingRequests() {
+        User receiver = getLoggedInUser();
 
-        return friendRequestRepository.findByReceiverAndStatus(user, FriendRequestStatus.PENDING);
+        return friendRequestRepository.findByReceiverAndStatus(receiver, FriendRequestStatus.PENDING).stream()
+                .map(request -> {
+                    Map<String, String> requestDetails = new HashMap<>();
+                    requestDetails.put("id", request.getId().toString());
+                    requestDetails.put("senderUsername", request.getSender().getUsername());
+                    return requestDetails;
+                })
+                .collect(Collectors.toList());
     }
 }
