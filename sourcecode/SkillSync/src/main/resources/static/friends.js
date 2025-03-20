@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadFriends();
 });
 
-// ✅ Send Friend Request (From Logged-in User)
+
 function sendFriendRequest() {
     const receiver = document.getElementById("receiverUsername").value.trim();
 
@@ -23,7 +23,7 @@ function sendFriendRequest() {
         .catch(error => console.error("Error:", error));
 }
 
-// ✅ Load Pending Friend Requests
+
 function loadFriendRequests() {
     fetch(`${BASE_URL}/pending`)
         .then(response => response.json())
@@ -50,7 +50,7 @@ function loadFriendRequests() {
         .catch(error => console.error("Error loading pending requests:", error));
 }
 
-// ✅ Accept or Reject Friend Requests
+
 function respondToRequest(senderUsername, accept) {
     fetch(`${BASE_URL}/respond?senderUsername=${senderUsername}&accept=${accept}`, {
         method: "POST"
@@ -64,7 +64,7 @@ function respondToRequest(senderUsername, accept) {
         .catch(error => console.error("Error responding to friend request:", error));
 }
 
-// ✅ Load Friends List
+
 function loadFriends() {
     fetch(`${BASE_URL}/list`)
         .then(response => response.json())

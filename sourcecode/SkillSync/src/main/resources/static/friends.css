@@ -15,7 +15,7 @@ body, html {
     overflow: auto;
 }
 
-/* ✅ Fixed Navigation */
+
 .Navigation-Frame {
     position: fixed;
     top: 0;
@@ -62,7 +62,7 @@ body, html {
     margin-right: 10px;
 }
 
-/* ✅ Fixed Logo */
+
 .logo {
     display: flex;
     align-items: center;
@@ -77,7 +77,7 @@ body, html {
     margin-left: 20px;
 }
 
-/* ✅ Fixed View Frame */
+
 .View-frame {
     margin-left: 220px; /* Matches Navigation-Frame width */
     padding: 20px;
@@ -87,7 +87,7 @@ body, html {
     overflow: auto;
 }
 
-/* ✅ Fixed Top Bar */
+
 .Bar-frame {
     display: flex;
     width: calc(100% - 220px);
@@ -112,7 +112,7 @@ body, html {
     padding: 5px 15px;
 }
 
-/* ✅ Fixed Top Right Section */
+
 .top-right {
     display: flex;
     align-items: center;
@@ -124,7 +124,7 @@ body, html {
     white-space: nowrap;
 }
 
-/* ✅ Fixed Notification Bell */
+
 .notification {
     position: relative;
     cursor: pointer;
@@ -148,7 +148,7 @@ body, html {
     padding: 3px 6px;
 }
 
-/* ✅ Fixed User Profile */
+
 .user-profile {
     display: flex;
     align-items: center;
@@ -164,7 +164,7 @@ body, html {
     border-radius: 50%;
 }
 
-/* ✅ Friend System Section */
+
 .View-contact {
     background: white;
     padding: 20px;
@@ -187,7 +187,7 @@ body, html {
     font-size: 16px;
 }
 
-/* ✅ Friend Containers */
+
 .content-row {
     display: flex;
     flex-wrap: wrap;
@@ -236,7 +236,6 @@ button:hover {
     background: #2a5298;
 }
 
-/* ✅ Fixed Friend List & Requests */
 ul {
     list-style-type: none;
     padding: 0;
@@ -253,7 +252,6 @@ ul li {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* ✅ Profile Picture Styling */
 ul li img {
     width: 35px;
     height: 35px;
@@ -261,7 +259,7 @@ ul li img {
     margin-right: 10px;
 }
 
-/* ✅ Accept & Reject Buttons */
+
 ul li button {
     background: #28a745;
     padding: 5px 10px;

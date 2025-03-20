@@ -31,7 +31,7 @@ public class FriendRequestService {
         this.friendshipRepository = friendshipRepository;
     }
 
-    // ✅ Get the currently logged-in user
+
     private User getLoggedInUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
@@ -41,7 +41,7 @@ public class FriendRequestService {
         throw new RuntimeException("User not authenticated");
     }
 
-    // ✅ Send Friend Request (Logged-in User -> Receiver)
+
     public String sendFriendRequest(String receiverUsername) {
         User sender = getLoggedInUser();
         User receiver = userRepository.findByUsername(receiverUsername);
@@ -58,7 +58,7 @@ public class FriendRequestService {
             return "Friend request already sent!";
         }
 
-        // ✅ Ensure the request is saved correctly
+
         FriendRequest request = new FriendRequest();
         request.setSender(sender);
         request.setReceiver(receiver);
@@ -68,7 +68,6 @@ public class FriendRequestService {
         return "Friend request sent!";
     }
 
-    // ✅ Accept or Reject Friend Request (For Logged-in User)
     public String respondToRequest(String senderUsername, boolean accept) {
         User receiver = getLoggedInUser();
         User sender = userRepository.findByUsername(senderUsername);
@@ -88,7 +87,7 @@ public class FriendRequestService {
             request.setStatus(FriendRequestStatus.ACCEPTED);
             friendRequestRepository.save(request);
 
-            // ✅ Create Friendship
+
             Friendship friendship = new Friendship();
             friendship.setUser1(sender);
             friendship.setUser2(receiver);
@@ -102,7 +101,6 @@ public class FriendRequestService {
         }
     }
 
-    // ✅ Get List of Friends (For Logged-in User)
     public List<Map<String, String>> getFriendsDetails() {
         User user = getLoggedInUser();
 
@@ -110,7 +108,7 @@ public class FriendRequestService {
                 .map(friendship -> {
                     User friend = friendship.getUser1().equals(user) ? friendship.getUser2() : friendship.getUser1();
 
-                    // ✅ Return username, score, and profile picture
+
                     Map<String, String> friendDetails = new HashMap<>();
                     friendDetails.put("username", friend.getUsername());
                     friendDetails.put("score", String.valueOf(friend.getScore()));
@@ -121,7 +119,7 @@ public class FriendRequestService {
                 .collect(Collectors.toList());
     }
 
-    // ✅ Get Pending Friend Requests (For Logged-in User)
+
     public List<Map<String, String>> getPendingRequests() {
         User receiver = getLoggedInUser();
 

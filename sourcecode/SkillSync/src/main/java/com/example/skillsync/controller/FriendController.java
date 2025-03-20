@@ -21,19 +21,18 @@ public class FriendController {
         this.friendRequestService = friendRequestService;
     }
 
-    // ✅ Serve `friend.html`
+
     @GetMapping
     public String showFriendsPage() {
         return "friend";
     }
 
-    // ✅ Send Friend Request (Automatically from Logged-in User)
     @PostMapping("/api/send/{receiverUsername}")
     public ResponseEntity<String> sendFriendRequest(@PathVariable String receiverUsername) {
         return ResponseEntity.ok(friendRequestService.sendFriendRequest(receiverUsername));
     }
 
-    // ✅ Accept or Reject Friend Request (For Logged-in User)
+
     @PostMapping("/api/respond")
     public ResponseEntity<String> respondToRequest(
             @RequestParam String senderUsername,
@@ -41,14 +40,14 @@ public class FriendController {
         return ResponseEntity.ok(friendRequestService.respondToRequest(senderUsername, accept));
     }
 
-    // ✅ Get Pending Friend Requests (For Logged-in User)
+
     @GetMapping("/api/pending")
     public ResponseEntity<List<Map<String, String>>> getPendingRequests() {
         List<Map<String, String>> pendingRequests = friendRequestService.getPendingRequests();
         return ResponseEntity.ok(pendingRequests);
     }
 
-    // ✅ Get Friends List (For Logged-in User)
+
     @GetMapping("/api/list")
     public ResponseEntity<List<Map<String, String>>> getFriends() {
         try {
