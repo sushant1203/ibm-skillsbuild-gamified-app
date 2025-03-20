@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificates - SkillSync</title>
+    <link rel="stylesheet" href="/dashboard-view-frame.css">
+    <link rel="stylesheet" href="/certificates.css">
+    <link rel="icon" type="image/x-icon" href="/Logo.ico" />
+</head>
+<body>
+<div class="container">
+    <!-- Navigation Frame -->
+    <div class="Navigation-Frame">
+        <div class="logo">
+            <a href="/dashboard">
+                <img src="Logo.png" alt="SkillSync Logo">
+            </a>
+        </div>
+        <nav class="nav-links">
+            <a href="/dashboard">
+                <img src="Dashboard-icon.png" alt="Dashboard icon">
+                Dashboard
+            </a>
+            <a href="courses">
+                <img src="Courses.png" alt="Course icon">
+                Courses
+            </a>
+            <a href="leaderboards">
+                <img src="Leaderboard.png" alt="Leaderboard icon">
+                Leaderboards
+            </a>
+            <a href="certificates">
+                <img src="Certificates.png" alt="Certificates icon">
+                Certificates
+            </a>
+            <a href="settings">
+                <img src="Settings.png" alt="Settings icon">
+                Settings
+            </a>
+        </nav>
+        <div class="resizer"></div>
+    </div>
+
+    <!-- Main View Frame -->
+    <div class="View-frame">
+        <!-- Top Bar: Left side with search & filtering; right side with notifications and user -->
+        <div class="Bar-frame">
+            <div class="left-side">
+                <form method="get" action="/certificates">
+                    <!-- Search Box -->
+                    <input type="search" name="search" id="search" placeholder="Search certificates..." class="search-box">
+
+                    <!-- Sort and Filter Controls -->
+                    <label for="sortBy">Sort by:</label>
+                    <select name="sortBy" id="sortBy">
+                        <option value="mostRecent">Most Recent</option>
+                    </select>
+                    <label for="category">Category:</label>
+                    <select name="category" id="category">
+                        <option value="">--Select Category--</option>
+                        <option value="ai">AI</option>
+                        <option value="web development">Web Development</option>
+                        <option value="data analyst">Data Analyst</option>
+                        <option value="cyber security">Cyber Security</option>
+                        <option value="computing education">Computing Education</option>
+                    </select>
+                    <label for="difficulty">Difficulty:</label>
+                    <select name="difficulty" id="difficulty">
+                        <option value="">--Select Difficulty--</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                    <button type="submit">Apply</button>
+                </form>
+            </div>
+            <div class="top-right">
+                <div class="notification">
+                    <img src="notification.png" alt="Notifications">
+                    <span class="badge">3</span>
+                </div>
+                <div class="user-profile" onclick="toggleUserDropdown()">
+                    <img th:if="${user}" th:src="@{'/images/' + ${user.id}}" onerror="this.onerror=null; this.src='user-icon.png';" alt="Profile Picture">
+                    <span th:text="${user.username}">User</span>
+                    <div id="userDropdown" class="dropdown-content">
+                        <a href="/login" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificates Content -->
+        <div class="View-contact">
+            <h1>Your Certificates</h1>
+            <!-- Debug: Show number of certificates -->
+            <p>Number of certificates: <span th:text="${certificates.size()}">0</span></p>
+            <div th:if="${#lists.isEmpty(certificates)}">
+                <p>No certificates found.</p>
+            </div>
+            <div th:each="cert : ${certificates}" class="certificate-card">
+                <h3 th:text="${cert.course.title}">Course Title</h3>
+                <p>Category: <span th:text="${cert.course.category}">Category</span></p>
+                <p>Difficulty: <span th:text="${cert.course.difficulty}">Difficulty</span></p>
+                <p>Quiz Score: <span th:text="${cert.quizScore}">Score</span>%</p>
+                <p>Created At: <span th:text="${#temporals.format(cert.createdAt, 'dd-MM-yyyy')}">Date</span></p>
+                <hr/>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleUserDropdown() {
+        var dropdown = document.getElementById("userDropdown");
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+
+    // Optionally, hide the dropdown if user clicks outside:
+    document.addEventListener("click", function(event) {
+        var dropdown = document.getElementById("userDropdown");
+        var profile = document.querySelector(".user-profile");
+        if (!profile.contains(event.target)) {
+            dropdown.style.display = "none";
+        }
+    });
+</script>
+<script src="/script.js"></script>
+</body>
+</html>

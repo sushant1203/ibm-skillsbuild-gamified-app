@@ -25,7 +25,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(request ->
-                    request.requestMatchers("/register", "/login", "/", "stylesheet.css", "*.png", "login.css").permitAll() //allows access to these three endpoints
+                    request.requestMatchers("/register", "/login", "/", "stylesheet.css", "*.png", "login.css","*.jpg").permitAll() //allows access to these three endpoints
                             .anyRequest().authenticated() //if any other endpoint(request), it requires authentication
                 )
                 .formLogin(form -> form
@@ -39,6 +39,7 @@ public class SecurityConfig {
                         .permitAll() //allow logout for all users
                 )
                 .userDetailsService(userDetailsService); //for authentication
+
 
         return http.build(); //builds and returns the security configuration
     }

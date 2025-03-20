@@ -14,7 +14,6 @@ body, html {
 }
 
 
-
 .Navigation-Frame {
     width: 200px;
     min-width: 180px;
@@ -212,147 +211,151 @@ body, html {
     border-radius: 50%;
 }
 /* Courses CSS */
+/* Centering the Main Content */
+/* Main Content Section */
+/* Main Content Section */
+/* Main Content Section */
 .Main-contact {
-    align-items: center;
-    height: 48rem;
-    border-radius: 10px;
-
-    margin: 125px 25px 0 25px;
-}
-
-.Title {
-    color: #ffffff;
-    margin: 0;
-    padding: 10px 20px;
-}
-
-.Course-Grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted for responsiveness */
-    gap: 30px;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 20px;
-    height: auto;
-}
-
-.Course-Grid .course-card {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
-    height: 200px;
-    border: 2px solid #ffffff;
-    border-radius: 15px;
-    padding: 20px;
-    transition: transform 0.3s ease-in-out;
-    background: rgba(25, 25, 112, 0.9); /* Deep blue with slight transparency */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Softer glow effect */
-}
-
-.Course-Grid .course-card:hover {
-    transform: scale(1.05);
-}
-
-.Course-Grid img {
-    width: 100px;
-    height: 100px;
+    justify-content: space-between; /* Distributes sections evenly */
+    background: rgba(23, 10, 191, 1.0);
+    background: radial-gradient(at center top, rgba(23, 10, 191, 1.0), rgba(136, 170, 223, 1.0));
+    padding-top: 100px;
     border-radius: 10px;
+    width: 100%;
+
+    height: 100%; /* Makes sure everything fits */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    color: #333;
+    overflow: hidden; /* Prevents scrolling issues */
+
+}
+
+/* Section Titles */
+.Main-contact h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Forms: Reduce Spacing to Fit Everything */
+.Main-contact form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px; /* Reduce margin to save space */
+}
+
+/* Form Labels */
+.Main-contact label {
+    align-self: flex-start;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 3px;
+
+}
+
+/* Input Fields */
+.Main-contact input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+/* Buttons */
+.Main-contact button {
+    background: #007bff;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s ease;
+}
+
+.Main-contact button:hover {
+    background: #0056b3;
+}
+
+/* Profile Picture Section */
+.Main-contact img[alt="Profile Picture"] {
+    display: block;
+    margin: 5px auto;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+    width: 70px;
+    height: 70px;
     object-fit: cover;
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex: 1;
-}
-
-.content h1 {
-    font-size: 1.5rem;
-    margin: 5px 0;
-    text-align: left;
-    color: #FFD700;
-}
-
-.content p {
-    font-size: 1rem;
-    margin: 5px 0;
-    text-align: left;
-    color: white;
-}
-
-.button-group {
-    display: flex;
-    gap: 10px;
-}
-
-.button-group button {
-    padding: 8px 12px;
-    font-size: 1rem;
-    font-style: oblique;
+/* File Input */
+.Main-contact input[type="file"] {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f8f9fa;
+    font-size: 12px;
     cursor: pointer;
-    background-color: #FFD700; /* Gold buttons */
+    text-align: center;
+}
+.Main-contact form[action="/upload"] {
+    max-width: 450px;
+    padding: 10px;
+}
+
+/* Success & Error Messages */
+.Main-contact ul {
+    list-style: none;
+    padding: 0;
+    color: red;
+}
+
+.Main-contact p {
+    font-size: 14px;
+    color: green;
+}
+
+.user-profile {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Dropdown container hidden by default */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #fff;
+    min-width: 100px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
     color: #000;
-    border-radius: 15px;
-    transition: background 0.3s ease;
-
+    padding: 10px 12px;
+    text-decoration: none;
+    display: block;
 }
 
-.button-group button:hover {
-    background-color: #ffd700;
+/* Hover effect for dropdown links */
+.dropdown-content a:hover {
+    background-color: #ddd;
 }
-
-.next {
-    float: right;
-    position: relative;
-    top: -1em;
-    right: 4%;
-}
-
-.prev {
-    float: right;
-    position: relative;
-    top: -1em;
-    right: 2%;
-}
-
-
-.filter-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 15px;
-    background: rgba(25, 25, 112, 0.9); /* Matching deep blue background */
-    padding: 10px 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    margin: 20px;
-}
-
-.filter-container label {
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.filter-container select {
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: none;
-    font-size: 1rem;
-    background-color: #FFD700; /* Gold color */
-    color: black;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    outline: none;
-}
-
-.filter-container select:hover {
-    background-color: #ffcc00;
-}
-
-.filter-container select:focus {
-    border: 2px solid #FFD700;
-    outline: none;
-}
-

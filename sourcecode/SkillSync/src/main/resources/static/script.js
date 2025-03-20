@@ -22,8 +22,6 @@ function resize(e) {
     }
 }
 
-function stopResize() {
-    isResizing = false;
-    document.removeEventListener('mousemove', resize);
-    document.removeEventListener('mouseup', stopResize);
-}
+
+
+
