@@ -58,4 +58,9 @@ public class FriendController {
         }
     }
 
+    @DeleteMapping("/api/remove/{friendUsername}")
+    public ResponseEntity<String> removeFriend(@PathVariable String friendUsername) {
+        return ResponseEntity.ok(friendRequestService.removeFriend(friendUsername));
+    }
+
 }
