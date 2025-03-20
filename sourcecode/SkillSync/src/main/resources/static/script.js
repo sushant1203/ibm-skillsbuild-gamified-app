@@ -10,17 +10,41 @@ resizer.addEventListener('mousedown', (e) => {
     document.addEventListener('mouseup', stopResize);
 });
 
-function resize(e) {
-    if (isResizing) {
-        let newWidth = e.clientX - leftPanel.getBoundingClientRect().left;
-        if (newWidth >= 180 && newWidth <= 250) {
-            leftPanel.style.width = `${newWidth}px`;
-            viewFrame.style.width = `calc(100% - ${newWidth}px)`;
-            barFrame.style.width = `calc(100% - ${newWidth}px)`;
-            barFrame.style.left = `${newWidth}px`;
-        }
-    }
+// Updated JavaScript
+function toggleMobileMenu() {
+    const navFrame = document.querySelector('.Navigation-Frame');
+    const hamburger = document.querySelector('.hamburger-menu');
+    navFrame.classList.toggle('active');
+    hamburger.classList.toggle('active');
 }
+
+// Close menu when clicking outside
+document.addEventListener('click', function(event) {
+    const navFrame = document.querySelector('.Navigation-Frame');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const hamburger = document.querySelector('.hamburger-menu');
+
+    // Check if click is on the hamburger or inside the nav content
+    const isClickOnHamburger = event.target.closest('.hamburger-menu');
+    const isClickInsideNavContent = event.target.closest('.nav-links, .logo');
+
+    // Close menu only if:
+    // 1. Menu is active, and
+    // 2. Click is NOT on the hamburger, and
+    // 3. Click is NOT inside nav content
+    if (navFrame.classList.contains('active') && !isClickOnHamburger && !isClickInsideNavContent) {
+        navFrame.classList.remove('active');
+        hamburgerMenu.classList.remove('active');
+    }
+});
+
+// Close menu on window resize
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        document.querySelector('.Navigation-Frame').classList.remove('active');
+        document.querySelector('.hamburger-menu').classList.remove('active');
+    }
+});
 
 
 

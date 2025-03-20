@@ -13,11 +13,7 @@
 <body>
 <div class="container">
     <div class="Navigation-Frame">
-        <div class="logo">
-            <a href="/">
-                <img src="Logo.png" alt="SkillSync Logo">
-            </a>
-        </div>
+        <a href="/"><img src="Logo.png" class="logo"></a>
         <nav class="nav-links">
             <a href="/dashboard"><img src="Dashboard-icon.png" alt="Dashboard icon"> Dashboard</a>
             <a href="courses"><img src="Courses.png" alt="Course icon"> Courses</a>
@@ -29,17 +25,20 @@
 
     <div class="View-frame">
         <div class="Bar-frame">
+            <div class="hamburger-container">
+                <div class="hamburger-menu" onclick="toggleMobileMenu()">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
             <form>
                 <input type="search" id="search" name="search" placeholder="Search for courses and Quizzes..." class="search-box">
             </form>
             <div class="top-right">
-                <div class="notification">
-                    <img src="notification.png" alt="Notifications">
-                    <span class="badge">3</span>
-                </div>
                 <div class="user-profile" onclick="toggleUserDropdown()">
                     <img th:if="${user}" th:src="@{'/images/' + ${user.id}}" onerror="this.onerror=null; this.src='user-icon.png';" alt="Profile Picture">
-                    <span th:text="${user.username}">User</span>
+                    <div class="name"><span th:text="${user.username}">User</span> </div>
                     <div id="userDropdown" class="dropdown-content">
                         <a href="/login" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
                     </div>
@@ -57,29 +56,29 @@
                 </div>
             </div>
 
+            <!-- Updated content row structure -->
             <div class="content-row">
+                <!-- Recommended Courses Section -->
                 <div class="course-recommendation-container">
-                    <div class="course-recommendation">
-                        <h1 class="Title">Recommended Courses</h1>
-                        <div class="Course-Grid" id="recommendationContainer"></div>
-                    </div>
+                    <h1 class="Title">Recommended Courses</h1>
+                    <div class="Course-Grid" id="recommendationContainer"></div>
                 </div>
 
+                <!-- Completed Courses Section -->
                 <div class="right-side-box">
-                    <h1>Courses Completed</h1>
-                    <div class="history-content">
-
-
+                    <h1 class="completed-title">Courses Completed</h1>
+                    <div class="Course-Grid">  <!-- Changed from history-content -->
                         <div th:if="${enrollments.isEmpty()}">
                             <p>You haven't enrolled in any courses yet.</p>
                         </div>
 
                         <div th:each="enrollment : ${enrollments}">
-                            <div class="course">
-                                <p th:text="${enrollment.course.Title}" class="completed-title"></p>
+                            <div class="course-card">  <!-- Changed from course -->
                                 <img th:src="${enrollment.course.imagePath != null ? enrollment.course.imagePath : 'default-image.jpg'}"
                                      alt="Course Image" class="img"/>
-                            </div>
+                                <div class="content">
+                                    <p th:text="${enrollment.course.Title}" class="completed-title"></p>
+                                </div>
                         </div>
                     </div>
                 </div>
