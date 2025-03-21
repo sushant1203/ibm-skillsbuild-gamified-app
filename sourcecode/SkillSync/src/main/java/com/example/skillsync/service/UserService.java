@@ -145,14 +145,13 @@ public class UserService {
         return null;
     }
 
-    public void setStreak(){
-        User user = getLoggedInUser();
+    public void setStreak(User user){
         LocalDate lastLogin = user.getLastLogin();
         if (lastLogin.equals(LocalDate.now().minusDays(1))) { // If streak is continued
             user.setStreak(user.getStreak() + 1);
         }
         if (lastLogin.isBefore(LocalDate.now().minusDays(1))) { // If streak is abandoned
-            user.setStreak(0);
+            user.setStreak(1);
         }
         user.setLastLogin(LocalDate.now());
         userRepository.save(user);
