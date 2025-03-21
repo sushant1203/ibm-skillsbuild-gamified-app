@@ -62,11 +62,19 @@
 
         <!-- Leaderboards Content -->
         <div class="View-contact">
-            <h1>Leaderboards</h1>
-            <div class="under-development">
-                <i class="bx bxs-edit-alt"></i>
-                <p>This section is under development. <br>Check back soon! &#x1FAE1; </p>
-            </div>
+            <h1>Top Users</h1>
+            <ul>
+                <li>
+                    <span>Name</span>
+                    <span>Username</span>
+                    <span>Score</span>
+                </li>
+                <li th:each="user : ${topUsers}">
+                    <span th:text="${user.name}"></span>
+                    <span th:text="${user.username}"></span>
+                    <span th:text="${user.score}"></span>
+                </li>
+            </ul>
         </div>
 
 

@@ -25,6 +25,7 @@ public class LeaderboardsController {
         List<User> topUsers = leaderboardService.getTopUsers(limit);
 
         // Logging purposes
+        System.out.println("Top users size: " + topUsers.size() + " and limit: " + limit);
         for (User user : topUsers) {
             System.out.println("Username: " + user.getUsername() + ", Name: " + user.getName() + ", Score: " + user.getScore());
         }

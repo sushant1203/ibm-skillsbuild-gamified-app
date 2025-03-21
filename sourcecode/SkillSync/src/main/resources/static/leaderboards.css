@@ -1,29 +1,78 @@
-/* Leaderboards-specific Styles */
 
-/* Adds spacing to the main content area */
+.View-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
 .View-contact {
-    padding: 50px;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #1a1a2e;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
-/* Adds extra margin above the Leaderboards title */
 .View-contact h1 {
-    margin-top: 50px; /* Adjust as needed */
-}
-
-/* Centers and styles the under-development message */
-.under-development {
-    text-align: center;
-    margin-top: 50px;
-}
-
-.under-development i {
-    font-size: 96px; /* Increase or adjust as needed */
-    color: #FFD700;
-    display: block;
-    margin: 0 auto 20px auto;
-}
-
-.under-development p {
     font-size: 2rem;
-    color: #fff;
+    color: #e0e0e0;
+    margin-bottom: 30px;
+}
+
+.View-contact ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.View-contact ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #162447;
+    border: 1px solid #0f3460;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.View-contact ul li:first-of-type {
+    margin-bottom: 20px;
+}
+
+.View-contact ul li:hover {
+    background-color: #1f4068;
+}
+
+.View-contact ul li span {
+    flex: 1;
+    text-align: center;
+    font-size: 1rem;
+    color: #e0e0e0;
+}
+
+.View-contact ul li span:first-child {
+    text-align: left;
+}
+
+.View-contact ul li span:last-child {
+    text-align: right;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .View-contact {
+        padding: 10px;
+    }
+
+    .View-contact ul li {
+        padding: 5px 10px;
+    }
+
+    .View-contact ul li span {
+        font-size: 0.9rem;
+    }
 }
