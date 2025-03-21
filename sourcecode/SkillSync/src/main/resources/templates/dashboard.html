@@ -71,8 +71,25 @@
                 </div>
             </div>
 
+
             <!-- Updated content row structure -->
-            <div class="content-row">
+
+            <!-- New: Current Badge Section -->
+            <div class="current-badge-container">
+                <h2>Your Current Badge</h2>
+                <div th:if="${currentBadge == null}">
+                    <p>You have not earned any badge yet.</p>
+                </div>
+                <div th:if="${currentBadge != null}">
+                    <!-- Adjust the image path as needed. Example: /images/badges/bronze2.png -->
+                    <img th:src="@{'/images/badges/' + ${#strings.toLowerCase(currentBadge.badgeName).replace(' ', '')} + '.png'}"
+                         alt="Current Badge" class="current-badge-image">
+                    <h3 th:text="${currentBadge.badgeName}">Badge Name</h3>
+                </div>
+            </div>
+            <!-- End Current Badge Section -->
+
+        <div class="content-row">
                 <!-- Recommended Courses Section -->
                 <div class="course-recommendation-container">
                     <h1 class="Title">Recommended Courses</h1>
@@ -81,19 +98,22 @@
 
                 <!-- Completed Courses Section -->
                 <div class="right-side-box">
+
                     <h1 class="completed-title">Courses Completed</h1>
                     <div class="Course-Grid">  <!-- Changed from history-content -->
+
                         <div th:if="${enrollments.isEmpty()}">
                             <p>You haven't enrolled in any courses yet.</p>
                         </div>
-
                         <div th:each="enrollment : ${enrollments}">
                             <div class="course-card">  <!-- Changed from course -->
                                 <img th:src="${enrollment.course.imagePath != null ? enrollment.course.imagePath : 'default-image.jpg'}"
                                      alt="Course Image" class="img"/>
+
                                 <div class="content">
                                     <p th:text="${enrollment.course.Title}" class="completed-title"></p>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -116,7 +136,6 @@
         }
     }
 
-    // Optionally, hide the dropdown if user clicks outside:
     document.addEventListener("click", function(event) {
         var dropdown = document.getElementById("userDropdown");
         var profile = document.querySelector(".user-profile");
@@ -130,14 +149,10 @@
 
         function renderRecommendations() {
             recommendationContainer.innerHTML = '';
-
-            // Show only the first 4 courses
             const currentRecommendations = recommendedCourses.slice(0, 4);
-
             currentRecommendations.forEach(course => {
                 const courseCard = document.createElement("div");
                 courseCard.classList.add("course-card");
-
                 courseCard.innerHTML = `
                     <img src="${course.imagePath ? course.imagePath : 'default-image.jpg'}" alt="${course.title}">
                     <div class="content">
@@ -149,11 +164,9 @@
                         </div>
                     </div>
                 `;
-
                 recommendationContainer.appendChild(courseCard);
             });
         }
-
         renderRecommendations();
     });
 </script>
