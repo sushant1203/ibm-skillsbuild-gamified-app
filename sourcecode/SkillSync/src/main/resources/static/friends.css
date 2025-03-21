@@ -1,0 +1,284 @@
+
+/* Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    min-height: 100vh;
+    overflow: auto;
+}
+
+
+.Navigation-Frame {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px; /* Slightly wider for better UI */
+    height: 100vh;
+    background: #242424;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 20px;
+    transition: width 0.2s ease-out;
+    z-index: 1000;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 12px 15px;
+    transition: background 0.3s;
+    white-space: nowrap;
+    width: 100%;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.nav-links a:hover {
+    background: #333;
+    border-radius: 20px;
+}
+
+.nav-links a img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 5px;
+}
+
+.logo img {
+    width: 120px;
+    max-width: 70%;
+    margin-bottom: 30px;
+    margin-left: 20px;
+}
+
+
+.View-frame {
+    margin-left: 220px; /* Matches Navigation-Frame width */
+    padding: 20px;
+    width: calc(100% - 220px); /* Remaining width */
+    min-height: 100vh;
+    background: #f4f4f4;
+    overflow: auto;
+}
+
+
+.Bar-frame {
+    display: flex;
+    width: calc(100% - 220px);
+    height: 60px;
+    background: #242424;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 220px;
+    right: 0;
+    z-index: 100;
+}
+
+/* Search Input */
+#search {
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    padding: 5px 15px;
+}
+
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+}
+
+
+.notification {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.notification img {
+    width: 25px;
+    height: 25px;
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 3px 6px;
+}
+
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.user-profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+
+.View-contact {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 900px; /* Prevents excessive stretching */
+    margin: auto;
+}
+
+/* Section Titles */
+.View-contact h2 {
+    font-size: 28px;
+    color: #1f4068;
+    margin-bottom: 10px;
+}
+
+.View-contact p {
+    color: #555;
+    font-size: 16px;
+}
+
+
+.content-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* Friend Containers (Cards) */
+.friend-container {
+    flex: 1;
+    min-width: 280px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.friend-container h3 {
+    color: #1e3c72;
+    font-size: 20px;
+}
+
+/* Input Fields */
+.friend-container input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Buttons */
+button {
+    background: #1e3c72;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 5px;
+}
+
+button:hover {
+    background: #2a5298;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background: #ffffff;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+ul li img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+
+ul li button {
+    background: #28a745;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+ul li button.reject {
+    background: #dc3545;
+}
+.remove-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.remove-btn:hover {
+    background: #c82333;
+}
