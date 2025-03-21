@@ -62,8 +62,20 @@
 
         <!-- Leaderboards Content -->
         <div class="View-contact">
-            <h1>Top Users</h1>
-            <ul>
+            <h1>Top <span th:text="${limit}">5</span> Users</h1>
+            <div class="filter-container">
+                <form th:action="@{/leaderboards}" method="get">
+                    <label for="limit">Show top:</label>
+                    <select id="limit" name="limit">
+                        <option value="5" th:selected="${limit == 5}">5</option>
+                        <option value="10" th:selected="${limit == 10}">10</option>
+                        <option value="50" th:selected="${limit == 50}">50</option>
+                        <option value="100" th:selected="${limit == 100}">100</option>
+                    </select>
+                    <button type="submit">Apply</button>
+                </form>
+            </div>
+            <ul id="leaderboard-list">
                 <li>
                     <span>Name</span>
                     <span>Username</span>

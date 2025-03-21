@@ -31,6 +31,8 @@ public class LeaderboardsController {
         }
 
         model.addAttribute("topUsers", topUsers);
+        model.addAttribute("limit", limit);
+
 
         return "leaderboards";
     }
