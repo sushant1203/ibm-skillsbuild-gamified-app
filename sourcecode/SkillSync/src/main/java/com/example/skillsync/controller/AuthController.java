@@ -55,6 +55,7 @@ public class AuthController {
                                RedirectAttributes redirectAttributes,
                                Model model) {
         List<String> errors = userService.registerUser(name, email, username, password);
+        System.out.println(errors);
         if (errors != null) {
             model.addAttribute("errors", errors);
             return "register";
@@ -99,6 +100,7 @@ public class AuthController {
     public String showDashboard(Model model, Principal principal) {
         String loggedUserName = principal.getName();
         User user = userService.findByUsername(loggedUserName);
+        model.addAttribute("username",user.getUsername());
 
         userService.setStreak(user);
         // Check and award new badges based on user score

@@ -19,16 +19,16 @@ public class BadgeService {
     // Define badge thresholds in order (LinkedHashMap preserves insertion order)
     private static final Map<String, Integer> badgeThresholds = new LinkedHashMap<>();
     static {
-        badgeThresholds.put("Bronze 2", 0);
-        badgeThresholds.put("Bronze 1", 15);
-        badgeThresholds.put("Silver 2", 30);
-        badgeThresholds.put("Silver 1", 45);
-        badgeThresholds.put("Gold 2", 70);
-        badgeThresholds.put("Gold 1", 90);
-        badgeThresholds.put("Platinum 2", 110);
-        badgeThresholds.put("Platinum 1", 130);
-        badgeThresholds.put("Diamond 2", 150);
-        badgeThresholds.put("Diamond 1", 170);
+        badgeThresholds.put("Bronze II", 0);
+        badgeThresholds.put("Bronze I", 15);
+        badgeThresholds.put("Silver II", 30);
+        badgeThresholds.put("Silver I", 45);
+        badgeThresholds.put("Gold II", 70);
+        badgeThresholds.put("Gold I", 90);
+        badgeThresholds.put("Platinum II", 110);
+        badgeThresholds.put("Platinum I", 130);
+        badgeThresholds.put("Diamond II", 150);
+        badgeThresholds.put("Diamond I", 170);
     }
 
     /**

@@ -72,22 +72,22 @@
             </div>
 
 
+
             <!-- Updated content row structure -->
 
             <!-- New: Current Badge Section -->
+
             <div class="current-badge-container">
                 <h2>Your Current Badge</h2>
                 <div th:if="${currentBadge == null}">
                     <p>You have not earned any badge yet.</p>
                 </div>
                 <div th:if="${currentBadge != null}">
-                    <!-- Adjust the image path as needed. Example: /images/badges/bronze2.png -->
                     <img th:src="@{'/images/badges/' + ${#strings.toLowerCase(currentBadge.badgeName).replace(' ', '')} + '.png'}"
                          alt="Current Badge" class="current-badge-image">
                     <h3 th:text="${currentBadge.badgeName}">Badge Name</h3>
                 </div>
             </div>
-            <!-- End Current Badge Section -->
 
         <div class="content-row">
                 <!-- Recommended Courses Section -->
