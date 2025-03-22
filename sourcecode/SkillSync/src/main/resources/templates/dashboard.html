@@ -83,7 +83,7 @@
                     <p>You have not earned any badge yet.</p>
                 </div>
                 <div th:if="${currentBadge != null}">
-                    <img th:src="@{'/images/badges/' + ${#strings.toLowerCase(currentBadge.badgeName).replace(' ', '')} + '.png'}"
+                    <img th:src="@{'/' + ${#strings.toLowerCase(currentBadge.badgeName).replace(' ', '')} + '.png'}"
                          alt="Current Badge" class="current-badge-image">
                     <h3 th:text="${currentBadge.badgeName}">Badge Name</h3>
                 </div>
