@@ -1,9 +1,24 @@
-/* Global Styles */
 body, html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
+    -ms-overflow-style: none; /* IE/Edge */
+
+}
+html::-webkit-scrollbar,
+.View-frame::-webkit-scrollbar,
+.container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
+    width: 0 !important;
+}
+html,
+body,
+.View-frame,
+.container {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    overflow: auto;
 }
 
 /* Main Container */
@@ -211,7 +226,6 @@ body, html {
 /* Main Content View */
 .View-frame {
     position: relative;
-    min-height: calc(100vh - 100px);
     flex-grow: 1;
     margin-left: 200px;
     background: radial-gradient(at center top, rgba(23, 10, 191, 1.0), rgba(136, 170, 223, 1.0));
