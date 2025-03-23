@@ -4,16 +4,29 @@
     padding: 0;
     box-sizing: border-box;
 }
+body {
 
-/*body stylesheet css*/
+    background: radial-gradient(
+            farthest-corner at center top,
+            rgba(23, 10, 191, 1.0),
+            rgba(136, 170, 223, 1.0)
+    ) fixed;
+}
+
+html {
+    height: 100%;
+}
 body {
     display: flex;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: radial-gradient(at center top, rgba(23, 10, 191, 1.0), rgba(136, 170, 223, 1.0)) no-repeat;
+    background-size: 100% 100%;
+    margin: 0;
+    background: radial-gradient(at center top, rgba(23, 10, 191, 1.0), rgba(136, 170, 223, 1.0)) no-repeat fixed;
     background-size: cover;
+
 }
 
 .login-container {
@@ -30,11 +43,11 @@ body {
 .input-box {
     position: relative;
     width: 100%;
-    margin-bottom: 15px;
+    margin: 0 15px 15px 15px;
 }
 
-.input-box input{
-    width: 100%;
+.input-box input {
+    width: calc(100% - 30px);
     height: 35px;
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 40px;
@@ -43,9 +56,57 @@ body {
     padding: 5px 45px 5px 15px;
 }
 
+@media (max-width: 1024px) {
+    .Info-container {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        margin: 50px auto;
+        padding: 30px;
+    }
+
+    .Info {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .Photos {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .Info-container {
+        padding: 20px;
+    }
+
+    .Info {
+        font-size: 1rem;
+    }
+
+    .input-box {
+        margin: 0 10px 15px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .landing_intro {
+        font-size: 1.5rem;
+    }
+
+    .Info {
+        font-size: 0.9rem;
+        padding: 15px;
+    }
+
+    .Photos {
+        grid-template-columns: 1fr;
+    }
+}
+
+
 .input-box i{
     position: absolute;
-    right: 15px;
+    right: 45px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 18px;
@@ -74,8 +135,9 @@ body {
 }
 
 
+/* Button styling */
 .login-container .btn {
-    width: 100%;
+    width: calc(100% - 30px);
     height: 40px;
     background: white;
     border: none;
@@ -86,6 +148,59 @@ body {
     font-size: 15px;
     color: black;
     font-weight: 550;
+    margin: 0 15px 15px 15px;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .Info-container {
+        grid-template-columns: 1fr;
+        max-width: 90%;
+        margin: 50px auto;
+        padding: 30px;
+    }
+
+    .Info {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .Photos {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .Info-container {
+        padding: 20px;
+    }
+
+    .Info {
+        font-size: 1rem;
+    }
+
+    .input-box {
+        margin: 0 10px 15px 10px;
+    }
+
+    .login-container .btn {
+        margin: 0 10px 15px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .landing_intro {
+        font-size: 1.5rem;
+    }
+
+    .Info {
+        font-size: 0.9rem;
+        padding: 15px;
+    }
+
+    .Photos {
+        grid-template-columns: 1fr;
+    }
 }
 
 .login-container .signup-link {
@@ -94,10 +209,15 @@ body {
     margin: 20px 0 15px;
 }
 
+.signup-link p {
+    color: white;
+    font-weight: 550;
+    font-size: 22px;
+}
+
 .signup-link p a {
     color: white;
     text-decoration: none;
-    font-weight: 550;
 }
 
 .signup-link p a:hover {
@@ -105,7 +225,7 @@ body {
 }
 
 .form-group {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 .logo-img {
@@ -114,4 +234,21 @@ body {
     margin-right: auto;
     margin-bottom: 40px; /* 40px top margin, 20px bottom margin, auto for left/right centering */
     max-width: 400px; /* Increase to make the logo bigger */
+}
+.success-popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
 }

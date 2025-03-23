@@ -16,6 +16,7 @@
 
 <body>
 <div class="login-container">
+    <a href="/"><img src="/Logo.png" alt="SkillSync Logo" class="logo-img"></a>
     <form action="/register" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
         <h1>Register</h1>
         <div th:if="${errors}">
@@ -40,11 +41,15 @@
             <i class='bx bxs-lock-alt'></i>
         </div>
         <button type="submit" class="btn">Register</button>
+
         <div class="signup-link">
             <p> Already have an account?
                 <a href="/login">Login</a> </p>
         </div>
     </form>
+    <div th:if="${successMessage}" id="success-popup" class="success-popup">
+        <p th:text="${successMessage}"></p>
+    </div>
 </div>
 </body>
 

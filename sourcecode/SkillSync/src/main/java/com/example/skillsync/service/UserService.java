@@ -13,9 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 
 @Service
@@ -62,6 +61,8 @@ public class UserService {
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
         user.setScore(0);//set a default score at registration(0)
+        user.setStreak(1); // set day 1 of streak at registration
+        user.setLastLogin(LocalDate.now());
         userRepository.save(user);
 
         return null;
@@ -142,6 +143,18 @@ public class UserService {
         userRepository.save(user);
         reAuthenticate(user);
         return null;
+    }
+
+    public void setStreak(User user){
+        LocalDate lastLogin = user.getLastLogin();
+        if (lastLogin.equals(LocalDate.now().minusDays(1))) { // If streak is continued
+            user.setStreak(user.getStreak() + 1);
+        }
+        if (lastLogin.isBefore(LocalDate.now().minusDays(1))) { // If streak is abandoned
+            user.setStreak(1);
+        }
+        user.setLastLogin(LocalDate.now());
+        userRepository.save(user);
     }
 
 }
