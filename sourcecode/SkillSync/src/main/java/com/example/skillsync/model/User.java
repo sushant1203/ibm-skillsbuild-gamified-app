@@ -26,6 +26,10 @@ public class User {
     @Column(nullable = false)
     private int score;
 
+    private LocalDate lastLogin;
+
+    private int streak;
+
     // Friend Requests Sent
     @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
     private List<FriendRequest> sentRequests;
@@ -59,6 +63,22 @@ public class User {
 
     public int getScore() { return score; }
     public void setScore(int score) { this.score = score; }
+
+        public LocalDate getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(LocalDate lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public int getStreak() {
+        return streak;
+    }
+
+    public void setStreak(int streak) {
+        this.streak = streak;
+    }
 
     public List<FriendRequest> getSentRequests() { return sentRequests; }
     public void setSentRequests(List<FriendRequest> sentRequests) { this.sentRequests = sentRequests; }
