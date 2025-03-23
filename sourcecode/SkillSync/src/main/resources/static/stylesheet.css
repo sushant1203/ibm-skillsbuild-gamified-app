@@ -6,6 +6,28 @@ body{
     height: 100%;
 
 }
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    -ms-overflow-style: none; /* IE/Edge */
+
+}
+html::-webkit-scrollbar,
+.View-frame::-webkit-scrollbar,
+.container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
+    width: 0 !important;
+}
+html,
+body,
+.View-frame,
+.container {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    overflow: auto;
+}
 html {
     scroll-behavior: smooth;
 }

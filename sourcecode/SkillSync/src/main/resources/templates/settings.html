@@ -11,88 +11,106 @@
 <body>
 <div class="container">
     <div class="Navigation-Frame">
-        <div class="logo">
-            <a href="/">
-                <img src="Logo.png" alt="SkillSync Logo">
-            </a>
-        </div>
+        <a href="/"><img src="Logo.png" class="logo"></a>
         <nav class="nav-links">
-            <a href="/dashboard">
-                <img src="Dashboard-icon.png" alt="Dashboard icon" >
-                Dashboard
-            </a>
-            <a href="courses">
-                <img src="Courses.png" alt="Course icon" >
-                Courses
-            </a>
-            <a href="leaderboards">
-                <img src="Leaderboard.png" alt="Leaderboard icon" >
-                Leaderboards
-            </a>
-            <a href="certificates">
-                <img src="Certificates.png" alt="Certificates icon" >
-                Certificates
-            </a>
-            <a href="settings">
-                <img src="Settings.png" alt="Settings icon" >
-                Settings
-            </a>
+            <a href="/dashboard"><img src="Dashboard-icon.png" alt="Dashboard icon"> Dashboard</a>
+            <a href="courses"><img src="Courses.png" alt="Course icon"> Courses</a>
+            <a href="leaderboards"><img src="Leaderboard.png" alt="Leaderboard icon"> Leaderboards</a>
+            <a href="certificates"><img src="Certificates.png" alt="Certificates icon"> Certificates</a>
+            <a href="settings"><img src="Settings.png" alt="Settings icon"> Settings</a>
         </nav>
-        <div class="resizer"></div>
     </div>
+
     <div class="View-frame">
         <div class="Bar-frame">
-            <form>
-                <input type="search" id="search" name="search" placeholder="Search for courses and Quizzes..." class="search-box">
-            </form>
-            <div class="top-right">
-                <div class="notification">
-                    <img src="notification.png" alt="Notifications">
-                    <span class="badge">3</span>
+            <div class="hamburger-container">
+                <div class="hamburger-menu" onclick="toggleMobileMenu()">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
                 </div>
+            </div>
+            <div class="top-right">
                 <div class="user-profile" onclick="toggleUserDropdown()">
                     <img th:if="${user}" th:src="@{'/images/' + ${user.id}}" onerror="this.onerror=null; this.src='user-icon.png';" alt="Profile Picture">
-                    <span th:text="${user.username}">User</span>
+                    <div class="name"><span th:text="${user.username}">User</span> </div>
                     <div id="userDropdown" class="dropdown-content">
                         <a href="/login" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class = "Main-contact">
-            <h2>Edit Username</h2>
-            <form th:action="@{/editUsername}" method="post">
-                <label>New Username:</label>
-                <input type="text" name="newUsername" required><br>
-                <label>Confirm Password:</label>
-                <input type="password" name="password" required>
-                <button type="submit">Submit</button><br>
-            </form>
-            <h2>Edit Password</h2>
-            <form th:action="@{/editPassword}" method="post">
-                <label>Confirm Password:</label>
-                <input type="password" name="password" required><br>
-                <label>New Password:</label>
-                <input type="password" name="newPassword" required><br>
-                <label>Confirm New Password:</label>
-                <input type="password" name="newPasswordConfirm" required>
-                <button type="submit">Submit</button>
-            </form>
-            <h2>Profile Picture</h2>
-            <img th:if="${user}" th:src="@{'/images/' + ${user.id}}" height="100" width="100" alt="Profile Picture">
-            <form method="post" enctype="multipart/form-data" action="/upload">
-                <input type="file" name="image" required>
-                <button type="submit">Upload</button>
-            </form>
-            <div th:if="${errors}">
+        <div class="title">
+            <h2>Account Settings</h2>
+        </div>
+        <div class="Main-contact">
+            <!-- Error/Success Messages -->
+            <div th:if="${errors}" class="alert alert-error">
                 <ul>
                     <li th:each="error : ${errors}" th:text="${error}"></li>
                 </ul>
             </div>
-            <p th:if="${pass}">[[${pass}]]</p>
+            <div th:if="${pass}" class="alert alert-success">
+                <p th:text="${pass}"></p>
+            </div>
 
+            <!-- Account Settings -->
+            <div class="settings-section">
+                <h2>Account Settings</h2>
+
+                <form th:action="@{/editUsername}" method="post">
+                    <div class="form-group">
+                        <label>New Username</label>
+                        <input type="text" name="newUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <button type="submit">Update Username</button>
+                </form>
+            </div>
+
+            <!-- Password Settings -->
+            <div class="settings-section">
+                <h2>Change Password</h2>
+
+                <form th:action="@{/editPassword}" method="post">
+                    <div class="form-group">
+                        <label>Current Password</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" name="newPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm New Password</label>
+                        <input type="password" name="newPasswordConfirm" required>
+                    </div>
+                    <button type="submit">Update Password</button>
+                </form>
+            </div>
+
+            <!-- Profile Picture -->
+            <div class="settings-section profile-picture-section">
+                <h2>Profile Picture</h2>
+
+                <div class="profile-picture-container">
+                    <img th:if="${user}" th:src="@{'/images/' + ${user.id}}"
+                         onerror="this.onerror=null; this.src='user-icon.png';"
+                         alt="Profile Picture">
+                </div>
+
+                <form method="post" enctype="multipart/form-data" action="/upload">
+                    <div class="file-input-wrapper">
+                        <input type="file" name="image" required>
+                        <div class="custom-file-button">Choose File</div>
+                    </div>
+                    <button type="submit" style="margin-top: 1rem;">Upload Image</button>
+                </form>
+            </div>
         </div>
-
     </div>
 </div>
 <script>
@@ -114,7 +132,6 @@
         }
     });
 </script>
-<script src="/script.js"></script>
 <script src="/script.js"></script>
 </body>
 </html>
