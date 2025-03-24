@@ -11,34 +11,31 @@
 <body>
 <div class="container">
     <div class="Navigation-Frame">
-        <div class="logo">
-            <a href="/dashboard">
-                <img src="Logo.png" alt="SkillSync Logo">
-            </a>
-        </div>
+        <a href="/"><img src="Logo.png" class="logo"></a>
         <nav class="nav-links">
             <a href="/dashboard"><img src="Dashboard-icon.png" alt="Dashboard icon"> Dashboard</a>
-            <a href="/courses"><img src="Courses.png" alt="Course icon"> Courses</a>
-            <a href="/leaderboards"><img src="Leaderboard.png" alt="Leaderboard icon"> Leaderboards</a>
-            <a href="/certificates"><img src="Certificates.png" alt="Certificates icon"> Certificates</a>
-            <a href="/friends"><img src="friends-icon.png" alt="Friends icon"> Friends</a>
-            <a href="/settings"><img src="Settings.png" alt="Settings icon"> Settings</a>
+            <a href="courses"><img src="Courses.png" alt="Course icon"> Courses</a>
+            <a href="leaderboards"><img src="Leaderboard.png" alt="Leaderboard icon"> Leaderboards</a>
+            <a href="certificates"><img src="Certificates.png" alt="Certificates icon"> Certificates</a>
+            <a href="friends"><img src="friends-icon.png" alt="Friends icon">Friends</a>
+            <a href="settings"><img src="Settings.png" alt="Settings icon"> Settings</a>
+
         </nav>
     </div>
 
     <div class="View-frame">
         <div class="Bar-frame">
-            <form>
-                <input type="search" id="search" name="search" placeholder="Search for courses and Quizzes..." class="search-box">
-            </form>
-            <div class="top-right">
-                <div class="notification">
-                    <img src="notification.png" alt="Notifications">
-                    <span class="badge">3</span>
+            <div class="hamburger-container">
+                <div class="hamburger-menu" onclick="toggleMobileMenu()">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
                 </div>
+            </div>
+            <div class="top-right">
                 <div class="user-profile" onclick="toggleUserDropdown()">
                     <img th:if="${user}" th:src="@{'/images/' + ${user.id}}" onerror="this.onerror=null; this.src='user-icon.png';" alt="Profile Picture">
-                    <span th:text="${user.username}">User</span>
+                    <div class="name"><span th:text="${user.username}">User</span> </div>
                     <div id="userDropdown" class="dropdown-content">
                         <a href="/login" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
                     </div>
@@ -51,28 +48,33 @@
             <div class="dashboard-overview">
                 <div class="dashboard-text">
                     <h2>Friend System</h2>
-                    <p>Manage your friends and send requests.</p>
+                    <p>Connect with your friends, send requests, and manage your network.</p>
                 </div>
             </div>
 
             <div class="content-row">
-
                 <div class="friend-container">
-                    <h3>Send Friend Request</h3>
-                    <input type="text" id="receiverUsername" placeholder="Receiver's Username">
-                    <button onclick="sendFriendRequest()">Send Request</button>
+                    <h3>Add Friends</h3>
+                    <div class="search-friend">
+                        <label for="receiverUsername"></label><input type="text" id="receiverUsername" placeholder="Enter your Friends Username">
+                        <button onclick="sendFriendRequest()">Send Request</button>
+                    </div>
                 </div>
 
 
                 <div class="friend-container">
                     <h3>Pending Friend Requests</h3>
-                    <ul id="requestsList"></ul>
+                    <div class="requests-list">
+                        <ul id="requestsList"></ul>
+                    </div>
                 </div>
 
 
                 <div class="friend-container">
                     <h3>Your Friends</h3>
-                    <ul id="friendsList"></ul>
+                    <div class="friends-list">
+                        <ul id="friendsList"></ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,5 +102,6 @@
 
 
 <script src="/friends.js"></script>
+<script src="/script.js"></script>
 </body>
 </html>

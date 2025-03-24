@@ -252,7 +252,7 @@ body,
 
 
 .settings-section {
-    background: rgba(36, 36, 36, 0.9);
+    background: rgba(25, 25, 112, 0.9);
     border-radius: 15px;
     padding: 2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -408,22 +408,35 @@ button[type="submit"]:hover {
 }
 
 /* Error/Success Messages */
-.alert {
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
+.alert, .alert-success {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    animation: slideIn 0.5s ease-out;
+}
+.alert-error{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #af4c4c;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    animation: slideIn 0.5s ease-out;
 }
 
-.alert-error {
-    background: #ffe3e3;
-    color: #dc3545;
-    border: 1px solid #dc3545;
-}
 
-.alert-success {
-    background: #e3fcef;
-    color: #28a745;
-    border: 1px solid #28a745;
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
 }
 @media (max-width: 1168px) {
     .Navigation-Frame {

@@ -10,7 +10,7 @@ resizer.addEventListener('mousedown', (e) => {
     document.addEventListener('mouseup', stopResize);
 });
 
-// Updated JavaScript
+
 function toggleMobileMenu() {
     const navFrame = document.querySelector('.Navigation-Frame');
     const hamburger = document.querySelector('.hamburger-menu');
@@ -22,16 +22,9 @@ function toggleMobileMenu() {
 document.addEventListener('click', function(event) {
     const navFrame = document.querySelector('.Navigation-Frame');
     const hamburgerMenu = document.querySelector('.hamburger-menu');
-    const hamburger = document.querySelector('.hamburger-menu');
-
-    // Check if click is on the hamburger or inside the nav content
     const isClickOnHamburger = event.target.closest('.hamburger-menu');
     const isClickInsideNavContent = event.target.closest('.nav-links, .logo');
 
-    // Close menu only if:
-    // 1. Menu is active, and
-    // 2. Click is NOT on the hamburger, and
-    // 3. Click is NOT inside nav content
     if (navFrame.classList.contains('active') && !isClickOnHamburger && !isClickInsideNavContent) {
         navFrame.classList.remove('active');
         hamburgerMenu.classList.remove('active');
