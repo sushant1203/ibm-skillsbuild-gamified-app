@@ -43,7 +43,7 @@
                     <img th:if="${user}" th:src="@{'/images/' + ${user.id}}" onerror="this.onerror=null; this.src='user-icon.png';" alt="Profile Picture">
                     <span th:text="${user.username}">User</span>
                     <div id="userDropdown" class="dropdown-content">
-                        <a href="/login" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
+                        <a href="/logout" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
                     </div>
                 </div>
             </div>

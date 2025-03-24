@@ -36,6 +36,8 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/") //redirects to log in page after logout
+                        .invalidateHttpSession(true) // Invalidates the session
+                        .deleteCookies("JSESSIONID") // Deletes session cookies
                         .permitAll() //allow logout for all users
                 )
                 .userDetailsService(userDetailsService); //for authentication
