@@ -472,9 +472,6 @@ body,
         width: 100%;
     }
 
-    .resizer {
-        display: none;
-    }
 
     .course-recommendation-container,
     .right-side-box {
