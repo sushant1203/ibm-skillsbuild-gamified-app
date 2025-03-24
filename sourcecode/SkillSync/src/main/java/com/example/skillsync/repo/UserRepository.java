@@ -20,5 +20,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // find top users by score
     @Query("SELECT u FROM User u ORDER BY u.score DESC")
     List<User> findTopUsersByScore(Pageable pageable);
+
+    // find top friends users by score
+    @Query("SELECT u FROM User u WHERE u.id IN (SELECT f.user2.id FROM Friendship f WHERE f.user1.id = :userId) ORDER BY u.score DESC")
+    List<User> findTopFriendsUsersByScore(Long userId, Pageable pageable);
 }
 

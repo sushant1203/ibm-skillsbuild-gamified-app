@@ -14,9 +14,15 @@ public class LeaderboardService {
     @Autowired
     private UserService userService;
 
-
+    // This method retrieves the top users based on the limit provided
     public List<User> getTopUsers(int limit) {
         return userService.getTopUsersByScore(limit);
+    }
+
+    public List<User> getTopFriendsUsers(int limit) {
+        // Implement the logic to retrieve top friends users
+        return userService.getTopFriendsUsersByScore(limit);
+
     }
 
 }

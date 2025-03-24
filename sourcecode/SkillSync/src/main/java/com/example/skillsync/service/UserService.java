@@ -150,4 +150,9 @@ public class UserService {
         return userRepository.findTopUsersByScore(PageRequest.of(0, limit));
     }
 
+    public List<User> getTopFriendsUsersByScore(int limit) {
+
+        return userRepository.findTopFriendsUsersByScore(getLoggedInUser().getId(), PageRequest.of(0, limit));
+    }
+
 }

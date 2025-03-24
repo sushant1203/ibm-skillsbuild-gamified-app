@@ -18,11 +18,18 @@ public class LeaderboardsController {
     }
 
     // This method is called when the user navigates to the /leaderboards endpoint
-    // The limit parameter is used to specify the number of top users to retrieve
+// The limit parameter is used to specify the number of top users to retrieve
     @GetMapping("/leaderboards")
-    public String showLeaderboard(@RequestParam(defaultValue = "10") int limit, Model model) {
-        // Retrieve the top users from the leaderboard service
-        List<User> topUsers = leaderboardService.getTopUsers(limit);
+    public String showLeaderboard(@RequestParam(defaultValue = "10") int limit,
+                                  @RequestParam(defaultValue = "global") String type,
+                                  Model model) {
+        // Retrieve the top users from the leaderboard service based on the type
+        List<User> topUsers;
+        if ("friends".equals(type)) {
+            topUsers = leaderboardService.getTopFriendsUsers(limit);
+        } else {
+            topUsers = leaderboardService.getTopUsers(limit);
+        }
 
         // Logging purposes
         System.out.println("Top users size: " + topUsers.size() + " and limit: " + limit);
@@ -32,7 +39,7 @@ public class LeaderboardsController {
 
         model.addAttribute("topUsers", topUsers);
         model.addAttribute("limit", limit);
-
+        model.addAttribute("type", type);
 
         return "leaderboards";
     }

@@ -73,6 +73,11 @@
                         <option value="50" th:selected="${limit == 50}">50</option>
                         <option value="100" th:selected="${limit == 100}">100</option>
                     </select>
+                    <label for="type">Leaderboard:</label>
+                    <select id="type" name="type">
+                        <option value="global" th:selected="${type == 'global'}">Global</option>
+                        <option value="friends" th:selected="${type == 'friends'}">Friends</option>
+                    </select>
                     <button type="submit">Apply</button>
                 </form>
             </div>
