@@ -63,7 +63,7 @@
 
         <!-- Leaderboards Content -->
         <div class="View-contact">
-            <h1>Top <span th:text="${limit}">5</span> Users</h1>
+            <h1>Top <span th:text="${limit}">5</span> <span th:text="${type}">global</span> users</h1>
             <div class="filter-container">
                 <form th:action="@{/leaderboards}" method="get">
                     <label for="limit">Show top:</label>
