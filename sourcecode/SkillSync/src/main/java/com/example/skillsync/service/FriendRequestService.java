@@ -17,12 +17,13 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
+@Service // Marks this class as a Spring service component
 public class FriendRequestService {
     private final UserRepository userRepository;
     private final FriendRequestRepository friendRequestRepository;
     private final FriendshipRepository friendshipRepository;
 
+    // Constructor-based dependency injection for repositories
     public FriendRequestService(UserRepository userRepository,
                                 FriendRequestRepository friendRequestRepository,
                                 FriendshipRepository friendshipRepository) {
@@ -31,7 +32,7 @@ public class FriendRequestService {
         this.friendshipRepository = friendshipRepository;
     }
 
-
+    // Retrieves the currently logged-in user from the security context
     private User getLoggedInUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
@@ -41,7 +42,7 @@ public class FriendRequestService {
         throw new RuntimeException("User not authenticated");
     }
 
-
+    // Sends a friend request to the specified receiver username
     public String sendFriendRequest(String receiverUsername) {
         User sender = getLoggedInUser();
         User receiver = userRepository.findByUsername(receiverUsername);
@@ -59,11 +60,11 @@ public class FriendRequestService {
             if (request.getStatus() == FriendRequestStatus.PENDING) {
                 return "Friend request already sent!";
             } else if (request.getStatus() == FriendRequestStatus.REJECTED) {
-                friendRequestRepository.delete(request);
+                friendRequestRepository.delete(request); // Delete rejected request to allow resending
             }
         }
 
-        // Create a new request
+        // Create and save a new friend request
         FriendRequest newRequest = new FriendRequest();
         newRequest.setSender(sender);
         newRequest.setReceiver(receiver);
@@ -73,7 +74,7 @@ public class FriendRequestService {
         return "Friend request sent!";
     }
 
-
+    // Responds to a friend request by accepting or rejecting it
     public String respondToRequest(String senderUsername, boolean accept) {
         User receiver = getLoggedInUser();
         User sender = userRepository.findByUsername(senderUsername);
@@ -82,6 +83,7 @@ public class FriendRequestService {
             return "Sender not found";
         }
 
+        // Find the existing friend request
         Optional<FriendRequest> requestOpt = friendRequestRepository.findBySenderAndReceiver(sender, receiver);
         if (requestOpt.isEmpty()) {
             return "Friend request not found";
@@ -90,10 +92,11 @@ public class FriendRequestService {
         FriendRequest request = requestOpt.get();
 
         if (accept) {
+            // Accept the friend request
             request.setStatus(FriendRequestStatus.ACCEPTED);
             friendRequestRepository.save(request);
 
-
+            // Create a new friendship record
             Friendship friendship = new Friendship();
             friendship.setUser1(sender);
             friendship.setUser2(receiver);
@@ -101,18 +104,20 @@ public class FriendRequestService {
 
             return "Friend request accepted!";
         } else {
+            // Reject the friend request
             request.setStatus(FriendRequestStatus.REJECTED);
             friendRequestRepository.save(request);
             return "Friend request rejected!";
         }
     }
 
-
+    // Retrieves a list of friends with their details
     public List<Map<String, String>> getFriendsDetails() {
         User user = getLoggedInUser();
 
         return friendshipRepository.findByUser1OrUser2(user, user).stream()
                 .map(friendship -> {
+                    // Determine which user is the friend
                     User friend = friendship.getUser1().equals(user) ? friendship.getUser2() : friendship.getUser1();
 
                     // Return only necessary details
@@ -126,13 +131,14 @@ public class FriendRequestService {
                 .collect(Collectors.toList());
     }
 
-
+    // Retrieves a list of pending friend requests received by the logged-in user
     public List<Map<String, String>> getPendingRequests() {
         User user = getLoggedInUser();
 
         return friendRequestRepository.findByReceiverAndStatus(user, FriendRequestStatus.PENDING)
                 .stream()
                 .map(request -> {
+                    // Create a map containing request details
                     Map<String, String> requestDetails = new HashMap<>();
                     requestDetails.put("id", String.valueOf(request.getId()));
                     requestDetails.put("senderUsername", request.getSender().getUsername());
@@ -140,6 +146,8 @@ public class FriendRequestService {
                 })
                 .collect(Collectors.toList());
     }
+
+    // Removes a friend from the logged-in user's friend list
     public String removeFriend(String friendUsername) {
         User user = getLoggedInUser(); // Get logged-in user
         User friend = userRepository.findByUsername(friendUsername);
@@ -148,21 +156,20 @@ public class FriendRequestService {
             return "Friend not found";
         }
 
-
+        // Retrieve all friendships involving the logged-in user
         List<Friendship> friendships = friendshipRepository.findByUser1OrUser2(user, user);
 
-
+        // Find the friendship involving the specified friend
         Optional<Friendship> friendshipToDelete = friendships.stream()
                 .filter(f -> (f.getUser1().equals(user) && f.getUser2().equals(friend)) ||
                         (f.getUser1().equals(friend) && f.getUser2().equals(user)))
                 .findFirst();
 
         if (friendshipToDelete.isPresent()) {
-            friendshipRepository.delete(friendshipToDelete.get());
+            friendshipRepository.delete(friendshipToDelete.get()); // Remove friendship
             return "Friend removed successfully!";
         } else {
             return "Friendship not found!";
         }
     }
-
 }

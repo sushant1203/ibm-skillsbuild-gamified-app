@@ -1,5 +1,6 @@
 const BASE_URL = "http://localhost:8080/friends/api";
 
+// Sends a friend request to the specified username
 function sendFriendRequest() {
     const receiver = document.getElementById("receiverUsername").value;
 
@@ -12,12 +13,12 @@ function sendFriendRequest() {
         .then(response => response.text())
         .then(data => {
             alert(data);
-            loadFriendRequests(); // ✅ Reload pending requests after sending
+            loadFriendRequests(); // Refresh pending friend requests after sending
         })
         .catch(error => console.error("Error:", error));
 }
 
-
+// Loads pending friend requests and displays them in the UI
 function loadFriendRequests() {
     fetch(`${BASE_URL}/pending`)
         .then(response => response.json())
@@ -43,17 +44,19 @@ function loadFriendRequests() {
         .catch(error => console.error("Error:", error));
 }
 
+// Accepts or rejects a friend request based on user input
 function respondToRequest(sender, accept) {
     fetch(`${BASE_URL}/respond?senderUsername=${sender}&accept=${accept}`, { method: "POST" })
         .then(response => response.text())
         .then(data => {
             alert(data);
-            loadFriendRequests(); // ✅ Refresh pending requests
-            loadFriends(); // ✅ Refresh friend list
+            loadFriendRequests(); // Refresh pending requests
+            loadFriends(); // Update the friend list if accepted
         })
         .catch(error => console.error("Error:", error));
 }
 
+// Loads the list of friends and updates the UI
 function loadFriends() {
     fetch(`${BASE_URL}/list`)
         .then(response => response.json())
@@ -79,7 +82,7 @@ function loadFriends() {
         .catch(error => console.error("Error:", error));
 }
 
-// ✅ Remove Friend
+// Removes a friend from the friend list
 function removeFriend(friendUsername) {
     if (!confirm(`Are you sure you want to remove ${friendUsername}?`)) return;
 
@@ -87,11 +90,12 @@ function removeFriend(friendUsername) {
         .then(response => response.text())
         .then(data => {
             alert(data);
-            loadFriends(); // ✅ Refresh the friend list after removal
+            loadFriends(); // Update the friend list after removal
         })
         .catch(error => console.error("Error:", error));
 }
 
+// Ensures that friend requests and friend list are loaded when the page is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
     loadFriendRequests();
     loadFriends();
