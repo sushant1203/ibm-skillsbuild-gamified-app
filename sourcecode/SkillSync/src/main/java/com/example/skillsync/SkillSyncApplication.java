@@ -1,18 +1,13 @@
 package com.example.skillsync;
 
-import com.example.skillsync.model.Option;
-import com.example.skillsync.model.Question;
-import com.example.skillsync.model.Quiz;
-import com.example.skillsync.repo.OptionRepository;
-import com.example.skillsync.repo.QuestionRepository;
-import com.example.skillsync.repo.QuizRepository;
+import com.example.skillsync.model.*;
+import com.example.skillsync.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import com.example.skillsync.model.Course;
-import com.example.skillsync.repo.CourseRepository;
 import org.springframework.boot.CommandLineRunner;
-
+import org.springframework.scheduling.annotation.EnableAsync; // Add this import
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 
@@ -21,8 +16,13 @@ import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 
+@EnableAsync // Add this annotation to enable asynchronous processing
+@EnableScheduling
 @SpringBootApplication
+  // Add this annotation
+
 public class SkillSyncApplication {
+
 	@Autowired
 	private CourseRepository courseRepository;
 
@@ -34,11 +34,32 @@ public class SkillSyncApplication {
 
 	@Autowired
 	private OptionRepository optionRepository;
-	public static void main(String[] args) {SpringApplication.run(SkillSyncApplication.class, args);}
+
+	public static void main(String[] args) {
+		SpringApplication.run(SkillSyncApplication.class, args);
+	}
+
+
+	@Bean
+	public CommandLineRunner theUsers(UserRepository userRepository) {
+		return args -> {
+			// Check if the user already exists
+			User existingUser = userRepository.findByEmail("email@example.com");
+			if (existingUser == null) {
+				// Create a new user only if it doesn't exist
+				User user = new User("newUsername", "email@example.com", "password123", "New User");
+				userRepository.save(user);
+				System.out.println("User created: " + user.getUsername());
+			} else {
+				System.out.println("User already exists: " + existingUser.getUsername());
+			}
+		};
+	}
 
 	@Bean
 	public CommandLineRunner theCourses(CourseRepository courseRepository) {
 		return args -> {
+
 			List<Course> courses = Arrays.asList(
 					new Course("Artificial Intelligence Fundamentals", "AI", "Beginner", 5,"https://students.yourlearning.ibm.com/activity/PLAN-CC702B39D429","Ai-fundamentals.png"),
 					new Course("Web Development Fundamentals", "Web Development", "Intermediate", 10,"https://skills.yourlearning.ibm.com/activity/PLAN-8749C02A78EC?channelId=CNL_LCB_1616516409884","web-development-fundamentals.png"),
@@ -54,6 +75,7 @@ public class SkillSyncApplication {
 					new Course("Getting Started with Data","Data Analyst","Intermediate",10, "https://skills.yourlearning.ibm.com/activity/URL-968D607D4A12","started-data.png"),
 					new Course("Fundamentals of Sustainability and Technology","Cyber Security","Beginner",5,"https://skills.yourlearning.ibm.com/activity/PLAN-BE0E24A0BA5C?ngo-id=0302","fundamentals-of-sustainability.png"),
 					new Course("Enterprise Security in Practice","Cyber Security","Advanced",15, "https://skills.yourlearning.ibm.com/activity/PLAN-BBCABF0CF5B0?ngo-id=0302","enterprise-secruity.png")			);
+
 
 
 			for (Course course : courses) {
