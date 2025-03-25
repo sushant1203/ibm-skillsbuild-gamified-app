@@ -263,7 +263,7 @@ body,
 .user-score{
     color: yellow; /* Highlight username in yellow */
     font-weight: bold;
-
+    text-align: center;
 }
 
 

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Badges - SkillSync</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Using your dashboard view frame CSS -->
+  <link rel="stylesheet" href="/dashboard-view-frame.css">
+  <link rel="icon" type="image/x-icon" href="/Logo.ico" />
+  <style>
+    /* Additional styles specific to the badges page */
+    body {
+      background: radial-gradient(at center top, rgba(23, 10, 191, 1.0), rgba(136, 170, 223, 1.0));
+      font-family: Arial, sans-serif;
+      color: #fff;
+      padding: 20px;
+    }
+    .badge-content {
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    /* Progress Bar (if used) */
+    #progressBarContainer {
+      position: relative;
+      width: 100%;
+      height: 40px;
+      margin-bottom: 20px;
+    }
+    #progressBar {
+      width: 100%;
+      height: 10px;
+      background-color: #ddd;
+      position: relative;
+      border-radius: 5px;
+    }
+    .progress-marker {
+      position: absolute;
+      top: -5px;
+      width: 2px;
+      height: 20px;
+      background-color: gold;
+    }
+    .tooltip {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-size: 0.9rem;
+      display: none;
+      white-space: nowrap;
+      z-index: 100;
+      transform: translateY(-100%);
+    }
+    /* Current Badge Section */
+    .current-badge-section {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .current-badge-section img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .current-badge-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+    }
+    /* Badge Grid */
+    .badge-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .badge-card {
+      background: rgba(25, 25, 112, 0.9);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .badge-card:hover {
+      transform: scale(1.05);
+    }
+    .badge-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      border: 2px solid gold;
+    }
+    .badge-name {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .points-required {
+      font-size: 0.9rem;
+      color: #ffd700;
+    }
+    .locked {
+      filter: grayscale(100%) brightness(0.5);
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+<!-- Container that includes the side navigation (same as certificates page) -->
+<div class="container">
+  <!-- Navigation Frame -->
+  <div class="Navigation-Frame">
+    <div class="logo">
+      <a href="/dashboard">
+        <img src="Logo.png" alt="SkillSync Logo">
+      </a>
+    </div>
+    <nav class="nav-links">
+      <a href="/dashboard">
+        <img src="Dashboard-icon.png" alt="Dashboard icon">
+        Dashboard
+      </a>
+      <a href="courses">
+        <img src="Courses.png" alt="Course icon">
+        Courses
+      </a>
+      <a href="leaderboards">
+        <img src="Leaderboard.png" alt="Leaderboard icon">
+        Leaderboards
+      </a>
+      <a href="certificates">
+        <img src="Certificates.png" alt="Certificates icon">
+        Certificates
+      </a>
+      <a href="badges">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAcpJREFUSEvF1k2rTVEYAODnGkjIACPcMjBQSiQMKFyGSsoPkKmvDAz8AUlSipjxC+QqJUJkgIHykTJVUkSJ8hGy39q79t3OdtY+d+3Onp293/U+a62z3rXWhDE9E2NyjQqvwQ78wgO86jqArvBKXMb2BnQL+/EutQNd4CV4huUtyd9gLT6n4MPgvTiInSnJajE3cRHX29r9Dz6JEx3BZni0PzUoRxscI706S7RqHuvhfjNXG/wEGzPBN7A7Ff6NOZngj1iaAs/Fd0au8aYRtb6wWC8/6h+aU70Ct7E602irNC/LynhfvWjCj7EpM1qlu1fsclOD4C142BNapV1XbkIz/sdjONszfAgXwqhP9RGc6xk+XKzw8014Mx71DG/A0yYcv/tcXHF8bmtb1ZO4i1WZR/68WLi7igPnQxsc7+fhW0b4D+YP20Aq7ysWZMK/FNWyKGXLjJio56jrHM+dcppn5Go7nfbgWg61RANPgiPoNI7PEo/2ZwblGHb12Yej2NqxA9O4hLgCDXyGwfVGi/ECy1pyxWVvPT6ldLILHPmizq/UT5kSievtAbxNQSOmK1zljQt93Dx/FrtRHHevU8EqblS4q/NP/Njgv7n7QB+og3wBAAAAAElFTkSuQmCC" alt="Badges icon">
+        Badges
+      </a>
+      <a href="settings">
+        <img src="Settings.png" alt="Settings icon">
+        Settings
+      </a>
+    </nav>
+    <div class="resizer"></div>
+  </div>
+  <!-- End Navigation Frame -->
+
+  <!-- Main View Frame -->
+  <div class="View-frame">
+    <div class="badge-content" style="margin: 0 auto; max-width: 1000px; text-align: center;">
+
+      <!-- Progress Bar and Score -->
+      <div id="progressBarContainer">
+        <div id="progressBar"></div>
+        <div id="progressBarTooltip" class="tooltip"></div>
+        <p>Your Score: <span th:text="${score}" class="user-score">0</span></p><br>
+      </div>
+
+      <!-- Display Current Badge at the Top -->
+      <div class="current-badge-section" th:if="${currentBadge != null}">
+        <h1></h1>
+        <h2>Your Current Badge</h2>
+        <img th:src="${currentBadge.imagePath}" alt="Current Badge">
+        <p th:text="${currentBadge.badgeName}">Badge Name</p>
+      </div>
+      <div class="current-badge-section" th:if="${currentBadge == null}">
+        <h2>You have not earned any badge yet.</h2>
+      </div>
+
+      <!-- Top Row: All "I" Badges -->
+      <h2></h2>
+      <div class="badge-grid" style="margin: 0 auto;">
+        <div th:each="badge : ${allBadges}"
+             th:if="${badge.badgeName.endsWith(' I')}"
+             class="badge-card">
+          <img th:src="${badge.imagePath}"
+               th:classappend="${badge.owned} ? '' : ' locked'"
+               alt="Badge Image">
+          <div class="badge-name" th:text="${badge.badgeName}">Badge Name</div>
+          <div class="points-required">
+            Points Required: <span th:text="${badge.pointsRequired}">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Row: All "II" Badges -->
+      <h2></h2>
+      <div class="badge-grid" style="margin: 0 auto;">
+        <div th:each="badge : ${allBadges}"
+             th:if="${badge.badgeName.endsWith(' II')}"
+             class="badge-card">
+          <img th:src="${badge.imagePath}"
+               th:classappend="${badge.owned} ? '' : ' locked'"
+               alt="Badge Image">
+          <div class="badge-name" th:text="${badge.badgeName}">Badge Name</div>
+          <div class="points-required">
+            Points Required: <span th:text="${badge.pointsRequired}">0</span>
+          </div>
+        </div>
+      </div>
+    </div> <!-- End badge-content -->
+  </div> <!-- End View-frame -->
+</div> <!-- End container -->
+
+<script th:inline="javascript">
+  // Convert currentScore to a number explicitly
+  const currentScore = Number(/*[[${score}]]*/ 0);
+  const maxPoints = 170;
+  const progressBar = document.getElementById("progressBar");
+  const tooltip = document.getElementById("progressBarTooltip");
+
+  // Badge thresholds with points for each badge
+  const badgeThresholds = [
+    { name: "Bronze II", points: 0 },
+    { name: "Bronze I", points: 15 },
+    { name: "Silver II", points: 30 },
+    { name: "Silver I", points: 45 },
+    { name: "Gold II", points: 70 },
+    { name: "Gold I", points: 90 },
+    { name: "Platinum II", points: 110 },
+    { name: "Platinum I", points: 130 },
+    { name: "Diamond II", points: 150 },
+    { name: "Diamond I", points: 170 }
+  ];
+
+  // Clear the progress bar (if markers exist already)
+  progressBar.innerHTML = "";
+
+  badgeThresholds.forEach(threshold => {
+    const marker = document.createElement("div");
+    marker.classList.add("progress-marker");
+    const leftPercent = (threshold.points / maxPoints) * 100;
+    marker.style.left = leftPercent + "%";
+
+    marker.addEventListener("mouseenter", function () {
+      const diff = threshold.points - currentScore;
+      let message = threshold.name;
+      // If currentScore meets/exceeds the threshold, display "Achieved"
+      message += diff > 0 ? " - " + diff + "points away from this badge" : " - Achieved";
+      tooltip.textContent = message;
+      tooltip.style.left = marker.style.left;
+      tooltip.style.display = "block";
+    });
+
+    marker.addEventListener("mouseleave", function () {
+      tooltip.style.display = "none";
+    });
+
+    progressBar.appendChild(marker);
+  });
+</script>
+
+<!-- Popup Modal for More Info -->
+<div class="form-popup" id="myForm">
+  <div class="form-container">
+    <h1>Course Points Details</h1>
+    <p>Each course you complete awards you points based on its difficulty:
+      Easy courses = 5 points, Medium courses = 10 points, and Advanced courses = 15 points.
+      The more courses you complete, the closer you get to unlocking higher-tier badges!
+    </p>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </div>
+</div>
+</div> <!-- End badge-content -->
+</div> <!-- End View-frame -->
+</div> <!-- End container -->
+
+<script>
+  // Toggle the "More info" content visibility
+  document.getElementById('moreInfoBtn').addEventListener('click', function() {
+    var infoDiv = document.getElementById('moreInfoContent');
+    if (infoDiv.style.display === 'none' || infoDiv.style.display === '') {
+      infoDiv.style.display = 'block';
+    } else {
+      infoDiv.style.display = 'none';
+    }
+  });
+</script>
+</body>
+</html>
