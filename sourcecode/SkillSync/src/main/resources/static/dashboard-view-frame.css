@@ -578,7 +578,7 @@ body,
     margin-bottom: 5px;
 }
 
-current-badge-image {
+.current-badge-image {
     object-fit: contain;
 
 }

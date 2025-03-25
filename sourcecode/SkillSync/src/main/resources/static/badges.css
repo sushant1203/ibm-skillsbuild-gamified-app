@@ -20,6 +20,15 @@ body,
     -ms-overflow-style: none; /* IE/Edge */
     overflow: auto;
 }
+
+/* Main Container */
+.container {
+    display: flex;
+    min-height: 121vh;
+    overflow: auto;
+}
+
+
 /* Navigation Frame */
 .Navigation-Frame {
     position: fixed;
@@ -34,6 +43,7 @@ body,
     padding-top: 20px;
     transition: left 0.3s ease;
     z-index: 1000;
+    pointer-events: none;
 }
 .Navigation-Frame .nav-links,
 .Navigation-Frame .logo {
@@ -213,11 +223,10 @@ body,
 .dropdown-content a:hover {
     background-color: #ddd;
 }
-
-
+/* Main Content View */
 .View-frame {
     position: relative;
-    min-height: 100vh;
+    flex-grow: 1;
     margin-left: 200px;
     background: radial-gradient(at center top, rgba(23, 10, 191, 1.0), rgba(136, 170, 223, 1.0));
     display: flex;
@@ -228,221 +237,112 @@ body,
     overflow: auto;
     transition: margin-left 0.3s ease;
 }
-.title{
-    margin-top: 150px;
-    margin-left: 30px;
+.badge-content {
+    padding: 20px;
 }
-
-
-.Main-contact {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 2rem;
-    width: 100%;
-    max-width: 1200px;
-    min-height: calc(100vh - 150px);
-}
-@media (min-width: 992px) {
-    .Main-contact {
-        grid-template-columns: repeat(3, 1fr);
-        align-items: start;
-    }
-}
-
-
-.settings-section {
-    background: rgba(25, 25, 112, 0.9);
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    color: white;
-    min-height: 400px;
-}
-.profile-picture-section {
-    grid-column: 1 / -1; /* Full width on mobile */
-}
-@media (min-width: 768px) {
-    .profile-picture-section {
-        grid-column: auto; /* Reset to normal grid flow */
-    }
-
-    .settings-section {
-        min-height: 500px;
-    }
-}
-
-@media (max-width: 1465px) {
-    .Main-contact {
-        margin: 80px 15px 0;
-        max-width: 90%;
-    }
-
-}
-@media (max-width: 991px) {
-    .Main-contact {
-        grid-template-columns: 1fr;
-        max-width: 600px;
-    }
-
-    .settings-section {
-        min-height: auto;
-    }
-}
-@media (max-width: 680px) {
-    .Main-contact {
-        padding: 1rem;
-        margin: 80px 15px 0;
-        max-width: 80%;
-    }
-
-    .settings-section {
-        padding: 1.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .Main-contact {
-        padding: 1rem;
-        margin: 80px 15px 0;
-        max-width: 330px;
-    }
-
-    .settings-section {
-        padding: 1.5rem;
-    }
-}
-
-
-
-
-.settings-section h2 {
-    color: #FFD700;
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #007bff;
-}
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    font-size: 0.9rem;
-    color: white;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.form-group input {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 1rem;
-}
-
-.form-group input:focus {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: #007bff;
-}
-
-/* Profile Picture Section */
-.profile-picture-section {
+h1 {
     text-align: center;
-
+    margin-bottom: 30px;
 }
-
-.profile-picture-container {
-    margin: 2rem 0;
-}
-
-.profile-picture-container img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #007bff;
-
-}
-
-.file-input-wrapper {
+/* Progress Bar (if used) */
+#progressBarContainer {
     position: relative;
-    display: inline-block;
     width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    margin-top: 100px;
 }
-
-.file-input-wrapper input[type="file"] {
-    opacity: 0;
+#progressBar {
+    width: 100%;
+    height: 10px;
+    background-color: #ddd;
+    position: relative;
+    border-radius: 5px;
+}
+.progress-marker {
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
+    top: -5px;
+    width: 2px;
+    height: 20px;
+    background-color: gold;
 }
-
-.custom-file-button {
-    background: #007bff;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    margin: 1rem 0;
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    display: none;
+    white-space: nowrap;
+    z-index: 100;
+    transform: translateY(-100%);
+}
+/* Current Badge Section */
+.current-badge-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.current-badge-section img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.current-badge-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+/* Badge Grid */
+.badge-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
 
 }
+.badge-card {
+    background: rgba(25, 25, 112, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    margin-bottom: 40px;
 
-.custom-file-button:hover {
-    background: #0056b3;
 }
-
-button[type="submit"] {
-    background: #007bff;
-    padding: 1rem 2rem;
+.badge-card:hover {
+    transform: scale(1.05);
+}
+.badge-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 2px solid gold;
+}
+.badge-name {
+    font-size: 1.1rem;
     font-weight: bold;
-    border-radius: 8px;
-    color: white;
-    transition: all 0.3s ease;
+    margin-bottom: 5px;
 }
-
-button[type="submit"]:hover {
-    background: #0056b3;
+.points-required {
+    font-size: 0.9rem;
+    color: #ffd700;
 }
-
-/* Error/Success Messages */
-.alert, .alert-success {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #4CAF50;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
-    animation: slideIn 0.5s ease-out;
-}
-.alert-error{
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #af4c4c;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
-    animation: slideIn 0.5s ease-out;
-}
-
-
-@keyframes slideIn {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
+.locked {
+    filter: grayscale(100%) brightness(0.5);
+    opacity: 0.5;
 }
 @media (max-width: 1168px) {
     .Navigation-Frame {
         left: -250px;
         width: 250px;
     }
+
     .Navigation-Frame.active {
         left: 0;
     }
@@ -461,64 +361,57 @@ button[type="submit"]:hover {
         margin-left: 0;
         width: 100%;
     }
-
+    #progressBarContainer {
+        margin-top: 150px;
+    }
 
 }
+@media (max-width: 992px) {
+    .badge-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 
-@media (max-width: 480px) {
     #search {
-        width: 240px;
+        width: 200px;
+    }
+    .top-right{
+        margin-right: 40px;
+    }
+    .top-right {
+        right: 20px;
+    }
+}
+@media (max-width: 576px) {
+    .badge-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
 
-    .View-frame {
-        font-size: 20px;
+    .badge-card {
+        margin-bottom: 20px;
+        padding: 10px;
     }
-    .name{
+    .top-right{
+        margin-right: 40px;
+    }
+    #search {
+        width: 120px;
+        font-size: 14px;
+    }
+
+    .user-profile .name {
         display: none;
     }
-    .Main-contact {
-        margin: 80px 10px 0;
+
+    .current-badge-section h2 {
+        font-size: 1.2rem;
     }
 
-    .settings-section h2 {
-        font-size: 1.5rem;
+    .badge-name {
+        font-size: 1rem;
     }
 
-    button[type="submit"] {
-        width: 100%;
-    }
-}
-@media (max-width: 768px) {
-    .Main-contact {
-        padding: 1rem;
-        margin: 80px 15px 0;
-    }
-
-    .settings-section {
-        padding: 1.5rem;
-    }
-
-    .profile-picture-container img {
-        width: 120px;
-        height: 120px;
-    }
-
-    .Bar-frame {
-        height: 8%;
-    }
-}
-
-@media (max-width: 480px) {
-    .settings-section {
-        padding: 1rem;
-    }
-
-    .profile-picture-container img {
-        width: 100px;
-        height: 100px;
-    }
-
-    button[type="submit"] {
-        padding: 0.8rem;
+    .points-required {
+        font-size: 0.8rem;
     }
 }
