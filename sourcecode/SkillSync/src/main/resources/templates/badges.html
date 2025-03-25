@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Badges - SkillSync</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/Logo.ico" />
+  <style>
+    /* Global Styles */
+    body {
+      background: radial-gradient(at center top, rgba(23, 10, 191, 1.0), rgba(136, 170, 223, 1.0));
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: #fff;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    h2 {
+      text-align: center;
+      margin: 40px 0 20px;
+    }
+    /* Current Badge Section */
+    .current-badge-section {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .current-badge-section img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .current-badge-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+    }
+    /* Badge Grid */
+    .badge-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* 5 columns per row for Bronze I, Silver I, etc. */
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .badge-card {
+      background: rgba(25, 25, 112, 0.9);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .badge-card:hover {
+      transform: scale(1.05);
+    }
+    .badge-card img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .badge-name {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .points-required {
+      font-size: 0.9rem;
+      color: #ffd700;
+    }
+    /* Locked badge style using CSS filter */
+    .locked {
+      filter: grayscale(100%);
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+<h1>Badges</h1>
+
+<!-- Display Current Badge at the Top -->
+<div class="current-badge-section" th:if="${currentBadge != null}">
+  <h2>Your Current Badge</h2>
+  <img th:src="${currentBadge.imagePath}" alt="Current Badge">
+  <p th:text="${currentBadge.badgeName}">Badge Name</p>
+</div>
+<div class="current-badge-section" th:if="${currentBadge == null}">
+  <h2>You have not earned any badge yet.</h2>
+</div>
+
+<!-- Top Row: All "I" Badges (Bronze I, Silver I, Gold I, Platinum I, Diamond I) -->
+<h2>All Badges</h2>
+<div class="badge-grid">
+  <div th:each="badge : ${allBadges}"
+       th:if="${badge.badgeName.endsWith(' I')}"
+       class="badge-card">
+    <img th:src="${badge.imagePath}"
+         th:classappend="${badge.owned} ? '' : ' locked'"
+         alt="Badge Image"/>
+    <div class="badge-name" th:text="${badge.badgeName}">Badge Name</div>
+    <div class="points-required">
+      Points Required: <span th:text="${badge.pointsRequired}">0</span>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Row: All "II" Badges (Bronze II, Silver II, Gold II, Platinum II, Diamond II) -->
+<h2></h2>
+<div class="badge-grid">
+  <div th:each="badge : ${allBadges}"
+       th:if="${badge.badgeName.endsWith(' II')}"
+       class="badge-card">
+    <img th:src="${badge.imagePath}"
+         th:classappend="${badge.owned} ? '' : ' locked'"
+         alt="Badge Image"/>
+    <div class="badge-name" th:text="${badge.badgeName}">Badge Name</div>
+    <div class="points-required">
+      Points Required: <span th:text="${badge.pointsRequired}">0</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

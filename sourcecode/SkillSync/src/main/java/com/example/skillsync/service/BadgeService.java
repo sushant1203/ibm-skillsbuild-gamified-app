@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -50,5 +52,31 @@ public class BadgeService {
                 System.out.println("Awarded badge: " + badgeName + " to user: " + user.getUsername());
             }
         }
+    }
+
+    /**
+     * Returns a list of maps representing all possible badges with their display information.
+     * Each map contains: badgeName, pointsRequired, imagePath, lockedImagePath, and owned.
+     */
+    public List<Map<String, Object>> getAllBadgeDataForUser(User user) {
+        List<Badge> earnedBadges = badgeRepository.findByUser(user);
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        for (Map.Entry<String, Integer> entry : badgeThresholds.entrySet()) {
+            String badgeName = entry.getKey();
+            int pointsRequired = entry.getValue();
+            boolean owned = earnedBadges.stream().anyMatch(b -> b.getBadgeName().equals(badgeName));
+
+            // Define image paths—adjust these to match your file structure.
+            String imagePath = "/" + badgeName.toLowerCase().replace(" ", "") + ".png";
+
+            Map<String, Object> badgeMap = new LinkedHashMap<>();
+            badgeMap.put("badgeName", badgeName);
+            badgeMap.put("pointsRequired", pointsRequired);
+            badgeMap.put("imagePath", imagePath);
+            badgeMap.put("owned", owned);
+            result.add(badgeMap);
+        }
+        return result;
     }
 }
