@@ -17,9 +17,9 @@ public class ScheduledEmailService {
     }
 
     // Runs at 9:00 AM every day
-    @Scheduled(cron = "0 0 9 * * *")  // Second Minute Hour Day Month Weekday
+    @Scheduled(cron = "0 0 9 * * *")  // Second(0) Minute(0) Hour(9) Day Month Weekday
     public void sendDailyNotifications() {
-        System.out.println("Starting daily email notifications...");
+        System.out.println("=== Starting daily email notifications ===");
 
         List<User> users = userService.getAllUsers();
         int successCount = 0;
@@ -29,14 +29,14 @@ public class ScheduledEmailService {
             try {
                 emailService.sendReminderEmail(user);
                 successCount++;
-                System.out.println("Sent daily email to: " + user.getEmail());
+                System.out.println("Sent daily reminder to: " + user.getEmail());
             } catch (Exception e) {
                 failCount++;
                 System.err.println("Failed to send to " + user.getEmail() + ": " + e.getMessage());
             }
         }
 
-        System.out.printf("Daily emails completed. Success: %d, Failed: %d%n",
+        System.out.printf("=== Daily emails completed: %d succeeded, %d failed ===%n",
                 successCount, failCount);
     }
 }

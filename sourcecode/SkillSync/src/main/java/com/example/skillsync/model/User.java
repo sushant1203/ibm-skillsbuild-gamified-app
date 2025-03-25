@@ -6,17 +6,18 @@ import java.util.List;
 import java.util.ArrayList;
 
 @Entity
-@Table(name = "users")  // Explicit table name to avoid SQL keyword conflicts
+@Table(name = "user")  // Matches your existing SQL table name
 public class User {
 
     // No-args constructor (required by JPA)
     public User() {
         this.score = 0;
         this.lastNotifiedDate = LocalDate.now().minusDays(3);
-        this.incompleteCourseIds = new ArrayList<>();  // Initialize list
+        this.incompleteCourseIds = new ArrayList<>();
+        this.hasIncompleteCourses = false;
     }
 
-    // Your custom constructor
+    // Custom constructor
     public User(String username, String email, String password, String name) {
         this.username = username;
         this.email = email;
@@ -24,7 +25,8 @@ public class User {
         this.name = name;
         this.score = 0;
         this.lastNotifiedDate = LocalDate.now().minusDays(3);
-        this.incompleteCourseIds = new ArrayList<>();  // Initialize list
+        this.incompleteCourseIds = new ArrayList<>();
+        this.hasIncompleteCourses = false;
     }
 
     @Id
@@ -49,8 +51,8 @@ public class User {
     @Column(name = "last_notified_date")
     private LocalDate lastNotifiedDate;
 
-    @Column(name = "has_incomplete_courses")
-    private boolean hasIncompleteCourses = false;
+    @Column(name = "has_incomplete_courses", nullable = false)
+    private boolean hasIncompleteCourses;
 
     @ElementCollection
     @CollectionTable(name = "user_incomplete_courses", joinColumns = @JoinColumn(name = "user_id"))
@@ -94,8 +96,7 @@ public class User {
     }
 
     public void setIncompleteCourseIds(List<Long> incompleteCourseIds) {
-        this.incompleteCourseIds = incompleteCourseIds;
-        this.hasIncompleteCourses = !incompleteCourseIds.isEmpty();
+        this.incompleteCourseIds = incompleteCourseIds != null ? incompleteCourseIds : new ArrayList<>();
+        this.hasIncompleteCourses = !this.incompleteCourseIds.isEmpty();
     }
-
 }

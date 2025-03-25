@@ -69,49 +69,9 @@ public class EmailController {
                     context
             );
 
-            return "✅ System test completed. Check inbox for emails at " + testEmail;
+            return "System test completed. Check inbox for emails at " + testEmail;
         } catch (MessagingException e) {
-            return "❌ Test failed: " + e.getMessage();
-        }
-    }
-}
-
-// Separate controller for additional email tests
-@RestController
-@RequestMapping("/api/email")
-class EmailTestController {
-    private final EmailService emailService;
-    private final UserService userService;
-
-    public EmailTestController(EmailService emailService, UserService userService) {
-        this.emailService = emailService;
-        this.userService = userService;
-    }
-
-    @GetMapping("/test")
-    public String testEmail() {
-        User testUser = userService.findByEmail("test@example.com");
-        if (testUser != null) {
-            try {
-                emailService.sendReminderEmail(testUser);
-                return "Test email sent to " + testUser.getEmail();
-            } catch (Exception e) {
-                return "Failed to send test email: " + e.getMessage();
-            }
-        }
-        return "Test user not found";
-    }
-
-    @GetMapping("/test-all")
-    public String testAllEmails() {
-        try {
-            emailService.sendNotificationToAllUsers(
-                    "SkillSync System Test",
-                    "This is a test email to verify our notification system is working."
-            );
-            return "Test emails sent to all users";
-        } catch (Exception e) {
-            return "Failed to send emails to all users: " + e.getMessage();
+            return "Test failed: " + e.getMessage();
         }
     }
 }
