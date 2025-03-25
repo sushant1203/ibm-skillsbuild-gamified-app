@@ -72,6 +72,17 @@
                     <p>Your Score: <span th:text="${score}" class="user-score">0</span></p>
                     <p>Current Streak: <span th:text="${user.streak}" class="user-score">0</span></p>
                 </div>
+                <div class="current-badge-section">
+                    <h2>Your Current Badge</h2>
+                    <div th:if="${currentBadge == null}">
+                        <p>You have not earned any badge yet.</p>
+                    </div>
+                    <div th:if="${currentBadge != null}">
+                        <img th:src="@{'/' + ${#strings.toLowerCase(currentBadge.badgeName).replace(' ', '')} + '.png'}"
+                             alt="Current Badge" class="current-badge-image">
+                        <h3 th:text="${currentBadge.badgeName}">Badge Name</h3>
+                    </div>
+                </div>
             </div>
 
 
@@ -80,17 +91,7 @@
 
             <!-- New: Current Badge Section -->
 
-            <div class="current-badge-container">
-                <h2>Your Current Badge</h2>
-                <div th:if="${currentBadge == null}">
-                    <p>You have not earned any badge yet.</p>
-                </div>
-                <div th:if="${currentBadge != null}">
-                    <img th:src="@{'/' + ${#strings.toLowerCase(currentBadge.badgeName).replace(' ', '')} + '.png'}"
-                         alt="Current Badge" class="current-badge-image">
-                    <h3 th:text="${currentBadge.badgeName}">Badge Name</h3>
-                </div>
-            </div>
+
 
         <div class="content-row">
                 <!-- Recommended Courses Section -->

@@ -240,9 +240,19 @@ body,
 
 /* Dashboard Overview */
 .dashboard-overview {
-    width: 30%;
+    width: 100%;
     padding: 110px 0 0 10px;
+    justify-content: space-between;
+    align-items: stretch;
     color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.dashboard-text {
+    flex: 1;
+    min-width: 250px;
 }
 
 .dashboard-text h2 {
@@ -546,4 +556,29 @@ body,
     .course-card {
         min-height: auto;
     }
+}
+
+/* Current Badge Section */
+.current-badge-section {
+    text-align: center;
+    flex: 0 0 300px;
+    padding-right: 100px;
+    flex-direction: column;
+
+}
+.current-badge-section img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.current-badge-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+current-badge-image {
+    object-fit: contain;
+
 }
