@@ -25,7 +25,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(request ->
-                    request.requestMatchers("/register", "/login", "/", "stylesheet.css", "*.png", "login.css","*.jpg").permitAll() //allows access to these three endpoints
+                    request.requestMatchers("/register", "/login", "/", "stylesheet.css", "*.png", "login.css","*.jpg","*.ico").permitAll() //allows access to these three endpoints
                             .anyRequest().authenticated() //if any other endpoint(request), it requires authentication
                 )
                 .formLogin(form -> form
@@ -36,6 +36,8 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/") //redirects to log in page after logout
+                        .invalidateHttpSession(true) // Invalidates the session
+                        .deleteCookies("JSESSIONID") // Deletes session cookies
                         .permitAll() //allow logout for all users
                 )
                 .userDetailsService(userDetailsService); //for authentication

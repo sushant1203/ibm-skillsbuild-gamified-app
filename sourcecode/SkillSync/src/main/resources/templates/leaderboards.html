@@ -11,12 +11,25 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
 </head>
 <body>
+<script>
+    window.watsonAssistantChatOptions = {
+        integrationID: "91cc9657-b743-4c03-89bd-303022390dc8", // The ID of this integration.
+        region: "eu-gb", // The region your integration is hosted in.
+        serviceInstanceID: "61789d00-e978-482b-b59e-822bcb05ed43", // The ID of your service instance.
+        onLoad: async (instance) => { await instance.render(); }
+    };
+    setTimeout(function(){
+        const t=document.createElement('script');
+        t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+        document.head.appendChild(t);
+    });
+</script>
 <div class="container">
     <!-- Navigation Frame -->
     <div class="Navigation-Frame">
         <div class="logo">
-            <a href="/dashboard">
-                <img src="/Logo.png" alt="SkillSync Logo">
+            <a>
+                <img src="Logo.png" alt="SkillSync Logo">
             </a>
         </div>
         <nav class="nav-links">
@@ -32,6 +45,8 @@
             <a href="/certificates">
                 <img src="/Certificates.png" alt="Certificates icon"> Certificates
             </a>
+            <a href="friends"><img src="friends-icon.png" alt="Friends icon">Friends</a>
+            <a href="badges"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAcpJREFUSEvF1k2rTVEYAODnGkjIACPcMjBQSiQMKFyGSsoPkKmvDAz8AUlSipjxC+QqJUJkgIHykTJVUkSJ8hGy39q79t3OdtY+d+3Onp293/U+a62z3rXWhDE9E2NyjQqvwQ78wgO86jqArvBKXMb2BnQL+/EutQNd4CV4huUtyd9gLT6n4MPgvTiInSnJajE3cRHX29r9Dz6JEx3BZni0PzUoRxscI706S7RqHuvhfjNXG/wEGzPBN7A7Ff6NOZngj1iaAs/Fd0au8aYRtb6wWC8/6h+aU70Ct7E602irNC/LynhfvWjCj7EpM1qlu1fsclOD4C142BNapV1XbkIz/sdjONszfAgXwqhP9RGc6xk+XKzw8014Mx71DG/A0yYcv/tcXHF8bmtb1ZO4i1WZR/68WLi7igPnQxsc7+fhW0b4D+YP20Aq7ysWZMK/FNWyKGXLjJio56jrHM+dcppn5Go7nfbgWg61RANPgiPoNI7PEo/2ZwblGHb12Yej2NqxA9O4hLgCDXyGwfVGi/ECy1pyxWVvPT6ldLILHPmizq/UT5kSievtAbxNQSOmK1zljQt93Dx/FrtRHHevU8EqblS4q/NP/Njgv7n7QB+og3wBAAAAAElFTkSuQmCC" alt="Badges icon"> Badges</a>
             <a href="/settings">
                 <img src="/Settings.png" alt="Settings icon"> Settings
             </a>

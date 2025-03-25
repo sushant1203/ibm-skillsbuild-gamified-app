@@ -1,33 +1,13 @@
 package com.example.skillsync.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.List;
-import java.util.ArrayList;
 
 @Entity
-@Table(name = "user")  // Matches your existing SQL table name
+@Table
 public class User {
-
-    // No-args constructor (required by JPA)
-    public User() {
-        this.score = 0;
-        this.lastNotifiedDate = LocalDate.now().minusDays(3);
-        this.incompleteCourseIds = new ArrayList<>();
-        this.hasIncompleteCourses = false;
-    }
-
-    // Custom constructor
-    public User(String username, String email, String password, String name) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.score = 0;
-        this.lastNotifiedDate = LocalDate.now().minusDays(3);
-        this.incompleteCourseIds = new ArrayList<>();
-        this.hasIncompleteCourses = false;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,18 +28,26 @@ public class User {
     @Column(nullable = false)
     private int score;
 
-    @Column(name = "last_notified_date")
-    private LocalDate lastNotifiedDate;
+    private LocalDate lastLogin;
 
-    @Column(name = "has_incomplete_courses", nullable = false)
-    private boolean hasIncompleteCourses;
+    private int streak;
 
-    @ElementCollection
-    @CollectionTable(name = "user_incomplete_courses", joinColumns = @JoinColumn(name = "user_id"))
-    @Column(name = "course_id")
-    private List<Long> incompleteCourseIds;
+    // Friend Requests Sent
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    private List<FriendRequest> sentRequests;
 
-    // Getters and Setters
+    // Friend Requests Received
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
+    private List<FriendRequest> receivedRequests;
+
+    // Friendships (One user can have many friendships)
+    @OneToMany(mappedBy = "user1", cascade = CascadeType.ALL)
+    private List<Friendship> friendshipsInitiated;
+
+    @OneToMany(mappedBy = "user2", cascade = CascadeType.ALL)
+    private List<Friendship> friendshipsReceived;
+
+    // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -78,25 +66,31 @@ public class User {
     public int getScore() { return score; }
     public void setScore(int score) { this.score = score; }
 
-    public LocalDate getLastNotifiedDate() { return lastNotifiedDate; }
-    public void setLastNotifiedDate(LocalDate lastNotifiedDate) {
-        this.lastNotifiedDate = lastNotifiedDate;
+        public LocalDate getLastLogin() {
+        return lastLogin;
     }
 
-    public boolean isHasIncompleteCourses() {
-        return hasIncompleteCourses;
+    public void setLastLogin(LocalDate lastLogin) {
+        this.lastLogin = lastLogin;
     }
 
-    public void setHasIncompleteCourses(boolean hasIncompleteCourses) {
-        this.hasIncompleteCourses = hasIncompleteCourses;
+    public int getStreak() {
+        return streak;
     }
 
-    public List<Long> getIncompleteCourseIds() {
-        return incompleteCourseIds;
+    public void setStreak(int streak) {
+        this.streak = streak;
     }
 
-    public void setIncompleteCourseIds(List<Long> incompleteCourseIds) {
-        this.incompleteCourseIds = incompleteCourseIds != null ? incompleteCourseIds : new ArrayList<>();
-        this.hasIncompleteCourses = !this.incompleteCourseIds.isEmpty();
-    }
+    public List<FriendRequest> getSentRequests() { return sentRequests; }
+    public void setSentRequests(List<FriendRequest> sentRequests) { this.sentRequests = sentRequests; }
+
+    public List<FriendRequest> getReceivedRequests() { return receivedRequests; }
+    public void setReceivedRequests(List<FriendRequest> receivedRequests) { this.receivedRequests = receivedRequests; }
+
+    public List<Friendship> getFriendshipsInitiated() { return friendshipsInitiated; }
+    public void setFriendshipsInitiated(List<Friendship> friendshipsInitiated) { this.friendshipsInitiated = friendshipsInitiated; }
+
+    public List<Friendship> getFriendshipsReceived() { return friendshipsReceived; }
+    public void setFriendshipsReceived(List<Friendship> friendshipsReceived) { this.friendshipsReceived = friendshipsReceived; }
 }
