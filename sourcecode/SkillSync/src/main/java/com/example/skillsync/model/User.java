@@ -1,22 +1,43 @@
 package com.example.skillsync.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.ArrayList;
 
-@Entity //create a table
-@Table //map it to a database(db) table
+@Entity
+@Table(name = "users")  // Explicit table name to avoid SQL keyword conflicts
 public class User {
 
+    // No-args constructor (required by JPA)
+    public User() {
+        this.score = 0;
+        this.lastNotifiedDate = LocalDate.now().minusDays(3);
+        this.incompleteCourseIds = new ArrayList<>();  // Initialize list
+    }
+
+    // Your custom constructor
+    public User(String username, String email, String password, String name) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.score = 0;
+        this.lastNotifiedDate = LocalDate.now().minusDays(3);
+        this.incompleteCourseIds = new ArrayList<>();  // Initialize list
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //db automatically generates unique ids when a new entity is saved
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false) //the column "name" cannot be empty, same applies to the other fields
+    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false,unique = true) //two emails cannot be the same in the db
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, unique = true) //two usernames cannot be the same in the db
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable = false)
@@ -25,52 +46,56 @@ public class User {
     @Column(nullable = false)
     private int score;
 
-    //getters and setters
-    public Long getId() {
-        return id;
+    @Column(name = "last_notified_date")
+    private LocalDate lastNotifiedDate;
+
+    @Column(name = "has_incomplete_courses")
+    private boolean hasIncompleteCourses = false;
+
+    @ElementCollection
+    @CollectionTable(name = "user_incomplete_courses", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "course_id")
+    private List<Long> incompleteCourseIds;
+
+    // Getters and Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+
+    public int getScore() { return score; }
+    public void setScore(int score) { this.score = score; }
+
+    public LocalDate getLastNotifiedDate() { return lastNotifiedDate; }
+    public void setLastNotifiedDate(LocalDate lastNotifiedDate) {
+        this.lastNotifiedDate = lastNotifiedDate;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public boolean isHasIncompleteCourses() {
+        return hasIncompleteCourses;
     }
 
-    public String getName() {
-        return name;
+    public void setHasIncompleteCourses(boolean hasIncompleteCourses) {
+        this.hasIncompleteCourses = hasIncompleteCourses;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public List<Long> getIncompleteCourseIds() {
+        return incompleteCourseIds;
     }
 
-    public String getEmail() {
-        return email;
+    public void setIncompleteCourseIds(List<Long> incompleteCourseIds) {
+        this.incompleteCourseIds = incompleteCourseIds;
+        this.hasIncompleteCourses = !incompleteCourseIds.isEmpty();
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
 }
