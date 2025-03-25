@@ -29,6 +29,8 @@ public class BadgeController {
         // Award badges if necessary
         badgeService.checkAndAwardBadges(user);
 
+        model.addAttribute("score", user.getScore());
+
         // Retrieve all badge data as a list of maps
         List<Map<String, Object>> allBadges = badgeService.getAllBadgeDataForUser(user);
         model.addAttribute("allBadges", allBadges);

@@ -1,0 +1,397 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+
+.Navigation-Frame {
+    width: 200px;
+    min-width: 180px;
+    max-width: 250px;
+    background: #242424;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 20px;
+    position: relative;
+    transition: width 0.2s ease-out;
+}
+
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 0px;
+}
+
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 12px 15px;
+    transition: background 0.3s;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+
+
+.nav-links a img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+
+.Navigation-Frame.expanded .nav-links a {
+    justify-content: flex-start;
+    width: 100%;
+}
+
+
+.nav-links a:hover {
+    background: #333;
+    width: 100%;
+    border-radius: 20px;
+}
+.logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 0 5px;
+}
+
+.logo img {
+    width: 120px;
+    max-width: 70%;
+    margin-bottom: 30px;
+    margin-left: 20px;
+
+}
+
+
+.resizer {
+    width: 5px;
+    background: #555;
+    cursor: ew-resize;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    z-index: 10;
+}
+
+
+
+.Bar-frame {
+    display: flex;
+    width: calc(100% - 200px);
+    height: 10%;
+    background: #242424;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 200px;
+    right: 0;
+    z-index: 100;
+    transition: left 0.2s ease-out, width 0.2s ease-out;
+}
+
+
+.View-frame {
+    flex-grow: 1;
+    background: rgba(23, 10, 191, 1.0);
+    background: radial-gradient(at center top, rgba(23, 10, 191, 1.0), rgba(136, 170, 223, 1.0));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 24px;
+    width: calc(100% - 200px);
+    height: 100vh;
+    color: white;
+
+    overflow: hidden;
+    transition: width 0.2s ease-out;
+}
+
+
+.resizer {
+    width: 5px;
+    background: #555;
+    cursor: ew-resize;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    z-index: 10;
+}
+
+
+#search {
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    padding: 5px 15px;
+}
+
+
+.top-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+}
+
+
+.notification {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.notification img {
+    width: 25px;
+    height: 25px;
+}
+
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 3px 6px;
+}
+
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.user-profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+/* Courses CSS */
+.Main-contact {
+    align-items: center;
+    height: 48rem;
+    border-radius: 10px;
+
+    margin: 125px 25px 0 25px;
+}
+
+.Title {
+    color: #ffffff;
+    margin: 0;
+    padding: 10px 20px;
+}
+
+.Course-Grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted for responsiveness */
+    gap: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    height: auto;
+}
+
+.Course-Grid .course-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 200px;
+    border: 2px solid #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+    background: rgba(25, 25, 112, 0.9); /* Deep blue with slight transparency */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Softer glow effect */
+}
+
+.Course-Grid .course-card:hover {
+    transform: scale(1.05);
+}
+
+.Course-Grid img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.content h1 {
+    font-size: 1.5rem;
+    margin: 5px 0;
+    text-align: left;
+    color: #FFD700;
+}
+
+.content p {
+    font-size: 1rem;
+    margin: 5px 0;
+    text-align: left;
+    color: white;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.button-group button {
+    padding: 8px 12px;
+    font-size: 1rem;
+    font-style: oblique;
+    cursor: pointer;
+    background-color: #FFD700; /* Gold buttons */
+    color: #000;
+    border-radius: 15px;
+    transition: background 0.3s ease;
+
+}
+
+.button-group button:hover {
+    background-color: #ffd700;
+}
+
+.next {
+    float: right;
+    position: relative;
+    top: -1em;
+    right: 4%;
+}
+
+.prev {
+    float: right;
+    position: relative;
+    top: -1em;
+    right: 2%;
+}
+
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    background: rgba(25, 25, 112, 0.9); /* Matching deep blue background */
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    margin: 20px;
+}
+
+.filter-container label {
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.filter-container select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    background-color: #FFD700; /* Gold color */
+    color: black;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    outline: none;
+}
+
+.filter-container select:hover {
+    background-color: #ffcc00;
+}
+
+.filter-container select:focus {
+    border: 2px solid #FFD700;
+    outline: none;
+}
+
+/* Progress Bar Container */
+#progressBarContainer {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+/* The Progress Bar */
+#progressBar {
+    width: 100%;
+    height: 10px;
+    background-color: #ddd;
+    position: relative;
+    border-radius: 5px;
+}
+
+/* Marker for each threshold */
+.progress-marker {
+    position: absolute;
+    top: -5px; /* Adjust vertical position if needed */
+    width: 2px;
+    height: 20px;
+    background-color: gold; /* Gold marker */
+}
+
+/* Tooltip that appears on hover */
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    display: none;
+    white-space: nowrap;
+    z-index: 100;
+    transform: translateY(-100%);
+}
