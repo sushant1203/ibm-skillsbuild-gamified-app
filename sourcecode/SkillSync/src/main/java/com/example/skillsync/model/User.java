@@ -1,13 +1,43 @@
 package com.example.skillsync.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.util.List;
+import java.util.ArrayList;
 
 @Entity
-@Table
+@Table(name = "user")  // Matches your existing SQL table name
 public class User {
+
+    // No-args constructor (required by JPA)
+    public User() {
+        this.score = 0;
+        this.lastNotifiedDate = LocalDate.now().minusDays(3);
+        this.incompleteCourseIds = new ArrayList<>();
+        this.hasIncompleteCourses = false;
+        this.streak = 0;
+        this.sentRequests = new ArrayList<>();
+        this.receivedRequests = new ArrayList<>();
+        this.friendshipsInitiated = new ArrayList<>();
+        this.friendshipsReceived = new ArrayList<>();
+    }
+
+    // Custom constructor
+    public User(String username, String email, String password, String name) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.score = 0;
+        this.lastNotifiedDate = LocalDate.now().minusDays(3);
+        this.incompleteCourseIds = new ArrayList<>();
+        this.hasIncompleteCourses = false;
+        this.streak = 0;
+        this.sentRequests = new ArrayList<>();
+        this.receivedRequests = new ArrayList<>();
+        this.friendshipsInitiated = new ArrayList<>();
+        this.friendshipsReceived = new ArrayList<>();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +58,17 @@ public class User {
     @Column(nullable = false)
     private int score;
 
+    @Column(name = "last_notified_date")
+    private LocalDate lastNotifiedDate;
+
+    @Column(name = "has_incomplete_courses", nullable = false)
+    private boolean hasIncompleteCourses;
+
+    @ElementCollection
+    @CollectionTable(name = "user_incomplete_courses", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "course_id")
+    private List<Long> incompleteCourseIds;
+
     private LocalDate lastLogin;
 
     private int streak;
@@ -47,7 +88,7 @@ public class User {
     @OneToMany(mappedBy = "user2", cascade = CascadeType.ALL)
     private List<Friendship> friendshipsReceived;
 
-    // Getters and setters
+    // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -66,7 +107,29 @@ public class User {
     public int getScore() { return score; }
     public void setScore(int score) { this.score = score; }
 
-        public LocalDate getLastLogin() {
+    public LocalDate getLastNotifiedDate() { return lastNotifiedDate; }
+    public void setLastNotifiedDate(LocalDate lastNotifiedDate) {
+        this.lastNotifiedDate = lastNotifiedDate;
+    }
+
+    public boolean isHasIncompleteCourses() {
+        return hasIncompleteCourses;
+    }
+
+    public void setHasIncompleteCourses(boolean hasIncompleteCourses) {
+        this.hasIncompleteCourses = hasIncompleteCourses;
+    }
+
+    public List<Long> getIncompleteCourseIds() {
+        return incompleteCourseIds;
+    }
+
+    public void setIncompleteCourseIds(List<Long> incompleteCourseIds) {
+        this.incompleteCourseIds = incompleteCourseIds != null ? incompleteCourseIds : new ArrayList<>();
+        this.hasIncompleteCourses = !this.incompleteCourseIds.isEmpty();
+    }
+
+    public LocalDate getLastLogin() {
         return lastLogin;
     }
 
