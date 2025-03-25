@@ -74,14 +74,43 @@
             </div>
         </div>
 
+
         <!-- Leaderboards Content -->
         <div class="View-contact">
-            <h1>Leaderboards</h1>
-            <div class="under-development">
-                <i class="bx bxs-edit-alt"></i>
-                <p>This section is under development. <br>Check back soon! &#x1FAE1; </p>
+            <h1>Top <span th:text="${limit}">5</span> <span th:text="${type}">global</span> users</h1>
+            <div class="filter-container">
+                <form th:action="@{/leaderboards}" method="get">
+                    <label for="limit">Show top:</label>
+                    <select id="limit" name="limit">
+                        <option value="5" th:selected="${limit == 5}">5</option>
+                        <option value="10" th:selected="${limit == 10}">10</option>
+                        <option value="50" th:selected="${limit == 50}">50</option>
+                        <option value="100" th:selected="${limit == 100}">100</option>
+                    </select>
+                    <label for="type">Leaderboard:</label>
+                    <select id="type" name="type">
+                        <option value="global" th:selected="${type == 'global'}">Global</option>
+                        <option value="friends" th:selected="${type == 'friends'}">Friends</option>
+                    </select>
+                    <button type="submit">Apply</button>
+                </form>
             </div>
+            <ul id="leaderboard-list">
+                <li>
+                    <span>Name</span>
+                    <span>Username</span>
+                    <span>Score</span>
+                </li>
+                <li th:each="user : ${topUsers}">
+                    <span th:text="${user.name}"></span>
+                    <span th:text="${user.username}"></span>
+                    <span th:text="${user.score}"></span>
+                </li>
+            </ul>
         </div>
+
+
+
     </div>
 </div>
 <script src="/script.js"></script>

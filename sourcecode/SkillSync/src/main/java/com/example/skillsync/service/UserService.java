@@ -4,6 +4,7 @@ import com.example.skillsync.model.User;
 import com.example.skillsync.repo.UserRepository;
 import com.example.skillsync.utils.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -139,6 +140,15 @@ public class UserService {
         return null;
     }
 
+    // get top 10 users by score
+    public List<User> getTopUsersByScore(int limit) {
+        return userRepository.findTopUsersByScore(PageRequest.of(0, limit));
+    }
+
+    public List<User> getTopFriendsUsersByScore(int limit) {
+
+        return userRepository.findTopFriendsUsersByScore(getLoggedInUser().getId(), PageRequest.of(0, limit));
+    }
     // Streak management
     public void setStreak(User user) {
         LocalDate lastLogin = user.getLastLogin();
@@ -158,6 +168,7 @@ public class UserService {
         user.setLastLogin(today);
         userRepository.save(user);
     }
+}
+
 
     // Additional methods can be added here
-}
