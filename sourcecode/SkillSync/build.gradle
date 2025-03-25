@@ -36,6 +36,18 @@ dependencies {
 	// Thymeleaf
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+	// Spring Boot Mail for sending emails
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	// Spring Boot Scheduler for running tasks periodically
+	implementation 'org.springframework.boot:spring-boot-starter'
+
+	// Thymeleaf for email templates
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	// Spring Boot Mail for sending emails
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 tasks.named('test') {
