@@ -563,7 +563,6 @@ body,
     text-align: center;
     flex: 0 0 300px;
     padding-right: 100px;
-    flex-direction: column;
 
 }
 .current-badge-section img {
@@ -581,4 +580,51 @@ body,
 .current-badge-image {
     object-fit: contain;
 
+}
+@media (max-width: 768px) {
+    .dashboard-overview {
+        flex-direction: column;
+        align-items: center;
+        padding: 110px 20px 0;
+    }
+
+    .current-badge-section {
+        flex: none;
+        width: 100%;
+        padding-right: 0;
+        margin-top: 40px;
+        order: 2; /* Move to bottom of flex container */
+    }
+
+    .dashboard-text {
+        order: 1; /* Ensure text stays above badge */
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .current-badge-section h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .current-badge-section img {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .current-badge-section {
+        margin-top: 20px;
+    }
+
+    .current-badge-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .current-badge-section img {
+        width: 120px;
+        height: 120px;
+    }
 }
