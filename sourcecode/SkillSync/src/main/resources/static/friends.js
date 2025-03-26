@@ -90,10 +90,12 @@ function removeFriend(friendUsername) {
         .then(response => response.text())
         .then(data => {
             alert(data);
-            loadFriends(); // Update the friend list after removal
+            loadFriends(); //  Refresh friend list
+            loadFriendRequests(); //  Refresh pending requests in case of issues
         })
         .catch(error => console.error("Error:", error));
 }
+
 
 // Ensures that friend requests and friend list are loaded when the page is fully loaded
 document.addEventListener("DOMContentLoaded", () => {

@@ -10,5 +10,7 @@ import java.util.List;
 @Repository
 public interface FriendshipRepository extends JpaRepository<Friendship, Long> {
     List<Friendship> findByUser1OrUser2(User user1, User user2);
+    boolean existsByUser1AndUser2(User user1, User user2);
+
 
 }
