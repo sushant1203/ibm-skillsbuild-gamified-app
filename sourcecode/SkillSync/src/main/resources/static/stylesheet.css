@@ -6,6 +6,28 @@ body{
     height: 100%;
 
 }
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    -ms-overflow-style: none; /* IE/Edge */
+
+}
+html::-webkit-scrollbar,
+.View-frame::-webkit-scrollbar,
+.container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
+    width: 0 !important;
+}
+html,
+body,
+.View-frame,
+.container {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    overflow: auto;
+}
 html {
     scroll-behavior: smooth;
 }
@@ -29,7 +51,7 @@ html {
     margin-left: 60px;
 
 }
-.menuItems li:last-child,.menuItems li:nth-last-child(2) {
+.menuItems li:last-child,.menuItems li:nth-last-child(3) {
     margin-left: 15px;
     margin-right: 60px;
     padding: 3rem;
@@ -40,7 +62,7 @@ html {
     font-size: 28px;
     color: #ffffff;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 /* Menu CSS */
@@ -65,7 +87,7 @@ html {
     font-size: 28px;
     color: #ffffff;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
 
 
 }
@@ -74,7 +96,7 @@ html {
     font-size: 50px;
     color: #ffffff;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     margin-top: 150px;
 }
 .line_2{
@@ -82,7 +104,7 @@ html {
     font-size: 40px;
     color: #ffffff;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     margin-top: 150px;
 }
 .line_3{
@@ -90,7 +112,7 @@ html {
     font-size: 30px;
     color: #ffffff;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     margin-top: 150px;
 }
 
@@ -139,6 +161,20 @@ html {
 /* Arrow CSS */
 
 /* Information/image CSS */
+/* General section styling */
+section {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Intro text */
+.landing_intro {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* Container for information and photos */
 .Info-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -148,16 +184,17 @@ html {
     min-height: 30rem;
     max-width: 75%;
     margin: 100px auto 0 auto;
-    background-color: rgba(255, 255, 255, 0.92);
+    background-color: rgba(255, 255, 255, 0.72);
     border-radius: 10px;
     padding: 50px;
     box-shadow: 0 0 25px 4px rgba(0,0,0,0.51);
 }
 
+/* Information text */
 .Info {
     border: 2px solid #000;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     color: black;
     text-align: center;
     display: flex;
@@ -165,8 +202,10 @@ html {
     justify-content: center;
     margin-left: 200px;
     height: 100%;
-
+    min-width: auto;
 }
+
+/* Photos section */
 .Photos {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -174,6 +213,8 @@ html {
     height: 100%;
     margin-right: 200px;
 }
+
+/* Image styling */
 .Image {
     border: 2px solid #000;
     width: 100%;
@@ -182,6 +223,50 @@ html {
     align-items: center;
     justify-content: center;
 }
+
+
+@media (max-width: 1024px) {
+    .Info-container {
+        grid-template-columns: 1fr;
+        max-width: 90%;
+        margin: 50px auto;
+        padding: 30px;
+    }
+
+    .Info {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .Photos {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .Info-container {
+        padding: 20px;
+    }
+
+    .Info {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .landing_intro {
+        font-size: 1.5rem;
+    }
+
+    .Info {
+        font-size: 0.9rem;
+        padding: 15px;
+    }
+
+    .Photos {
+        grid-template-columns: 1fr;
+    }
+}
 /* Information/image CSS */
 
 /* Frequently asked questions CSS */
@@ -189,7 +274,7 @@ html {
 .faq {
     display: inline-grid;
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 30px;
     color: black;
     gap: 20px;
@@ -242,7 +327,7 @@ html {
 /* footer CSS */
 .footer{
     font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif;
     color: white;
     text-align: center;
     padding: 20px;

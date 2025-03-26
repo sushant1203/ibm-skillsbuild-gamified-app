@@ -6,9 +6,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/Logo.ico" />
     <title>SkillSync</title>
 </head>
 <body>
+<script>
+    window.watsonAssistantChatOptions = {
+        integrationID: "91cc9657-b743-4c03-89bd-303022390dc8", // The ID of this integration.
+        region: "eu-gb", // The region your integration is hosted in.
+        serviceInstanceID: "61789d00-e978-482b-b59e-822bcb05ed43", // The ID of your service instance.
+        onLoad: async (instance) => { await instance.render(); }
+    };
+    setTimeout(function(){
+        const t=document.createElement('script');
+        t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+        document.head.appendChild(t);
+    });
+</script>
 <section>
     <div class="landing_header">
         <nav>
@@ -16,6 +30,7 @@
                 <li><img src="logo.png" width="180" height="55"> </li>
                 <li><a href="login" class="button">Login</a> </li>
                 <li><a href="register" class="button">Sign Up</a> </li>
+                <li><a href ="dashboard" class="button">Dashboard</a></li>
             </ul>
         </nav>
     </div>
@@ -44,12 +59,12 @@
     <!-- Information section -->
     <p class="landing_intro intro"><span>About This Site</span></p>
     <div class="Info-container">
-        <div class="Info"></div>
+        <div class="Info"><p>SkillSync is an interactive platform that enhances IBM SkillsBuild learning through gamification. It helps users track progress, take quizzes, receive personalized course recommendations, and earn certificates as they advance.</p></div>
         <div class="Photos">
-            <div class="Image"></div>
-            <div class="Image"></div>
-            <div class="Image"></div>
-            <div class="Image"></div>
+            <div class="Image"><img src="lp1.png" width="200px" height="120px"></div>
+            <div class="Image"><img src="lp2.png" width="200px" height="120px"></div>
+            <div class="Image"><img src="lp3.png" width="200px" height="120px"></div>
+            <div class="Image"><img src="lp4.png" width="200px" height="120px"></div>
         </div>
     </div>
 </section>

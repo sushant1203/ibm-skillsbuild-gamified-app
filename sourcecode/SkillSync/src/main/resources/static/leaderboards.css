@@ -1,0 +1,140 @@
+
+.View-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.View-contact {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #1a1a2e;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.View-contact h1 {
+    font-size: 2rem;
+    color: #e0e0e0;
+    margin-bottom: 30px;
+}
+
+.View-contact ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.View-contact ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #162447;
+    border: 1px solid #0f3460;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.View-contact ul li:first-of-type {
+    margin-bottom: 20px;
+}
+
+.View-contact ul li:hover {
+    background-color: #1f4068;
+}
+
+.View-contact ul li span {
+    flex: 1;
+    text-align: center;
+    font-size: 1rem;
+    color: #e0e0e0;
+}
+
+.View-contact ul li span:first-child {
+    text-align: left;
+}
+
+.View-contact ul li span:last-child {
+    text-align: right;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .View-contact {
+        padding: 10px;
+    }
+
+    .View-contact ul li {
+        padding: 5px 10px;
+    }
+
+    .View-contact ul li span {
+        font-size: 0.9rem;
+    }
+
+}
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    background: rgba(25, 25, 112, 0.9); /* Matching deep blue background */
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    margin-bottom: 20px; /* Add margin below the filter */
+}
+
+.filter-container label {
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.filter-container select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    background-color: #FFD700; /* Gold color */
+    color: black;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    outline: none;
+}
+
+.filter-container select:hover {
+    background-color: #ffcc00;
+}
+
+.filter-container select:focus {
+    border: 2px solid #FFD700;
+    outline: none;
+}
+
+.filter-container button {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    background-color: #FFD700; /* Gold color */
+    color: black;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    outline: none;
+    margin-left: 10px; /* Add some space between the select and button */
+}
+
+.filter-container button:hover {
+    background-color: #ffcc00;
+}
+
+.filter-container button:focus {
+    border: 2px solid #FFD700;
+    outline: none;
+}

@@ -1,0 +1,483 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    -ms-overflow-style: none; /* IE/Edge */
+
+}
+html::-webkit-scrollbar,
+.View-frame::-webkit-scrollbar,
+.container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
+    width: 0 !important;
+}
+html,
+body,
+.View-frame,
+.container {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    overflow: auto;
+}
+
+
+/* Main Container */
+.container {
+    display: flex;
+    min-height: 121vh;
+    overflow: auto;
+}
+
+
+.Navigation-Frame {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    background: #242424;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 20px;
+    transition: left 0.3s ease;
+    z-index: 1000;
+    pointer-events: none;
+}
+.Navigation-Frame .nav-links,
+.Navigation-Frame .logo {
+    pointer-events: auto; /* Re-enable clicks for interactive elements */
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 0;
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 12px 15px;
+    transition: background 0.3s;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.nav-links a:hover {
+    background: #333;
+    border-radius: 20px;
+}
+
+.nav-links a img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    width: 98%;
+    padding: 0 5px;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 20px;
+    max-width: 70%;
+    margin-bottom: 30px;
+    margin-left: 20px;
+}
+
+
+
+/* Top Bar */
+.Bar-frame {
+    display: flex;
+    width: calc(100% - 200px);
+    height: 10%;
+    background: #242424;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 200px;
+    right: 0;
+    z-index: 100;
+    transition: left 0.3s ease, width 0.3s ease;
+}
+/* Hamburger Menu */
+.hamburger-container {
+    display: none;
+    margin-right: 20px;
+}
+
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+
+.hamburger-menu .bar {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger Animation */
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* Search Input */
+#search {
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    padding: 5px 15px;
+}
+
+/* Top Right Section */
+/* Top Right Section */
+.top-right {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+}
+
+
+/* User Profile */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    position: relative;
+}
+
+.user-profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #fff;
+    min-width: 100px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #000;
+    padding: 10px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+
+.View-frame {
+    position: relative;
+    flex-grow: 1;
+    margin-left: 200px;
+    background: radial-gradient(at center top, rgba(23, 10, 191, 1.0), rgba(136, 170, 223, 1.0));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 24px;
+    color: white;
+    overflow: auto;
+    transition: margin-left 0.3s ease;
+}
+
+
+.View-contact {
+    background: rgba(25, 25, 112, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 70%;
+    margin: 150px 100px 100px;
+}
+
+/* Section Titles */
+.View-contact h2 {
+    font-size: 28px;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.View-contact p {
+    color: #ffffff;
+    font-size: 16px;
+}
+
+
+.content-row {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* Friend Containers (Cards) */
+.friend-container {
+    flex: 1;
+    min-width: 280px;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.friend-container h3 {
+    color: #000000;
+    font-size: 20px;
+}
+
+/* Input Fields */
+.friend-container input {
+    width: 97%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #000000;
+}
+
+/* Buttons */
+button {
+    background: #FFD700;
+    color: black;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 5px;
+}
+
+button:hover {
+    background: #2a5298;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    color: black;
+}
+
+ul li {
+    background: #ffffff;
+    padding: 12px;
+    border: 1px solid #000000;
+    margin: 8px 0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+ul li img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+
+ul li button {
+    background: #28a745;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+ul li button.reject {
+    background: #dc3545;
+}
+.remove-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.remove-btn:hover {
+    background: #c82333;
+}
+@media (max-width: 1350px) {
+    .Navigation-Frame {
+        left: -250px;
+        width: 250px;
+    }
+    .Navigation-Frame.active {
+        left: 0;
+    }
+
+    .hamburger-container {
+        display: block;
+    }
+
+    .Bar-frame {
+        left: 0;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .View-frame {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .content-row {
+        flex-direction: column;
+        gap: 20px;
+        overflow: hidden;
+    }
+
+    .friend-container {
+        min-width: 90%;
+        margin-top: 0;
+    }
+
+    .friend-container input {
+        width: 98%;
+    }
+
+    .friend-container button {
+        width: 30%; /* Full width for buttons */
+        margin-top: 10px; /* Add spacing below input fields */
+    }
+}
+
+@media (max-width: 1150px) {
+
+    .friend-container {
+        min-width: 90%;
+        margin-top: 0;
+    }
+
+    .friend-container input {
+        width: 98%;
+    }
+
+    .friend-container button {
+        width: 30%;
+        margin-top: 10px;
+    }
+
+
+    ul li button {
+        width: 10%;
+        margin-top: 10px;
+    }
+}
+@media (max-width: 750px) {
+    .View-frame {
+        margin-left: 0;
+    }
+    .container{
+        margin-left: 0;
+    }
+    .View-contact {
+        margin: 150px 40px 100px;
+
+    }
+}
+
+@media (max-width: 480px) {
+    .top-right {
+        right: 100px;
+    }
+    .View-frame {
+        margin-left: 0;
+    }
+    .container{
+        margin-left: 0;
+    }
+    .View-contact {
+        margin: 150px 40px 100px;
+
+    }
+    .friend-container input {
+        width: 91%;
+    }
+
+    .View-contact h2 {
+        font-size: 20px;
+    }
+
+    .View-contact p {
+        font-size: 12px;
+    }
+
+    .friend-container h3 {
+        font-size: 16px;
+    }
+
+    .friend-container input {
+        font-size: 14px;
+    }
+
+    .friend-container button {
+        font-size: 14px;
+    }
+
+    ul li {
+        padding: 8px;
+    }
+
+    ul li img {
+        width: 30px;
+        height: 30px;
+    }
+
+    ul li button {
+        font-size: 12px;
+    }
+}
+

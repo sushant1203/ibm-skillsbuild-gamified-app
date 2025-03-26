@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Badges - SkillSync</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Using your dashboard view frame CSS -->
+  <link rel="stylesheet" href="/badges.css">
+  <link rel="icon" type="image/x-icon" href="/Logo.ico" />
+
+</head>
+<body>
+<!-- Container that includes the side navigation (same as certificates page) -->
+<div class="container">
+  <div class="Navigation-Frame">
+    <a><img src="Logo.png" class="logo"></a>
+    <nav class="nav-links">
+      <a href="/dashboard"><img src="Dashboard-icon.png" alt="Dashboard icon"> Dashboard</a>
+      <a href="courses"><img src="Courses.png" alt="Course icon"> Courses</a>
+      <a href="leaderboards"><img src="Leaderboard.png" alt="Leaderboard icon"> Leaderboards</a>
+      <a href="certificates"><img src="Certificates.png" alt="Certificates icon"> Certificates</a>
+      <a href="friends"><img src="friends-icon.png" alt="Friends icon">Friends</a>
+      <a href="badges"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAcpJREFUSEvF1k2rTVEYAODnGkjIACPcMjBQSiQMKFyGSsoPkKmvDAz8AUlSipjxC+QqJUJkgIHykTJVUkSJ8hGy39q79t3OdtY+d+3Onp293/U+a62z3rXWhDE9E2NyjQqvwQ78wgO86jqArvBKXMb2BnQL+/EutQNd4CV4huUtyd9gLT6n4MPgvTiInSnJajE3cRHX29r9Dz6JEx3BZni0PzUoRxscI706S7RqHuvhfjNXG/wEGzPBN7A7Ff6NOZngj1iaAs/Fd0au8aYRtb6wWC8/6h+aU70Ct7E602irNC/LynhfvWjCj7EpM1qlu1fsclOD4C142BNapV1XbkIz/sdjONszfAgXwqhP9RGc6xk+XKzw8014Mx71DG/A0yYcv/tcXHF8bmtb1ZO4i1WZR/68WLi7igPnQxsc7+fhW0b4D+YP20Aq7ysWZMK/FNWyKGXLjJio56jrHM+dcppn5Go7nfbgWg61RANPgiPoNI7PEo/2ZwblGHb12Yej2NqxA9O4hLgCDXyGwfVGi/ECy1pyxWVvPT6ldLILHPmizq/UT5kSievtAbxNQSOmK1zljQt93Dx/FrtRHHevU8EqblS4q/NP/Njgv7n7QB+og3wBAAAAAElFTkSuQmCC" alt="Badges icon">Badges</a>
+      <a href="settings"><img src="Settings.png" alt="Settings icon"> Settings</a>
+    </nav>
+  </div>
+  <div class="View-frame">
+    <div class="Bar-frame">
+      <div class="hamburger-container">
+        <div class="hamburger-menu" onclick="toggleMobileMenu()">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </div>
+
+        <div class="top-right">
+          <div class="user-profile" onclick="toggleUserDropdown()">
+            <img th:if="${user}" th:src="@{'/images/' + ${user.id}}" onerror="this.onerror=null; this.src='user-icon.png';" alt="Profile Picture">
+            <div class="name"><span th:text="${user.username}">User</span> </div>
+            <div id="userDropdown" class="dropdown-content">
+              <a href="/logout" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <!-- End Navigation Frame -->
+
+  <!-- Main View Frame -->
+
+    <div class="badge-content" style="margin: 0 auto; max-width: 1000px; text-align: center;">
+
+      <!-- Progress Bar and Score -->
+      <div id="progressBarContainer">
+        <div id="progressBar"></div>
+        <div id="progressBarTooltip" class="tooltip"></div>
+        <p>Your Score: <span th:text="${score}" class="user-score">0</span></p><br>
+      </div>
+
+      <!-- Display Current Badge at the Top -->
+      <div class="current-badge-section" th:if="${currentBadge != null}">
+        <h1></h1>
+        <h2>Your Current Badge</h2>
+        <img th:src="${currentBadge.imagePath}" alt="Current Badge">
+        <p th:text="${currentBadge.badgeName}">Badge Name</p>
+      </div>
+      <div class="current-badge-section" th:if="${currentBadge == null}">
+        <h2>You have not earned any badge yet.</h2>
+      </div>
+
+
+        <div class="form-container">
+          <h1>Course Points Details</h1>
+          <p>Each course you complete awards you points based on its difficulty:
+            Easy courses = 5 points, Medium courses = 10 points, and Advanced courses = 15 points.
+            The more courses you complete, the closer you get to unlocking higher-tier badges!
+          </p>
+        </div>
+
+    </div>
+      <!-- Top Row: All "I" Badges -->
+
+      <div class="badge-grid" style="margin: 0 auto;">
+        <div th:each="badge : ${allBadges}"
+             th:if="${badge.badgeName.endsWith(' I')}"
+             class="badge-card">
+          <img th:src="${badge.imagePath}"
+               th:classappend="${badge.owned} ? '' : ' locked'"
+               alt="Badge Image">
+          <div class="badge-name" th:text="${badge.badgeName}">Badge Name</div>
+          <div class="points-required">
+            Points Required: <span th:text="${badge.pointsRequired}">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Row: All "II" Badges -->
+
+      <div class="badge-grid" style="margin: 0 auto;">
+        <div th:each="badge : ${allBadges}"
+             th:if="${badge.badgeName.endsWith(' II')}"
+             class="badge-card">
+          <img th:src="${badge.imagePath}"
+               th:classappend="${badge.owned} ? '' : ' locked'"
+               alt="Badge Image">
+          <div class="badge-name" th:text="${badge.badgeName}">Badge Name</div>
+          <div class="points-required">
+            Points Required: <span th:text="${badge.pointsRequired}">0</span>
+          </div>
+        </div>
+      </div>
+    </div> <!-- End badge-content -->
+
+</div> <!-- End container -->
+
+<script th:inline="javascript">
+  // Convert currentScore to a number explicitly
+  const currentScore = Number(/*[[${score}]]*/ 0);
+  const maxPoints = 170;
+  const progressBar = document.getElementById("progressBar");
+  const tooltip = document.getElementById("progressBarTooltip");
+
+  // Badge thresholds with points for each badge
+  const badgeThresholds = [
+    { name: "Bronze II", points: 0 },
+    { name: "Bronze I", points: 15 },
+    { name: "Silver II", points: 30 },
+    { name: "Silver I", points: 45 },
+    { name: "Gold II", points: 70 },
+    { name: "Gold I", points: 90 },
+    { name: "Platinum II", points: 110 },
+    { name: "Platinum I", points: 130 },
+    { name: "Diamond II", points: 150 },
+    { name: "Diamond I", points: 170 }
+  ];
+
+  // Clear the progress bar (if markers exist already)
+  progressBar.innerHTML = "";
+
+  badgeThresholds.forEach(threshold => {
+    const marker = document.createElement("div");
+    marker.classList.add("progress-marker");
+    const leftPercent = (threshold.points / maxPoints) * 100;
+    marker.style.left = leftPercent + "%";
+
+    marker.addEventListener("mouseenter", function () {
+      const diff = threshold.points - currentScore;
+      let message = threshold.name;
+      // If currentScore meets/exceeds the threshold, display "Achieved"
+      message += diff > 0 ? " - " + diff + "points away from this badge" : " - Achieved";
+      tooltip.textContent = message;
+      tooltip.style.left = marker.style.left;
+      tooltip.style.display = "block";
+    });
+
+    marker.addEventListener("mouseleave", function () {
+      tooltip.style.display = "none";
+    });
+
+    progressBar.appendChild(marker);
+  });
+</script>
+
+
+
+
+<script>
+  // Toggle the "More info" content visibility
+  document.getElementById('moreInfoBtn').addEventListener('click', function() {
+    var infoDiv = document.getElementById('moreInfoContent');
+    if (infoDiv.style.display === 'none' || infoDiv.style.display === '') {
+      infoDiv.style.display = 'block';
+    } else {
+      infoDiv.style.display = 'none';
+    }
+  });
+</script>
+<script src="/script.js"></script>
+</body>
+</html>

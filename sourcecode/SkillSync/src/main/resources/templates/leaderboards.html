@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboards - SkillSync</title>
+    <link rel="icon" type="image/x-icon" href="/Logo.ico" />
+    <link rel="stylesheet" href="/dashboard-view-frame.css">
+    <link rel="stylesheet" href="/leaderboards.css">
+    <!-- Boxicons (optional if you want to use icons in content) -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+</head>
+<body>
+<script>
+    window.watsonAssistantChatOptions = {
+        integrationID: "91cc9657-b743-4c03-89bd-303022390dc8", // The ID of this integration.
+        region: "eu-gb", // The region your integration is hosted in.
+        serviceInstanceID: "61789d00-e978-482b-b59e-822bcb05ed43", // The ID of your service instance.
+        onLoad: async (instance) => { await instance.render(); }
+    };
+    setTimeout(function(){
+        const t=document.createElement('script');
+        t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+        document.head.appendChild(t);
+    });
+</script>
+<div class="container">
+    <div class="Navigation-Frame">
+        <a><img src="Logo.png" class="logo"></a>
+        <nav class="nav-links">
+            <a href="/dashboard"><img src="Dashboard-icon.png" alt="Dashboard icon"> Dashboard</a>
+            <a href="courses"><img src="Courses.png" alt="Course icon"> Courses</a>
+            <a href="leaderboards"><img src="Leaderboard.png" alt="Leaderboard icon"> Leaderboards</a>
+            <a href="certificates"><img src="Certificates.png" alt="Certificates icon"> Certificates</a>
+            <a href="friends"><img src="friends-icon.png" alt="Friends icon">Friends</a>
+            <a href="badges"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAcpJREFUSEvF1k2rTVEYAODnGkjIACPcMjBQSiQMKFyGSsoPkKmvDAz8AUlSipjxC+QqJUJkgIHykTJVUkSJ8hGy39q79t3OdtY+d+3Onp293/U+a62z3rXWhDE9E2NyjQqvwQ78wgO86jqArvBKXMb2BnQL+/EutQNd4CV4huUtyd9gLT6n4MPgvTiInSnJajE3cRHX29r9Dz6JEx3BZni0PzUoRxscI706S7RqHuvhfjNXG/wEGzPBN7A7Ff6NOZngj1iaAs/Fd0au8aYRtb6wWC8/6h+aU70Ct7E602irNC/LynhfvWjCj7EpM1qlu1fsclOD4C142BNapV1XbkIz/sdjONszfAgXwqhP9RGc6xk+XKzw8014Mx71DG/A0yYcv/tcXHF8bmtb1ZO4i1WZR/68WLi7igPnQxsc7+fhW0b4D+YP20Aq7ysWZMK/FNWyKGXLjJio56jrHM+dcppn5Go7nfbgWg61RANPgiPoNI7PEo/2ZwblGHb12Yej2NqxA9O4hLgCDXyGwfVGi/ECy1pyxWVvPT6ldLILHPmizq/UT5kSievtAbxNQSOmK1zljQt93Dx/FrtRHHevU8EqblS4q/NP/Njgv7n7QB+og3wBAAAAAElFTkSuQmCC" alt="Badges icon"> Badges</a>
+            <a href="settings"><img src="Settings.png" alt="Settings icon"> Settings</a>
+
+        </nav>
+    </div>
+
+    <div class="View-frame">
+        <div class="Bar-frame">
+            <div class="hamburger-container">
+                <div class="hamburger-menu" onclick="toggleMobileMenu()">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+            <div class="top-right">
+                <div class="user-profile" onclick="toggleUserDropdown()">
+                    <img th:if="${user}" th:src="@{'/images/' + ${user.id}}" onerror="this.onerror=null; this.src='user-icon.png';" alt="Profile Picture">
+                    <div class="name"><span th:text="${user.username}">User</span> </div>
+                    <div id="userDropdown" class="dropdown-content">
+                        <a href="/logout" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Leaderboards Content -->
+        <div class="View-contact">
+            <h1>Top <span th:text="${limit}">5</span> <span th:text="${type}">global</span> users</h1>
+            <div class="filter-container">
+                <form th:action="@{/leaderboards}" method="get">
+                    <label for="limit">Show top:</label>
+                    <select id="limit" name="limit">
+                        <option value="5" th:selected="${limit == 5}">5</option>
+                        <option value="10" th:selected="${limit == 10}">10</option>
+                        <option value="50" th:selected="${limit == 50}">50</option>
+                        <option value="100" th:selected="${limit == 100}">100</option>
+                    </select>
+                    <label for="type">Leaderboard:</label>
+                    <select id="type" name="type">
+                        <option value="global" th:selected="${type == 'global'}">Global</option>
+                        <option value="friends" th:selected="${type == 'friends'}">Friends</option>
+                    </select>
+                    <button type="submit">Apply</button>
+                </form>
+            </div>
+            <ul id="leaderboard-list">
+                <li>
+                    <span>Name</span>
+                    <span>Username</span>
+                    <span>Score</span>
+                </li>
+                <li th:each="user : ${topUsers}">
+                    <span th:text="${user.name}"></span>
+                    <span th:text="${user.username}"></span>
+                    <span th:text="${user.score}"></span>
+                </li>
+            </ul>
+        </div>
+
+
+
+    </div>
+</div>
+<script src="/script.js"></script>
+</body>
+</html>

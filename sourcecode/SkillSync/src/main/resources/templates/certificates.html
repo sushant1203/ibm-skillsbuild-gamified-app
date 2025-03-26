@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificates - SkillSync</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/certificates.css">
+    <link rel="icon" type="image/x-icon" href="/Logo.ico" />
+    <script src="/script.js"></script>
+</head>
+<body>
+<script>
+    window.watsonAssistantChatOptions = {
+        integrationID: "91cc9657-b743-4c03-89bd-303022390dc8", // The ID of this integration.
+        region: "eu-gb", // The region your integration is hosted in.
+        serviceInstanceID: "61789d00-e978-482b-b59e-822bcb05ed43", // The ID of your service instance.
+        onLoad: async (instance) => { await instance.render(); }
+    };
+    setTimeout(function(){
+        const t=document.createElement('script');
+        t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+        document.head.appendChild(t);
+    });
+</script>
+<div class="container">
+    <!-- Navigation Frame -->
+    <div class="Navigation-Frame">
+        <a><img src="Logo.png" class="logo"></a>
+        <nav class="nav-links">
+            <a href="/dashboard"><img src="Dashboard-icon.png" alt="Dashboard icon"> Dashboard</a>
+            <a href="courses"><img src="Courses.png" alt="Course icon"> Courses</a>
+            <a href="leaderboards"><img src="Leaderboard.png" alt="Leaderboard icon"> Leaderboards</a>
+            <a href="certificates"><img src="Certificates.png" alt="Certificates icon"> Certificates</a>
+            <a href="friends"><img src="friends-icon.png" alt="Friends icon">Friends</a>
+            <a href="badges"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAcpJREFUSEvF1k2rTVEYAODnGkjIACPcMjBQSiQMKFyGSsoPkKmvDAz8AUlSipjxC+QqJUJkgIHykTJVUkSJ8hGy39q79t3OdtY+d+3Onp293/U+a62z3rXWhDE9E2NyjQqvwQ78wgO86jqArvBKXMb2BnQL+/EutQNd4CV4huUtyd9gLT6n4MPgvTiInSnJajE3cRHX29r9Dz6JEx3BZni0PzUoRxscI706S7RqHuvhfjNXG/wEGzPBN7A7Ff6NOZngj1iaAs/Fd0au8aYRtb6wWC8/6h+aU70Ct7E602irNC/LynhfvWjCj7EpM1qlu1fsclOD4C142BNapV1XbkIz/sdjONszfAgXwqhP9RGc6xk+XKzw8014Mx71DG/A0yYcv/tcXHF8bmtb1ZO4i1WZR/68WLi7igPnQxsc7+fhW0b4D+YP20Aq7ysWZMK/FNWyKGXLjJio56jrHM+dcppn5Go7nfbgWg61RANPgiPoNI7PEo/2ZwblGHb12Yej2NqxA9O4hLgCDXyGwfVGi/ECy1pyxWVvPT6ldLILHPmizq/UT5kSievtAbxNQSOmK1zljQt93Dx/FrtRHHevU8EqblS4q/NP/Njgv7n7QB+og3wBAAAAAElFTkSuQmCC" alt="Badges icon"> Badges</a>
+            <a href="settings"><img src="Settings.png" alt="Settings icon"> Settings</a>
+        </nav>
+    </div>
+
+
+    <!-- Main View Frame -->
+    <div class="View-frame">
+        <div class="Bar-frame">
+
+            <div class="hamburger-container">
+                <div class="hamburger-menu" onclick="toggleMobileMenu()">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+            <div class="top-right">
+                <div class="user-profile" onclick="toggleUserDropdown()">
+                    <img th:if="${user}" th:src="@{'/images/' + ${user.id}}" onerror="this.onerror=null; this.src='user-icon.png';" alt="Profile Picture">
+                    <span th:text="${user.username}">User</span>
+                    <div id="userDropdown" class="dropdown-content">
+                        <a href="/logout" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificates Content -->
+        <div class="Main-contact">
+            <h1 class="Title">Your Certificates</h1>
+            <!-- Debug: Show number of certificates -->
+            <p class="streaks-nums">Number of certificates: <span th:text="${certificates.size()}">0</span></p>
+            <div th:if="${#lists.isEmpty(certificates)}">
+                <p>No certificates found.</p>
+            </div>
+
+
+            <div class="filter-container">
+                <div class="filter-controls">
+                    <form method="get" action="/certificates">
+                        <div class="filter-group">
+                            <label for="search"></label><input type="search" name="search" id="search"
+                                                               placeholder="Search certificates..."
+                                                               class="search-box">
+
+                            <label for="sortBy"></label><select name="sortBy" id="sortBy">
+                            <option value="mostRecent">Most Recent</option>
+                        </select>
+
+                            <label for="category"></label><select name="category" id="category">
+                            <option value="">All Categories</option>
+                            <option value="ai">AI</option>
+                            <option value="web development">Web Development</option>
+                            <option value="data analyst">Data Analyst</option>
+                            <option value="cyber security">Cyber Security</option>
+                            <option value="computing education">Computing Education</option>
+                        </select>
+
+                            <label for="difficulty"></label><select name="difficulty" id="difficulty">
+                            <option value="">All Difficulties</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+
+                            <button type="submit">Apply Filters</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div th:each="cert : ${certificates}" class="certificate-card">
+                <h3 th:text="${cert.course.title}">Course Title</h3>
+                <p>Category: <span th:text="${cert.course.category}">Category</span></p>
+                <p>Difficulty: <span th:text="${cert.course.difficulty}">Difficulty</span></p>
+                <p>Quiz Score: <span th:text="${cert.quizScore}">Score</span>%</p>
+                <p>Created At: <span th:text="${#temporals.format(cert.createdAt, 'dd-MM-yyyy')}">Date</span></p>
+                <hr/>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleUserDropdown() {
+        var dropdown = document.getElementById("userDropdown");
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+
+    // Optionally, hide the dropdown if user clicks outside:
+    document.addEventListener("click", function(event) {
+        var dropdown = document.getElementById("userDropdown");
+        var profile = document.querySelector(".user-profile");
+        if (!profile.contains(event.target)) {
+            dropdown.style.display = "none";
+        }
+    });
+</script>
+<script src="/script.js"></script>
+</body>
+</html>

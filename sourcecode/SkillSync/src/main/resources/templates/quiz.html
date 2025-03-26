@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="/quiz.css">
+    <link rel="icon" type="image/x-icon" href="/Logo.ico" />
+</head>
+<body>
+<script>
+    window.watsonAssistantChatOptions = {
+        integrationID: "91cc9657-b743-4c03-89bd-303022390dc8", // The ID of this integration.
+        region: "eu-gb", // The region your integration is hosted in.
+        serviceInstanceID: "61789d00-e978-482b-b59e-822bcb05ed43", // The ID of your service instance.
+        onLoad: async (instance) => { await instance.render(); }
+    };
+    setTimeout(function(){
+        const t=document.createElement('script');
+        t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+        document.head.appendChild(t);
+    });
+</script>
+
+<form th:action="@{/quiz/{courseId}(courseId=${courseId})}" method="post" class="quiz-form">
+
+    <input type="hidden" name="quizId" th:value="${quiz.id}" />
+
+    <!-- Loop through each question -->
+    <div th:each="question : ${quiz.questions}" class="question">
+        <h4 th:text="${question.questionText}">Question</h4>
+        <div th:each="option : ${question.options}" class="option">
+            <!-- Radio button for the option -->
+            <input type="radio" th:name="${'answer_' + question.id}" th:value="${option.id}" th:id="${'option_' + option.id}" />
+            <!-- Label for the radio button -->
+            <label th:for="${'option_' + option.id}" th:text="${option.optionText}">Option</label>
+        </div>
+    </div>
+
+    <button type="submit">Submit Quiz</button>
+</form>
+</body>
+</html>
