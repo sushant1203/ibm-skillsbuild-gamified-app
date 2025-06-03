@@ -10,11 +10,11 @@ This project involved full-stack web development, from conceptualisation and des
 ## 🧑‍🤝‍🧑 Team Members
 
 This project was a collaborative effort. My team members were:
-Alireza Ebtehaj
-Christensen, Jasper
-Craig Long
-Omar Farrag
-Abdurrahmaan Ahmed
+- Alireza Ebtehaj
+- Christensen Jasper
+- Craig Long
+- Omar Farrag
+- Abdurrahmaan Ahmed
 
 ---
 
@@ -96,8 +96,8 @@ To get a local copy up and running, follow these simple steps.
 ### Prerequisites
 * IntelliJ IDEA or VS Code installed.
 * MySQL Server is installed and running.
-Java Development Kit (JDK): 21
-Build Tool: Gradle
+* Java Development Kit (JDK): 21
+* Build Tool: Gradle
 
 ### 1. Clone the Repository
 ```bash
@@ -106,24 +106,28 @@ cd ibm-skillsbuild-gamified-app
 ```
 
 ### 2. Setting Up MySQL
-1.Open MySQL and log in as the root user.
-2.Create a new database schema named skillsyncdb by running the following command in MySQL: CREATE DATABASE skillsyncdb;
-3.Go to Administration > Users and Privileges in MySQL Workbench.
-4.Create a new user with the following credentials: Username: skillsync Password: 123456789
-5.Assign the Administration role and grant all privileges to this user.
-6.Ensure MySQL service is running before starting the application.
-Setting Up in IntelliJ
-1.open IntelliJ and navigate to Database.
-2.Click the Add Database button.
-3.Select MySQL as the database type.
-4.Enter the following credentials:
+1.	Open MySQL and log in as the root user.
+2.	Create a new database schema named skillsyncdb by running the following command in MySQL: CREATE DATABASE skillsyncdb;
+3.	Go to Administration > Users and Privileges in MySQL Workbench.
+4.	Create a new user with the following credentials: Username: skillsync Password: 123456789
+5.	Assign the Administration role and grant all privileges to this user.
+6.	Ensure MySQL service is running before starting the application.
+
+
+
+### 3. Setting Up IntelliJ
+1.	Open IntelliJ and navigate to Database.
+2.	Click the Add Database button.
+3.	Select MySQL as the database type.
+4.	Enter the following credentials:
 -User: skillsync
 -Password: 123456789
 -Database Name: skillsyncdb
-5.Click Test Connection to verify the setup.
-6.Once successful, click Apply to save the configuration.
+5.	Click Test Connection to verify the setup.
+6.	Once successful, click Apply to save the configuration.
 
-### 3. Run the application once you are ready to
+
+### 4. Run the application once you are ready to
 
 ## 📄 License
 
