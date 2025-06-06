@@ -105,6 +105,25 @@ git clone https://github.com/sushant1203/ibm-skillsbuild-gamified-app.git
 cd ibm-skillsbuild-gamified-app
 ```
 
+(a) **Open the project in IntelliJ IDEA:**
+    * Launch IntelliJ IDEA.
+    * Select `File > Open...` from the main menu.
+    * Navigate to and select the root folder of the cloned project.
+(b) **Sync Gradle Dependencies:**
+    * IntelliJ will automatically detect the **`build.gradle`** file.
+    * Allow the IDE a few moments to download and sync all the necessary project dependencies.
+
+(c) **Run the application:**
+    * Navigate to the main application file: `src/main/java/co2123/hw1/Hw1Application.java`.
+    * Click the green play icon ▶️ next to the `main` method.
+    * Select **'Run Hw1Application'** from the context menu.
+The application will start, and you will see the Spring Boot logs in the **Run** console within IntelliJ.
+
+(d) **Usage**
+* Once the application is running, open your web browser and navigate to:
+**`http://localhost:8080`**
+
+
 ### 2. Setting Up MySQL
 1.	Open MySQL and log in as the root user.
 2.	Create a new database schema named skillsyncdb by running the following command in MySQL: CREATE DATABASE skillsyncdb;
